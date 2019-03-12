@@ -9,7 +9,7 @@ public class fire_bomb : MonoBehaviour
     int input_code;
     enum shoot_direction { up = 0, down, left, right };
     float nextfireQ, firerateQ = 0.8f;
-    bomb_boom bomb;
+    
     public GameObject Bomb;
     public new AudioSource audio;
 
@@ -20,7 +20,6 @@ public class fire_bomb : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        bomb = GetComponent<bomb_boom>();
         audio = this.gameObject.AddComponent<AudioSource>();
         this.audio.clip = this.fireSound;
         audio.volume =volume;

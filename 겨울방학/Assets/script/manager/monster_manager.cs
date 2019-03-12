@@ -25,14 +25,24 @@ public class monster_manager : MonoBehaviour {
   
                         return _instance;  
                 }  
-        }  
+        }
+        public LinkedList<monster_parents> monsterList;
+        public GameObject monster_1;
+        float nextfireQ, firerateQ = 10f;
+        move_player player;
 	// Use this for initialization
 	void Start () {
-		
+	        player=GameObject.Find("player").GetComponent<move_player>();
+                monsterList=new LinkedList<monster_parents>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(Time.time>nextfireQ)
+                {
+                        GameObject temp=Instantiate(monster_1);
+                        temp.transform.position=new Vector3(player.transform.position.x+Random.Range(-10.0f, 10.0f),player.transform.position.y+Random.Range(-10.0f, 10.0f));
+                        nextfireQ = Time.time + firerateQ;
+                }
 	}
 }

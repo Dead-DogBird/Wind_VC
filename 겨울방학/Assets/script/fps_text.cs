@@ -23,6 +23,6 @@ public class fps_text : MonoBehaviour {
 		// 	fps=frame;
 		// 	frame=0;
 		// }
-		myText.text="@ㅏ:"+fa++;
+		myText.text="SCORE:"+fa++;
 	}
 }

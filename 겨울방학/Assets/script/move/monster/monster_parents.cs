@@ -14,10 +14,11 @@ public class monster_parents : GameMaker
     [HideInInspector]
     public float radi;
     //[HideInInspector]
-    public int hp=3;
+    public float hp=3;
     private Vector3 knockback;
     public float nockback_length=0.005f;
     public float hitcolor=1;
+    LinkedListNode<monster_parents> me;
 
     // Use this for initialization
     public void Start()
@@ -25,6 +26,7 @@ public class monster_parents : GameMaker
         orignsize = transform.localScale.x;
         dumy_x = transform.localScale.x;
         player = GameObject.Find("player").GetComponent<move_player>();
+        monster_manager.Instance.monsterList.AddLast(this);
     }
     bool Is_hit()
     {
@@ -70,6 +72,11 @@ public class monster_parents : GameMaker
     {
         knockback=-VectorRotation(PointDirection(po1,po2))*nockback_length*0.1f*length;
     }
+    public void Kill()
+    {
+        monster_manager.Instance.monsterList.Remove(this);
+        Destroy(gameObject);
+    }
     public void Update()
     {
         to_player();
@@ -78,10 +85,10 @@ public class monster_parents : GameMaker
         transform.position+=knockback;
         hitcolor-=hitcolor/4;
         for(int i=0;i<transform.childCount;i++)
-        transform.GetChild(i).GetComponentInChildren<Renderer>().material.color=new Color(1+(hitcolor*1.5f),1,1);
+        transform.GetChild(i).GetComponentInChildren<Renderer>().material.color=new Color(1+(hitcolor*2),1,1);
        
         if(hp<=0)
-        Destroy(gameObject);
+        Kill();
     }
 
 }

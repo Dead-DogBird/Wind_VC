@@ -16,9 +16,10 @@ public class boom_effect : MonoBehaviour {
         {
 			foreach (Collider2D i in hit)
             {	
-               	i.GetComponent<monster_parents>().hp-=1;
+               	i.GetComponent<monster_parents>().hp-=0.5f;
 				i.GetComponent<monster_parents>().Doknockback(i.transform.position,transform.position,5f);
 				i.GetComponent<monster_parents>().hitcolor=5;
+				Debug.Log("빠밤");
             }
 		}
 		box_collider.enabled = true;//다시 자신의 충돌 체크를 켜줌		
