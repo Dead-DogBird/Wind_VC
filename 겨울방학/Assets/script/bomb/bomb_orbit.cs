@@ -13,8 +13,8 @@ public class bomb_orbit : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.localScale -= new Vector3(0.02f, 0.02f, 0);
-		if(Time.time > nextfireQ)
-		Destroy(gameObject);
+		//if(Time.time > nextfireQ)
+		Destroy(gameObject,0.2f);
 		/* if(transform.localScale.x<=0.25f)
 		{
 		}*/

@@ -17,7 +17,7 @@ public class monster_parents : GameMaker
     public float hp=3;
     private Vector3 knockback;
     public float nockback_length=0.005f;
-    public float hitcolor=1;
+    public float hitcolor;
     LinkedListNode<monster_parents> me;
 
     // Use this for initialization

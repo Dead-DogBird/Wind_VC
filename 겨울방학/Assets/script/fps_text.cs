@@ -16,13 +16,13 @@ public class fps_text : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		// ++frame;
-		// if(Time.time>nextfireQ)
-		// {
-		// 	nextfireQ = Time.time + firerateQ;
-		// 	fps=frame;
-		// 	frame=0;
-		// }
-		myText.text="SCORE:"+fa++;
+		++frame;
+		if(Time.time>nextfireQ)
+		{
+			nextfireQ = Time.time + firerateQ;
+			fps=frame;
+			frame=0;
+		}
+		myText.text="프레임:"+fps;
 	}
 }

@@ -70,7 +70,7 @@ public class fire_bomb : MonoBehaviour
 
         transform.position+=(Vector3)a;
 
-        if (Input.GetKey(KeyCode.UpArrow) && Time.time > nextfireQ)
+        if ((Input.GetMouseButton(0)||Input.GetMouseButton(0)) && Time.time > nextfireQ)
         {
             fire((int)shoot_direction.up);
         }
