@@ -18,8 +18,7 @@ public class monster_parents : GameMaker
     private Vector3 knockback;
     public float nockback_length=0.005f;
     public float hitcolor;
-    LinkedListNode<monster_parents> me;
-
+    private LinkedList<child_manager> childs;
     // Use this for initialization
     public void Start()
     {
@@ -27,6 +26,7 @@ public class monster_parents : GameMaker
         dumy_x = transform.localScale.x;
         player = GameObject.Find("player").GetComponent<move_player>();
         monster_manager.Instance.monsterList.AddLast(this);
+        childs=new LinkedList<child_manager>();
     }
     bool Is_hit()
     {

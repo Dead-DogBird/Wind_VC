@@ -69,6 +69,7 @@ public class fire_bomb : MonoBehaviour
         a-=a/10;
 
         transform.position+=(Vector3)a;
+    
 
         if ((Input.GetMouseButton(0)||Input.GetMouseButton(0)) && Time.time > nextfireQ)
         {
