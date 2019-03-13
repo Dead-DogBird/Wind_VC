@@ -17,8 +17,8 @@ public class monster_parents : GameMaker
     public float hp=3;
     private Vector3 knockback;
     public float nockback_length=0.005f;
-    public float hitcolor;
-    private LinkedList<child_manager> childs;
+    public float hitcolor=0;
+    public LinkedList<child_manager> childs;
     // Use this for initialization
     public void Start()
     {
@@ -84,8 +84,10 @@ public class monster_parents : GameMaker
         knockback-=knockback/10;
         transform.position+=knockback;
         hitcolor-=hitcolor/4;
-        for(int i=0;i<transform.childCount;i++)
-        transform.GetChild(i).GetComponentInChildren<Renderer>().material.color=new Color(1+(hitcolor*2),1,1);
+        foreach (var item in childs)
+        {          
+            item.GetComponentInChildren<Renderer>().material.color=new Color(1+(hitcolor*2),1-(hitcolor*0.5f),1-(hitcolor*0.5f));
+        }
        
         if(hp<=0)
         Kill();
