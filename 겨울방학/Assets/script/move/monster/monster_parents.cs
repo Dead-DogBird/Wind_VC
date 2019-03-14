@@ -73,7 +73,7 @@ public class monster_parents : GameMaker
         knockback=-VectorRotation(PointDirection(po1,po2))*nockback_length*0.1f*length;
     }
     public void Kill()
-    {
+    {   
         monster_manager.Instance.monsterList.Remove(this);
         Destroy(gameObject);
     }
