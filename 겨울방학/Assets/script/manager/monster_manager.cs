@@ -38,7 +38,7 @@ public class monster_manager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Time.time>nextfireQ)
+		if(Time.time>nextfireQ&&player!=null)
                 {
                         GameObject temp=Instantiate(monster_1);
                         temp.transform.position=new Vector3(player.transform.position.x+Random.Range(-10.0f, 10.0f),player.transform.position.y+Random.Range(-10.0f, 10.0f));

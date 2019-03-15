@@ -24,6 +24,7 @@ public class ShakeManager : MonoBehaviour {
     void Update()
     {
         ShakeUpdate();
+        if(player!=null)
         transform.position=player.transform.position-new Vector3(0,0,10);
 
     }
