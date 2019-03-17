@@ -32,7 +32,7 @@ public class move_player : MonoBehaviour
         if (speedNomal.magnitude > 1)
             speedNomal = speedNomal.normalized;
 
-        transform.Translate(speedNomal * (speed));
+       // transform.Translate(speedNomal * (speed));
 
     }
 }
