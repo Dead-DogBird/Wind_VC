@@ -6,6 +6,7 @@ public class player_anime : MonoBehaviour {
 
 	Animator animator;
 	bool isrun;
+	public bool orRun;
 	// Use this for initialization
 	void Start () {
 		 animator = GetComponent<Animator>();
@@ -15,7 +16,7 @@ public class player_anime : MonoBehaviour {
 	void Update () {
 		float h =Input.GetAxis("Horizontal");
         float v =Input.GetAxis("Vertical");
-		if(h!=0||v!=0)
+		if(h!=0||v!=0||orRun!=false)
 		{
 			isrun=true;
 		}

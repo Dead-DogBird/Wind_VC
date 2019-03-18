@@ -13,6 +13,9 @@ public class JoyStick : MonoBehaviour {
     private Vector3 JoyVec;         // 조이스틱의 벡터(방향)
     private float Radius;           // 조이스틱 배경의 반 지름.
     public move_player Player;
+    bool isDrag;
+    Vector3 Pos;
+    public player_anime player_Anime;
     void Start()
     {
         Radius = GetComponent<RectTransform>().sizeDelta.y * 0.5f;
@@ -21,17 +24,19 @@ public class JoyStick : MonoBehaviour {
         // 캔버스 크기에대한 반지름 조절.
         float Can = transform.parent.GetComponent<RectTransform>().localScale.x;
         Radius *= Can;
+       
     }
     void Update()
     {
-         
+        if(Player!=null)
+         Player.transform.Translate(JoyVec*(Player.speed));
     }
  
     // 드래그
     public void Drag(BaseEventData _Data)
     {
         PointerEventData Data = _Data as PointerEventData;
-        Vector3 Pos = Data.position;
+        Pos = Data.position;
         
         // 조이스틱을 이동시킬 방향을 구함.(오른쪽,왼쪽,위,아래)
         JoyVec = (Pos - StickFirstPos).normalized;
@@ -46,12 +51,13 @@ public class JoyStick : MonoBehaviour {
         else
             Stick.position = StickFirstPos + JoyVec * Radius;
 
-            Player.transform.Translate(JoyVec*(Player.speed));
+            player_Anime.orRun=true;
     }
  
     // 드래그 끝.
     public void DragEnd()
     {
+        player_Anime.orRun=false;
         Stick.position = StickFirstPos; // 스틱을 원래의 위치로.
         JoyVec = Vector3.zero;          // 방향을 0으로.
     }
