@@ -64,6 +64,8 @@ public class bomb_boom : MonoBehaviour
             GameObject temp_sh = Instantiate(effect);
             temp.transform.position = transform.position + new Vector3(0, 0, -0.1f);
             temp_sh.transform.position = transform.position + new Vector3(0, 0, -0.05f);
+            temp.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+            temp_sh.transform.rotation = temp.transform.rotation;
             temp_sh.transform.localScale += new Vector3(0.2f, 0.2f, 0);
             temp_sh.gameObject.GetComponent<Renderer>().material.color = new Color(0, 0, 0);
             Destroy(inst);
@@ -78,6 +80,7 @@ public class bomb_boom : MonoBehaviour
 
             float radonscle = Random.Range(-0.11f, 0.11f);
             tempOb.transform.localScale += new Vector3(radonscle, radonscle);
+            
             tempObshadow.transform.position = tempOb.transform.position + new Vector3(0, 0, 0.1f);
             tempObshadow.transform.localScale = tempOb.transform.localScale + new Vector3(0.17f, 0.17f, 0);
             tempObshadow.gameObject.GetComponent<Renderer>().material.color = new Color(0.2f, 0.2f, 0.2f);
