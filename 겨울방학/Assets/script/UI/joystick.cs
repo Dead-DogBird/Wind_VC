@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
  
-public class JoyStick : MonoBehaviour {
+public class joystick : MonoBehaviour {
  
     // 공개
     public Transform Stick;         // 조이스틱.
