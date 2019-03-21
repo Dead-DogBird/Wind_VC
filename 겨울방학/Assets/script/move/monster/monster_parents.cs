@@ -19,6 +19,7 @@ public class monster_parents : GameMaker
     public float nockback_length = 0.005f;
     public float hitcolor = 0;
     public LinkedList<child_manager> childs;
+    public bool is_player;
     // Use this for initialization
     public void Start()
     {
@@ -53,8 +54,11 @@ public class monster_parents : GameMaker
         angle = PointDirection((Vector2)transform.position, (Vector2)player.transform.position);
         if (radi > gur)
         {
-            transform.Translate(VectorRotation(angle) * speed * Time.deltaTime);
-            //transform.position +=(player.transform.position-transform.position).normalized*speed*Time.deltaTime;
+            is_player = true;
+        }
+        else
+        {
+            is_player = false;
         }
         if (transform.position.x <= player.transform.position.x + 0.1f)
             dumy_x = -orignsize;
@@ -63,6 +67,10 @@ public class monster_parents : GameMaker
             dumy_x = orignsize;
         }
         transform.localScale = new Vector3(dumy_x, transform.localScale.y, transform.localScale.z);
+        if (is_player)
+        {
+            transform.Translate(VectorRotation(angle) * speed * Time.deltaTime);
+        }
     }
     public void Doknockback(Vector3 po1, Vector3 po2)
     {
