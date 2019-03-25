@@ -771,6 +771,7 @@ MonoBehaviour:
   nockback_length: 0.5
   hitcolor: 0
   is_player: 0
+  bullet: {fileID: 457003306112124824, guid: 5a5ecb5e1bb9f914399a8a52b9f0a9bd, type: 3}
 --- !u!1 &2790176386557752749
 GameObject:
   m_ObjectHideFlags: 0

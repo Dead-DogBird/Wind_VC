@@ -39,10 +39,11 @@ public class monster_parents : GameMaker
         {
             foreach (Collider2D i in hit)
             {
-                Doknockback(transform.position, i.transform.position);
-                if (i.gameObject.tag == "attack")
+                if (i.gameObject.tag == "monster")
                 {
+                Doknockback(transform.position, i.transform.position);
                 }
+                
             }
         }
         box_collider.enabled = true;//다시 자신의 충돌 체크를 켜줌			

@@ -51,6 +51,7 @@ public class bomb_boom : MonoBehaviour
         {
             foreach (Collider2D i in hit)
             {
+                if(i.tag=="monster")
                 kill=true;
             }         
         }
