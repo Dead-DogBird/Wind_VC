@@ -22,7 +22,8 @@ public class boom_effect : MonoBehaviour
                 {
                     i.GetComponent<monster_parents>().hp -= 0.5f;
                     i.GetComponent<monster_parents>().Doknockback(i.transform.position, transform.position, 5f);
-                    i.GetComponent<monster_parents>().hitcolor = 5;
+                    i.GetComponent<monster_parents>().hitcolor = 20;
+                    i.GetComponent<monster_parents>().audio.Play();
                 }
             }
         }

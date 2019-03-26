@@ -771,6 +771,9 @@ MonoBehaviour:
   nockback_length: 0.5
   hitcolor: 0
   is_player: 0
+  audio: {fileID: 0}
+  fireSound: {fileID: 8300000, guid: ca27a04ee96c457468bcfc870b11bc7e, type: 3}
+  volume: 5
   bullet: {fileID: 457003306112124824, guid: 5a5ecb5e1bb9f914399a8a52b9f0a9bd, type: 3}
 --- !u!1 &2790176386557752749
 GameObject:

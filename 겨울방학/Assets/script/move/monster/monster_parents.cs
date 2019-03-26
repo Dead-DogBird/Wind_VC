@@ -20,6 +20,10 @@ public class monster_parents : GameMaker
     public float hitcolor = 0;
     public LinkedList<child_manager> childs;
     public bool is_player;
+    public new AudioSource audio;
+
+    public AudioClip fireSound;
+    public float volume;
     // Use this for initialization
     public void Start()
     {
@@ -28,6 +32,10 @@ public class monster_parents : GameMaker
         player = GameObject.Find("player").GetComponent<move_player>();
         monster_manager.Instance.monsterList.AddLast(this);
         childs = new LinkedList<child_manager>();
+
+        audio = this.gameObject.AddComponent<AudioSource>();
+        this.audio.clip = this.fireSound;
+        audio.volume =volume;
     }
     bool Is_hit()
     {
@@ -39,9 +47,11 @@ public class monster_parents : GameMaker
         {
             foreach (Collider2D i in hit)
             {
+
                 if (i.gameObject.tag == "monster")
                 {
                 Doknockback(transform.position, i.transform.position);
+                this.audio.clip = this.fireSound;
                 }
                 
             }
@@ -84,6 +94,7 @@ public class monster_parents : GameMaker
     public void Kill()
     {
         monster_manager.Instance.monsterList.Remove(this);
+        monster_manager.Instance.isDead=true;
         Destroy(gameObject);
     }
     public void Update()
