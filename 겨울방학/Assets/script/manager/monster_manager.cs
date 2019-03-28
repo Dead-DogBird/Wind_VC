@@ -11,6 +11,7 @@ public class monster_manager : MonoBehaviour
 
     public AudioClip fireSound;
     public float volume;
+    public bool isHit;
     //프로퍼티(속성)를 이용해서 좀 더 개선할 수 있다. 접근자 방식. 
     private static monster_manager _instance;
     public static monster_manager Instance
@@ -34,7 +35,7 @@ public class monster_manager : MonoBehaviour
     public LinkedList<monster_parents> monsterList;
     public GameObject monster_1;
     float nextfireQ, firerateQ = 30f;
-    move_player player;
+    public move_player player;
     public bool isDead;
     // Use this for initialization
     void Start()
@@ -44,26 +45,40 @@ public class monster_manager : MonoBehaviour
         audio = this.gameObject.AddComponent<AudioSource>();
         this.audio.clip = this.fireSound;
         audio.volume = volume;
+        nextfireQ = Time.time + 5;
 
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time > nextfireQ && player != null)
+        if (player != null)
         {
-            for (int i = 0; i < 5; i++)
+            if (Time.time > nextfireQ)
             {
-                GameObject temp = Instantiate(monster_1);
-                temp.transform.position = new Vector3(player.transform.position.x + Random.Range(-10.0f, 10.0f), player.transform.position.y + Random.Range(-10.0f, 10.0f));
+                for (int i = 0; i < 5; i++)
+                {
+                    GameObject temp = Instantiate(monster_1);
+                    temp.transform.position = new Vector3(player.transform.position.x + Random.Range(-10.0f, 10.0f), player.transform.position.y + Random.Range(-10.0f, 10.0f));
+                }
+                nextfireQ = Time.time + firerateQ;
             }
-            nextfireQ = Time.time + firerateQ;
+            if (isHit)
+            {
+                // if (monsterList.Count != 0)
+                // {
+                //     foreach (var item in monsterList)
+                //     {
+                //         item.Doknockback(item.transform.position, player.transform.position, 7.5f);
+                //     }
+                // }
+                isHit = false;
+            }
         }
-        if(isDead)
+        if (isDead)
         {
             audio.Play();
-            isDead=false;
+            isDead = false;
         }
     }
 }

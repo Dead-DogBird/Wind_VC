@@ -144,8 +144,10 @@ MonoBehaviour:
   audio: {fileID: 0}
   fireSound: {fileID: 8300000, guid: 63bef09985a66424f8030e3c0d62c245, type: 3}
   volume: 0.5
+  isHit: 0
   monster_1: {fileID: 7292471265954072975, guid: 0f1ac948ffd4880428529e6b7ff6e7e6,
     type: 3}
+  player: {fileID: 0}
   isDead: 0
 --- !u!4 &219770576
 Transform:

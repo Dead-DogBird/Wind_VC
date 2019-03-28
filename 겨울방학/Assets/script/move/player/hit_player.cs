@@ -20,18 +20,18 @@ public class hit_player : GameMaker
             {
                 if (i.CompareTag("monster"))
                 {
-                    Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 0.2f, 0.9f, 10);
                     Doknockback(transform.position, i.transform.position, 0.2f);
+                    i.transform.GetComponent<monster_parents>().Doknockback(i.transform.position,transform.position, 7.5f);
                     hp -= 1;
-                    
+                    monster_manager.Instance.isHit=true;
                 }
                 if (i.CompareTag("bullet"))
                 {
-                    Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 2f, 0.9f, 10);
                     Doknockback(transform.position, i.transform.position, 0.2f);
                     hp -= 1;
                     Destroy(i.gameObject);
                 }
+                Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 6f, 0.9f, 10);
                 hit_Red.hitcolor=1;
             }
         }

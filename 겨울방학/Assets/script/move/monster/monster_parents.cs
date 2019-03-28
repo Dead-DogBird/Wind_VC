@@ -29,7 +29,7 @@ public class monster_parents : GameMaker
     {
         orignsize = transform.localScale.x;
         dumy_x = transform.localScale.x;
-        player = GameObject.Find("player").GetComponent<move_player>();
+        player =monster_manager.Instance.player;
         monster_manager.Instance.monsterList.AddLast(this);
         childs = new LinkedList<child_manager>();
 

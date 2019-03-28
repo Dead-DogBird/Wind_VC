@@ -539,9 +539,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3673260119520635409}
-  - component: {fileID: 3038913529070367995}
   - component: {fileID: 2067755076387483743}
   - component: {fileID: 6818699076255781673}
+  - component: {fileID: 3277756690262577130}
   m_Layer: 8
   m_Name: monster3
   m_TagString: monster
@@ -566,29 +566,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3038913529070367995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7292471265954072975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98348fafaa5b6624f84ced1526840195, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  speed: 6
-  gur: 0.1
-  radi: 0
-  hp: 3
-  nockback_length: 0.5
-  hitcolor: 0
-  is_player: 0
-  audio: {fileID: 0}
-  fireSound: {fileID: 8300000, guid: 1bc6563d87be6fe449799f7c3228c1c7, type: 3}
-  volume: 1
 --- !u!61 &2067755076387483743
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -634,6 +611,29 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3277756690262577130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7292471265954072975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5434df6a06f6c54fb7b3dc5477624c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  speed: 2
+  gur: 0
+  radi: 0
+  hp: 3
+  nockback_length: 0.5
+  hitcolor: 0
+  is_player: 0
+  audio: {fileID: 0}
+  fireSound: {fileID: 0}
+  volume: 0
 --- !u!1 &7541070029214706707
 GameObject:
   m_ObjectHideFlags: 0
