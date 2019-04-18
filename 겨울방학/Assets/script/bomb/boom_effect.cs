@@ -20,7 +20,7 @@ public class boom_effect : MonoBehaviour
             {
                 if (i.tag == "monster")
                 {
-                    i.GetComponent<monster_parents>().hp -= 0.5f;
+                    i.GetComponent<monster_parents>().hp -= 1f;
                     i.GetComponent<monster_parents>().Doknockback(i.transform.position, transform.position, 5f);
                     i.GetComponent<monster_parents>().hitcolor = 20;
                     i.GetComponent<monster_parents>().audio.Play();

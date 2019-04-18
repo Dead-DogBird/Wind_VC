@@ -15,7 +15,7 @@ public class bomb_boom : MonoBehaviour
     float a = 0.025f;
     bool isGround = false;
     public float firstnum, plus;
-    public GameObject effect;
+    public GameObject effect,outlineeffect;
     float nextfireQ, firerateQ = 0.01f;
     GameObject inst;
     float Y, X;
@@ -62,7 +62,7 @@ public class bomb_boom : MonoBehaviour
     {
         
             GameObject temp = Instantiate(effect);
-            GameObject temp_sh = Instantiate(effect);
+            GameObject temp_sh = Instantiate(outlineeffect);
             temp.transform.position = transform.position + new Vector3(0, 0, -0.1f);
             temp_sh.transform.position = transform.position + new Vector3(0, 0, -0.05f);
             temp.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
