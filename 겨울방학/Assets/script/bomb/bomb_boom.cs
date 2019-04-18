@@ -15,7 +15,11 @@ public class bomb_boom : MonoBehaviour
     float a = 0.025f;
     bool isGround = false;
     public float firstnum, plus;
+<<<<<<< HEAD
     public GameObject effect,outlineeffect;
+=======
+    public GameObject effect,effect_shadow;
+>>>>>>> 85f03661486dce86e5d5bf3e0fe6423e2ddf3bfe
     float nextfireQ, firerateQ = 0.01f;
     GameObject inst;
     float Y, X;
@@ -62,11 +66,14 @@ public class bomb_boom : MonoBehaviour
     {
         
             GameObject temp = Instantiate(effect);
+<<<<<<< HEAD
             GameObject temp_sh = Instantiate(outlineeffect);
+=======
+            GameObject temp_sh = Instantiate(effect_shadow);
+>>>>>>> 85f03661486dce86e5d5bf3e0fe6423e2ddf3bfe
             temp.transform.position = transform.position + new Vector3(0, 0, -0.1f);
             temp_sh.transform.position = transform.position + new Vector3(0, 0, -0.05f);
-            temp.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
-            temp_sh.transform.rotation = temp.transform.rotation;
+            temp_sh.transform.rotation = temp.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
             temp_sh.transform.localScale += new Vector3(0.2f, 0.2f, 0);
             temp_sh.gameObject.GetComponent<Renderer>().material.color = new Color(0, 0, 0);
             Destroy(inst);

@@ -100,7 +100,11 @@ MonoBehaviour:
   firstnum: 0.02
   plus: 0.00175
   effect: {fileID: 1252736951321070, guid: 369e51241956dac41a04e9ca222b56ed, type: 3}
+<<<<<<< HEAD
   outlineeffect: {fileID: 48209899492884658, guid: f5dc619967c7cbf44843db9ce87723ea,
+=======
+  effect_shadow: {fileID: 2021151331464197225, guid: 6515b1f468817b84ba0314067b3afeab,
+>>>>>>> 85f03661486dce86e5d5bf3e0fe6423e2ddf3bfe
     type: 3}
   pa: {fileID: 1980034479954772, guid: c9afa875e50085142a44ff4c34430a8e, type: 3}
   kill: 0
