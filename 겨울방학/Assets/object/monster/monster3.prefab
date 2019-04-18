@@ -633,7 +633,7 @@ MonoBehaviour:
   is_player: 0
   audio: {fileID: 0}
   fireSound: {fileID: 8300000, guid: ca27a04ee96c457468bcfc870b11bc7e, type: 3}
-  volume: 5
+  volume: 0.5
 --- !u!1 &7541070029214706707
 GameObject:
   m_ObjectHideFlags: 0

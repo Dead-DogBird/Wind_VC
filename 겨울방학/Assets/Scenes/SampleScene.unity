@@ -145,7 +145,7 @@ MonoBehaviour:
   fireSound: {fileID: 8300000, guid: 63bef09985a66424f8030e3c0d62c245, type: 3}
   volume: 0.5
   isHit: 0
-  monster_1: {fileID: 2790176386383343037, guid: afb0a03d92c35a847b7d604dc496fd22,
+  monster_1: {fileID: 7292471265954072975, guid: 0f1ac948ffd4880428529e6b7ff6e7e6,
     type: 3}
   player: {fileID: 0}
   isDead: 0
