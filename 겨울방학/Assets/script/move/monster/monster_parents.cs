@@ -24,6 +24,8 @@ public class monster_parents : GameMaker
 
     public AudioClip fireSound;
     public float volume;
+
+
     // Use this for initialization
     public void Start()
     {
@@ -52,6 +54,7 @@ public class monster_parents : GameMaker
                 {
                 Doknockback(transform.position, i.transform.position);
                 this.audio.clip = this.fireSound;
+                    
                 }
                 
             }

@@ -12,6 +12,8 @@ public class monster_manager : MonoBehaviour
     public AudioClip fireSound;
     public float volume;
     public bool isHit;
+    public float firebombCount,hitbombCount;
+    public GameObject EffectText;
     //프로퍼티(속성)를 이용해서 좀 더 개선할 수 있다. 접근자 방식. 
     private static monster_manager _instance;
     public static monster_manager Instance

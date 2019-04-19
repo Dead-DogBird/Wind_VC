@@ -22,7 +22,7 @@ public class bomb_boom : MonoBehaviour
     Vector3 moveboom;
     public GameObject pa;
     public bool kill;
-    
+
     Transform shadow_transform;
     void Start()
     {
@@ -30,7 +30,7 @@ public class bomb_boom : MonoBehaviour
         inst = Instantiate(shadow);
         inst.transform.position = transform.position + new Vector3(0, -0.35f, 0);
         Y = transform.position.y - 0.5f;
-        X = transform.position.x;
+        X = transform.localScale.x;
         if (dir == (int)shoot_direction.left)
             moveboom = new Vector3(speed, 0, 0);
         if (dir == (int)shoot_direction.right)
@@ -40,7 +40,7 @@ public class bomb_boom : MonoBehaviour
         if (dir == (int)shoot_direction.down)
             moveboom = new Vector3(0, -speed, 0);
         Instantiate(pa).transform.position = transform.position;
-        
+
 
     }
     bool Is_hit()
@@ -54,7 +54,10 @@ public class bomb_boom : MonoBehaviour
             foreach (Collider2D i in hit)
             {
                 if (i.tag == "monster")
+                {
                     kill = true;
+                    monster_manager.Instance.hitbombCount++;
+                }
             }
         }
         box_collider.enabled = true;//다시 자신의 충돌 체크를 켜줌			
@@ -62,7 +65,7 @@ public class bomb_boom : MonoBehaviour
     }
     void Die()
     {
-
+        monster_manager.Instance.firebombCount++;
         GameObject temp = Instantiate(effect);
         GameObject temp_sh = Instantiate(effect_shadow);
         temp.transform.position = transform.position + new Vector3(0, 0, -0.1f);
@@ -91,7 +94,7 @@ public class bomb_boom : MonoBehaviour
     float g = 0.15f;
     float ga = 0.005f;
 
-    float colorr=4.5f;
+    float colorr = 4.5f;
     // Update is called once per frame
     void Update()
     {
@@ -105,7 +108,7 @@ public class bomb_boom : MonoBehaviour
             speed -= 0.0025f;
         if (speed < 0)
             speed = 0;
-        
+
         transform.localScale += new Vector3(0.005f, 0.005f, 0);
 
         if (dir == (int)shoot_direction.left || dir == (int)shoot_direction.right)
@@ -113,13 +116,30 @@ public class bomb_boom : MonoBehaviour
             transform.position += new Vector3(0, g, 0);
             g -= ga;
             ga += 0.0005f;
+            inst.transform.localScale -= new Vector3(g / 7, g / 7);
             if (transform.position.y <= Y)
             {
                 ga = 0.005f;
                 g = 0.075f;
             }
-            inst.transform.position=new Vector2(transform.position.x,Y-0.5f);
+            inst.transform.position = new Vector2(transform.position.x, Y - 0.5f);
         }
+
+        if (dir == (int)shoot_direction.up || dir == (int)shoot_direction.down)
+        {
+            transform.localScale += new Vector3(g / 7, g / 7, 0);
+            transform.position += new Vector3(0, g / 3, 0);
+            g -= ga;
+            ga += 0.0005f;
+            inst.transform.localScale -= new Vector3(g / 7, g / 7);
+            if (transform.localScale.x <= X)
+            {
+                ga = 0.005f;
+                g = 0.075f;
+            }
+            inst.transform.position = new Vector2(transform.position.x,transform.position.x+g/2);
+        }
+
         if (dir != (int)shoot_direction.left)
             transform.Rotate(Vector3.forward * Time.deltaTime * 75000 * speed);
         else
