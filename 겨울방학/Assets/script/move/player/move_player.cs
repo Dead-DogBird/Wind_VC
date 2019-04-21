@@ -8,7 +8,7 @@ public class move_player : GameMaker
     float hspeed,vspeed;
     float ori_x,ori_y;
     float nextfireQ, firerateQ = 0.8f;
-    float nextjump, latejump = 0.5f;
+    float nextjump, latejump = 0.2f;
     Vector3 jump;
     int x,y;
 
@@ -18,13 +18,15 @@ public class move_player : GameMaker
     {
         ori_x=transform.localScale.x;
         ori_y=transform.localScale.y;
+        nextjump=Time.time+latejump;
     }
     void Jump(Vector3 toVector)
     {
-        jump=new Vector2(x,y).normalized*0.35f;
+        jump=new Vector2(x,y);
         nextfireQ = Time.time + firerateQ;
         Camera.main.GetComponent<ShakeManager>().Shake(0, 0, 0, 0.9f, 10);
         isJump = true;
+        nextjump=Time.time+latejump;
     }
     // Update is called once per frame
     void Update()
@@ -59,8 +61,11 @@ public class move_player : GameMaker
 
         transform.Translate(speedNomal * (speed));
 
-        transform.position+=jump;
-        jump -= jump / 10;
+        transform.Translate(jump*speed*2.5f);
+        if(nextjump<Time.time)
+        jump=new Vector2(0,0);
+
+
         if (Mathf.Abs(jump.x)+ Mathf.Abs(jump.y)<=0.05f)
             isJump=false;
         //if(Time.time>nextjump)
