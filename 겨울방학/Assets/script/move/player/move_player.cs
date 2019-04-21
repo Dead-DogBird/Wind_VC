@@ -24,7 +24,7 @@ public class move_player : GameMaker
     {
         jump=new Vector2(x,y);
         nextfireQ = Time.time + firerateQ;
-        Camera.main.GetComponent<ShakeManager>().Shake(0, 0, 0, 0.9f, 10);
+        //Camera.main.GetComponent<ShakeManager>().Shake(0, 0, 0, 0.9f, 10);
         isJump = true;
         nextjump=Time.time+latejump;
     }

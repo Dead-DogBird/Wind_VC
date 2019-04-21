@@ -98,6 +98,7 @@ public class monster_parents : GameMaker
     {
         monster_manager.Instance.monsterList.Remove(this);
         monster_manager.Instance.isDead=true;
+        monster_manager.Instance.combo++;
         Destroy(gameObject);
     }
     public void Update()

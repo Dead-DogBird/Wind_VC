@@ -39,6 +39,7 @@ public class monster_manager : MonoBehaviour
     float nextfireQ, firerateQ = 30f;
     public move_player player;
     public bool isDead;
+    public int combo;
     // Use this for initialization
     void Start()
     {

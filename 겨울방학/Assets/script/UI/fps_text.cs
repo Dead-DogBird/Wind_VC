@@ -25,10 +25,7 @@ public class fps_text : MonoBehaviour {
 			fps=frame;
 			frame=0;
 		}
-		if(monster_manager.Instance.hitbombCount==0&&monster_manager.Instance.firebombCount==0)
-		myText.text="명중률 : 0%";
-		else
-		myText.text="명중률 : "+Mathf.Round((monster_manager.Instance.hitbombCount/monster_manager.Instance.firebombCount)*100)+"%";
+		myText.text=monster_manager.Instance.combo+" 콤보!";
 	//	myText.color = new Color(1+(10-player.hp)*0.1f,1-(10-player.hp)*0.1f,1-(10-player.hp)*0.1f);
 	}
 }
