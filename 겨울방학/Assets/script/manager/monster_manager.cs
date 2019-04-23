@@ -36,10 +36,11 @@ public class monster_manager : MonoBehaviour
     }
     public LinkedList<monster_parents> monsterList;
     public GameObject monster_1;
-    float nextfireQ, firerateQ = 30f;
+    public float nextfireQ, firerateQ = 15f;
     public move_player player;
     public bool isDead;
     public int combo;
+    public int wave;
     // Use this for initialization
     void Start()
     {
@@ -49,7 +50,7 @@ public class monster_manager : MonoBehaviour
         this.audio.clip = this.fireSound;
         audio.volume = volume;
         nextfireQ = Time.time + 5;
-
+        wave=0;
     }
 
     // Update is called once per frame
@@ -59,12 +60,14 @@ public class monster_manager : MonoBehaviour
         {
             if (Time.time > nextfireQ)
             {
+                wave++;
+                 Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 6f, 1.5f, 10);
                 for (int i = 0; i < 5; i++)
                 {
                     GameObject temp = Instantiate(monster_1);
                     temp.transform.position = new Vector3(player.transform.position.x + Random.Range(-10.0f, 10.0f), player.transform.position.y + Random.Range(-10.0f, 10.0f));
                 }
-                nextfireQ = Time.time + firerateQ;
+                nextfireQ = Time.time + firerateQ--;
             }
             if (isHit)
             {
