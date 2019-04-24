@@ -15,6 +15,6 @@ public class wave_stick : MonoBehaviour
     void Update()
     {
        if(monster_manager.Instance.player!=null)
-        transform.localScale=new Vector3((monster_manager.Instance.nextfireQ-Time.time)/30,1);
+        transform.localScale=new Vector3(((monster_manager.Instance.nextfireQ-Time.time)/monster_manager.Instance.firerateQ),1);
     }
 }

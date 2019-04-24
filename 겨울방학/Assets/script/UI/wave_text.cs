@@ -14,6 +14,10 @@ public class wave_text : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(monster_manager.Instance.wave==0)
+        myText.text="준비시간!";
+        else
         myText.text=monster_manager.Instance.wave+"WAVE";
+
     }
 }
