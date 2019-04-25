@@ -32,7 +32,7 @@ public class golem_monster : monster_parents
             if(nextfireQ<Time.time)
             {
                 ChargeCount=3;
-                nextfireQ = Time.time + firerateQ;
+                nextfireQ = Time.time + firerateQ+Random.Range(-1.0f,1.0f);
             }
         }
     }

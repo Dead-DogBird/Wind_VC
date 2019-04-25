@@ -47,7 +47,12 @@ public class hit_player : GameMaker
     void Start()
     {
     }
-
+    void die()
+    {
+        Camera.main.GetComponent<ShakeManager>().Shake(3f, 3f, 10f, 1.2f, 10);
+        
+        Destroy(gameObject);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -55,6 +60,6 @@ public class hit_player : GameMaker
         transform.position += knockback;
         knockback -= knockback / 10;
         if (hp <= 0)
-            Destroy(gameObject);
+           die();
     }
 }

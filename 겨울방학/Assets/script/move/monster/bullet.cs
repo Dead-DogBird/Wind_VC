@@ -16,6 +16,10 @@ public class bullet : MonoBehaviour
     void Update()
     {
         transform.Translate(toVector*Time.deltaTime*5f);
+        // transform.localScale-=transform.localScale/100;
+        // if(transform.localScale.x<=0)
+        // Destroy(gameObject);
+
         Destroy(gameObject,4);
     }
 }
