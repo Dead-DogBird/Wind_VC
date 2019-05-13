@@ -593,6 +593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.12
+  isJump: 0
 --- !u!114 &114582762310302310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,7 +608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bomb: {fileID: 1776222545164242, guid: a631187c0d4d5e742a22b4c0c2c06c58, type: 3}
   audio: {fileID: 82682940484066928, guid: 10377cd8c86682041850fd64502fb4c9, type: 3}
-  fireSound: {fileID: 8300000, guid: 402ee24ad8ce63440b33ccb4c2ea0c3a, type: 3}
+  fireSound: {fileID: 8300000, guid: a22be2b875b1598419e0a69990cb0f44, type: 3}
   volume: 0
   pitch: 0
 --- !u!95 &95180466338231610
@@ -641,6 +642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c30e6d0cd3e9674caf040d79f6cac0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orRun: 0
 --- !u!114 &3063778049473697467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -654,7 +656,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: {x: 0, y: 0, z: 0}
-  hitcolor: 0
+  hp: 10
+  hit_Red: {fileID: 0}
 --- !u!1 &1655432854623336
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,7 +28,7 @@ public class gameover : MonoBehaviour
                 Camera.main.GetComponent<ShakeManager>().Shake(0, 0, 0, 0.9f, 4);
                 nextfire = +firelate + Time.time;
             }
-            myText.color = new Color(1, 1, 1, 1);
+            myText.color = new Color(1, 0, 0, 1);
         }
     }
 }

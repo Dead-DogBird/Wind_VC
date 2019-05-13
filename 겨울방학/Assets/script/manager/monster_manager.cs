@@ -36,6 +36,7 @@ public class monster_manager : MonoBehaviour
     }
     public LinkedList<monster_parents> monsterList;
     public GameObject monster_1;
+    public GameObject[] Monster=new GameObject[3];
     public float nextfireQ, firerateQ = 15f;
     public move_player player;
     public bool isDead;

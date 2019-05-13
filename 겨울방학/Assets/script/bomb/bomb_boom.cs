@@ -137,7 +137,7 @@ public class bomb_boom : MonoBehaviour
                 ga = 0.005f;
                 g = 0.075f;
             }
-            inst.transform.position = new Vector2(transform.position.x,transform.position.x+g/2);
+            inst.transform.position = new Vector2(transform.position.x,transform.position.y+g/2);
         }
 
         if (dir != (int)shoot_direction.left)
