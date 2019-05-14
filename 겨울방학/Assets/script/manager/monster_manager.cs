@@ -65,7 +65,7 @@ public class monster_manager : MonoBehaviour
                  Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 6f, 1.5f, 10);
                 for (int i = 0; i < 5; i++)
                 {
-                    GameObject temp = Instantiate(monster_1);
+                    GameObject temp = Instantiate(Monster[Random.Range(0,3)]);
                     temp.transform.position = new Vector3(player.transform.position.x + Random.Range(-10.0f, 10.0f), player.transform.position.y + Random.Range(-10.0f, 10.0f));
                 }
                 nextfireQ = Time.time + firerateQ--;
