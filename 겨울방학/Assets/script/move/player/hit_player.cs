@@ -7,6 +7,10 @@ public class hit_player : GameMaker
     public Vector3 knockback;
     public int hp = 10;
     public Hit_Red hit_Red;
+    public float hitcolor = 0;
+    public float hit_time;
+
+    float nextfireQ, firerateQ = 2f;
     void hit()
     {
 
@@ -18,7 +22,7 @@ public class hit_player : GameMaker
         {
             foreach (Collider2D i in hit)
             {
-                if (GetComponent<move_player>().isJump != true)
+                if (GetComponent<move_player>().isJump != true && hit_time == 0)
                 {
                     if (i.CompareTag("monster"))
                     {
@@ -33,8 +37,12 @@ public class hit_player : GameMaker
                         hp -= 1;
                         Destroy(i.gameObject);
                     }
-                Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 6f, 0.9f, 10);
-                hit_Red.hitcolor=1;
+                    hitcolor = 10;
+                    Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 6f, 0.9f, 10);
+                    hit_Red.hitcolor = 1;
+                    hit_time = 1;
+                    StartCoroutine("HitOn");
+                    nextfireQ = firerateQ + Time.time;
                 }
             }
         }
@@ -50,16 +58,59 @@ public class hit_player : GameMaker
     void die()
     {
         Camera.main.GetComponent<ShakeManager>().Shake(3f, 3f, 10f, 1.2f, 10);
-        
+
         Destroy(gameObject);
     }
-    // Update is called once per frame
+    IEnumerator HitOn()
+    {
+        int countTime = 0;
+        while (countTime < 10)
+        {
+            if (countTime % 2 == 0)
+            {
+                foreach (var item in GetComponent<player_sprite>().Childs)
+                {
+                    item.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 0.35f);
+                }
+            }
+            else
+            {
+                foreach (var item in GetComponent<player_sprite>().Childs)
+                {
+                    item.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 0.7f);
+                }
+            }
+            yield return new WaitForSeconds(0.2f);
+            countTime++;
+        }
+        foreach (var item in GetComponent<player_sprite>().Childs)
+        {
+            item.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
+        hit_time=0;
+        yield return null;
+    }
     void Update()
     {
+        // num++;
+        // if (hit_time != 0)
+        // {
+        //     if (num % 2 == 0)
+        //         hit_time = 1f;
+        //     else
+        //     {
+        //         hit_time = 0.2f;
+        //     }
+        //     if (Time.time > nextfireQ)
+        //         hit_time = 0;
+        // }
+
         hit();
+        hitcolor -= hitcolor / 4;
+
         transform.position += knockback;
         knockback -= knockback / 10;
         if (hp <= 0)
-           die();
+            die();
     }
 }
