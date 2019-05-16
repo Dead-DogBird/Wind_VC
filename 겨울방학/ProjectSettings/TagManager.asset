@@ -8,6 +8,7 @@ TagManager:
   - monster
   - attack
   - bullet
+  - fall
   layers:
   - Default
   - TransparentFX
