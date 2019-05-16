@@ -9,8 +9,11 @@ public class hit_player : GameMaker
     public Hit_Red hit_Red;
     public float hitcolor = 0;
     public float hit_time;
+    public bool falling;
+    public new AudioSource audio;
 
-    float nextfireQ, firerateQ = 2f;
+    public AudioClip fireSound;
+
     void hit()
     {
 
@@ -41,7 +44,7 @@ public class hit_player : GameMaker
                     }
                     if (i.CompareTag("fall"))
                     {
-                        
+                        audio.Play();
                         StartCoroutine("FallSmall");
                     }
                     hitcolor = 10;
@@ -49,7 +52,7 @@ public class hit_player : GameMaker
                     hit_Red.hitcolor = 1;
                     hit_time = 1;
                     StartCoroutine("HitOn");
-                    nextfireQ = firerateQ + Time.time;
+
                 }
             }
         }
@@ -61,6 +64,8 @@ public class hit_player : GameMaker
     }
     void Start()
     {
+        audio=gameObject.AddComponent<AudioSource>();
+        audio.clip=fireSound;
     }
     void die()
     {
@@ -70,15 +75,19 @@ public class hit_player : GameMaker
     }
     IEnumerator FallSmall()
     {
-        for(int i=0;i<10;i++)
+        for(int i=0;i<75;i++)
         {
-            transform.localScale += (new Vector3(0,0,0) - transform.localScale) / 10;
+            falling=true;
+            transform.localScale += (new Vector3(0,0,0) - transform.localScale) / 5;
+             transform.Rotate(Vector3.forward * Time.deltaTime * 750);
             yield return new WaitForSeconds(0.01f);
         }
+        transform.localRotation=Quaternion.Euler(0, 0,0);
         transform.localScale = new Vector3(0.6f, 0.6f);
         transform.position = new Vector3(0, 0);
         Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 6f, 0.9f, 10);
         hp -= 1;
+        falling=false;
         yield return null;
     }
     IEnumerator HitOn()

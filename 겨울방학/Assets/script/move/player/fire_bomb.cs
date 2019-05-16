@@ -18,6 +18,7 @@ public class fire_bomb : MonoBehaviour
     Vector2 a;
     public float volume, pitch;
     move_player player;
+    hit_player hplayer;
     // Use this for initialization
     void Start()
     {
@@ -26,6 +27,7 @@ public class fire_bomb : MonoBehaviour
         audio.volume = volume;
         audio.pitch = pitch;
         player = GetComponent<move_player>();
+        hplayer=GetComponent<hit_player>();
     }
     void nockback(shoot_direction dir)
     {
@@ -52,7 +54,7 @@ public class fire_bomb : MonoBehaviour
         input_code = dir;
         nextfireQ = Time.time + firerateQ;
         audio.Play();
-        this.audio.clip = this.fireSound;
+        //this.audio.clip = this.fireSound;
         bomb_boom tempbomb = Instantiate(Bomb).GetComponent<bomb_boom>();
         //bomb_boom bomb_sh=Instantiate(Bomb).GetComponent<bomb_boom>();
         tempbomb.dir = dir;
@@ -72,7 +74,7 @@ public class fire_bomb : MonoBehaviour
 
         transform.position += (Vector3)a;
 
-        if (player.isJump == false)
+        if (player.isJump == false&&hplayer.falling==false)
         {
             if (Input.GetKey(KeyCode.UpArrow) && Time.time > nextfireQ)
             {

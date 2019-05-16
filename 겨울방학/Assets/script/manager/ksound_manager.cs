@@ -33,13 +33,17 @@ public class ksound_manager : MonoBehaviour
         audio = this.gameObject.AddComponent<AudioSource>();
         this.audio.clip = this.fireSound;
         audio.volume = volume;
-        audio.loop=true;
-        audio.Play();
+        audio.loop=false;
+        
     }
-
+    public bool get=false;
     // Update is called once per frame
     void Update()
     {
-        
+        if(get)
+        {
+           audio.Play();
+           get=false;
+        }
     }
 }

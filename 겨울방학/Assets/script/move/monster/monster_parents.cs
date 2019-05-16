@@ -24,6 +24,8 @@ public class monster_parents : GameMaker
 
     public AudioClip fireSound;
     public float volume;
+    public int giveMoney=5;
+    public GameObject coin;
 
 
     // Use this for initialization
@@ -99,6 +101,11 @@ public class monster_parents : GameMaker
         monster_manager.Instance.monsterList.Remove(this);
         monster_manager.Instance.isDead=true;
         monster_manager.Instance.combo++;
+        for(int i=0;i<giveMoney;i++)
+        {
+            GameObject inst =Instantiate(coin);
+            inst.transform.position=new Vector3(transform.position.x+Random.Range(-1.0f,1.0f),transform.position.y+Random.Range(-1.0f,1.0f));
+        }
         Destroy(gameObject);
     }
     public void Update()
