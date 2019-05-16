@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class player_sprite : MonoBehaviour
 {
-    public LinkedList<player_spritechild> Childs;
-    // Start is called before the first frame update
+    public LinkedList<player_spritechild> Childs = new LinkedList<player_spritechild>();
+    //TODO:플레이어 스킨 교체 코드 추가용
     void Start()
     {
-        Childs=new LinkedList<player_spritechild>();
     }
 
     // Update is called once per frame

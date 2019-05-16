@@ -5,6 +5,7 @@ using UnityEngine;
 public class player_spritechild : MonoBehaviour
 { 
     public GameObject parents;
+    public player_sprite Psprite;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,8 @@ public class player_spritechild : MonoBehaviour
                 break;
             }
         }
-        parents.gameObject.GetComponent<player_sprite>().Childs.AddLast(this);
+        Psprite=parents.gameObject.GetComponent<player_sprite>();
+        Psprite.Childs.AddLast(this);
     }
     // Update is called once per frame
     void Update()

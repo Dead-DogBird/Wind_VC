@@ -30,15 +30,22 @@ public class hit_player : GameMaker
                         i.transform.GetComponent<monster_parents>().Doknockback(i.transform.position, transform.position, 7.5f);
                         hp -= 1;
                         monster_manager.Instance.isHit = true;
+                        Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 6f, 0.9f, 10);
                     }
                     if (i.CompareTag("bullet"))
                     {
                         Doknockback(transform.position, i.transform.position, 0.2f);
                         hp -= 1;
                         Destroy(i.gameObject);
+                        Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 6f, 0.9f, 10);
+                    }
+                    if (i.CompareTag("fall"))
+                    {
+                        
+                        StartCoroutine("FallSmall");
                     }
                     hitcolor = 10;
-                    Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 6f, 0.9f, 10);
+                    
                     hit_Red.hitcolor = 1;
                     hit_time = 1;
                     StartCoroutine("HitOn");
@@ -61,12 +68,25 @@ public class hit_player : GameMaker
 
         Destroy(gameObject);
     }
+    IEnumerator FallSmall()
+    {
+        for(int i=0;i<10;i++)
+        {
+            transform.localScale += (new Vector3(0,0,0) - transform.localScale) / 10;
+            yield return new WaitForSeconds(0.01f);
+        }
+        transform.localScale = new Vector3(0.6f, 0.6f);
+        transform.position = new Vector3(0, 0);
+        Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 6f, 0.9f, 10);
+        hp -= 1;
+        yield return null;
+    }
     IEnumerator HitOn()
     {
         int countTime = 0;
         while (countTime < 10)
         {
-            if (countTime % 2 == 0)
+            if (countTime % 2 == 0&&countTime>4)
             {
                 foreach (var item in GetComponent<player_sprite>().Childs)
                 {
