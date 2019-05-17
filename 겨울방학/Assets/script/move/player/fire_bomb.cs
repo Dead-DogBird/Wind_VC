@@ -84,11 +84,11 @@ public class fire_bomb : MonoBehaviour
             {
                 fire((int)shoot_direction.down);
             }
-            if (Input.GetKey(KeyCode.LeftArrow) && Time.time > nextfireQ)
+            if ((Input.GetKey(KeyCode.LeftArrow)||Input.GetMouseButton(0))&& Time.time > nextfireQ)
             {
                 fire((int)shoot_direction.right);
             }
-            if ((Input.GetKey(KeyCode.RightArrow)||Input.GetMouseButton(0))&& Time.time > nextfireQ)
+            if (Input.GetKey(KeyCode.RightArrow)&& Time.time > nextfireQ)
             {
                 fire((int)shoot_direction.left);
             }

@@ -13,6 +13,7 @@ public class shake_dash : MonoBehaviour
     Quaternion OriginalRot;
 
 	GameObject player;
+    public bool isShopTouch;
     void Start()
     {
         realOriginalPos = transform.position;

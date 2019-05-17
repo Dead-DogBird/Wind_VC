@@ -5,6 +5,7 @@ using UnityEngine;
 public class drop_coin : MonoBehaviour
 {
     move_player player;
+    public GameObject paticle;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,8 @@ public class drop_coin : MonoBehaviour
         transform.position+=(player.transform.position-transform.position)/10;
         if(Vector3.Distance(player.transform.position, transform.position)<1f)
         {
+            Vector3 temp=new Vector3(transform.position.x+Random.Range(-0.5f,0.5f),transform.position.y+Random.Range(-0.5f,0.5f));
+            Instantiate(paticle,temp,Quaternion.Euler(0, 0,0));
             ksound_manager.Instance.get=true;
             Destroy(gameObject);
         }

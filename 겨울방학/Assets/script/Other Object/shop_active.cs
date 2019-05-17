@@ -6,13 +6,17 @@ public class shop_active : MonoBehaviour
 {
     public Transform ToHigh;
     Vector3 oriPos;
+    bool isTouch;
  
     // Start is called before the first frame update
     void Start()
     {
         oriPos = transform.position;
     }
-
+    void OnMouseDown()
+    {
+        
+    }
     // Update is called once per frame
     void Update()
     {

@@ -104,7 +104,7 @@ public class monster_parents : GameMaker
         for(int i=0;i<giveMoney;i++)
         {
             GameObject inst =Instantiate(coin);
-            inst.transform.position=new Vector3(transform.position.x+Random.Range(-1.0f,1.0f),transform.position.y+Random.Range(-1.0f,1.0f));
+            inst.transform.position=new Vector3(transform.position.x+Random.Range(-1.5f,1.5f),transform.position.y+Random.Range(-1.5f,1.5f));
         }
         Destroy(gameObject);
     }

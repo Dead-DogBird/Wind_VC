@@ -25,6 +25,12 @@ public class hit_player : GameMaker
         {
             foreach (Collider2D i in hit)
             {
+                 if (i.CompareTag("fall")&&falling!=true)
+                    {
+                        audio.Play();
+                        StartCoroutine("FallSmall");
+                        StartCoroutine("HitOn");
+                    }
                 if (GetComponent<move_player>().isJump != true && hit_time == 0)
                 {
                     if (i.CompareTag("monster"))
@@ -42,11 +48,7 @@ public class hit_player : GameMaker
                         Destroy(i.gameObject);
                         Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 6f, 0.9f, 10);
                     }
-                    if (i.CompareTag("fall"))
-                    {
-                        audio.Play();
-                        StartCoroutine("FallSmall");
-                    }
+
                     hitcolor = 10;
                     
                     hit_Red.hitcolor = 1;
