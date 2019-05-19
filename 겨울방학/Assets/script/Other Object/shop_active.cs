@@ -7,26 +7,31 @@ public class shop_active : MonoBehaviour
     public Transform ToHigh;
     Vector3 oriPos;
     bool isTouch;
- 
+
     // Start is called before the first frame update
     void Start()
     {
         oriPos = transform.position;
+        Game_manager.Instance.shop = this;
     }
-    void OnMouseDown()
+    public void OnMouseDown()
     {
-        
+        Game_manager.Instance.shop_touch = true;
     }
     // Update is called once per frame
+    
     void Update()
     {
-        if(monster_manager.Instance.monsterList.Count==0)
+        
+        
+        if (monster_manager.Instance.monsterList.Count == 0)
         {
             transform.position += (oriPos - transform.position) / 10;
         }
         else
-        {   
-            transform.position+=(ToHigh.position - transform.position)/20;
+        {
+            Game_manager.Instance.shop_touch = false;
+            transform.position += (ToHigh.position - transform.position) / 20;
         }
     }
 }

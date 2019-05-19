@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6013509892808833997}
   - component: {fileID: 2428059414616695147}
-  - component: {fileID: 2628822239267389495}
+  - component: {fileID: 8492540673097119447}
   m_Layer: 0
   m_Name: paticle
   m_TagString: Untagged
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2628822239267389495
+--- !u!114 &8492540673097119447
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,6 +89,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 4954647597289207076}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7528544c56868f045946668e470c97d7, type: 3}
+  m_Script: {fileID: 11500000, guid: 977c144be2629ff40a4f47536ed500c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -24,6 +24,7 @@ public class boom_effect : MonoBehaviour
                     i.GetComponent<monster_parents>().Doknockback(i.transform.position, transform.position, 5f);
                     i.GetComponent<monster_parents>().hitcolor = 20;
                     i.GetComponent<monster_parents>().audio.Play();
+                    Instantiate(monster_manager.Instance.hit_effect, i.GetComponent<monster_parents>().transform.position,Quaternion.identity);
                     EffectFont text = Instantiate(monster_manager.Instance.EffectText, i.GetComponent<monster_parents>().transform.position, Quaternion.identity).GetComponent<EffectFont>();
                     text.fwspeed=Random.Range(-0.05f,0.05f);
                     switch (Random.Range(0, 0))

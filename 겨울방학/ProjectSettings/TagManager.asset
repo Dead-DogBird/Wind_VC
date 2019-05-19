@@ -9,6 +9,7 @@ TagManager:
   - attack
   - bullet
   - fall
+  - shop
   layers:
   - Default
   - TransparentFX

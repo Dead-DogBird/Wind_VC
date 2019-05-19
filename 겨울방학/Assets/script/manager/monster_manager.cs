@@ -42,6 +42,8 @@ public class monster_manager : MonoBehaviour
     public bool isDead;
     public int combo;
     public int wave;
+
+    public GameObject hit_effect;
     // Use this for initialization
     void Start()
     {

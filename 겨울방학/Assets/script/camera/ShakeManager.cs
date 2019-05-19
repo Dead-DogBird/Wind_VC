@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShakeManager : MonoBehaviour {
+public class ShakeManager : MonoBehaviour
+{
 
     public float shake_x = 0;
     public float shake_y = 0;
@@ -17,19 +18,30 @@ public class ShakeManager : MonoBehaviour {
     {
         camera_main = Camera.main;
         camera_size = camera_main.orthographicSize;
-        player=GameObject.Find("player");
-        Shake(0,0,0,1.5f,15);
+        player = GameObject.Find("player");
+        Shake(0, 0, 0, 1.5f, 15);
     }
 
     void Update()
     {
         ShakeUpdate();
-        if(player!=null)
-        transform.position=player.transform.position-new Vector3(0,0,10);
+        if (player != null)
+        {
+            if (Game_manager.Instance.shop_touch != true)
+            {
+                transform.position = player.transform.position - new Vector3(0, 0, 10);
+            }
+            else if(Game_manager.Instance.shop_touch != false)
+            {
+                transform.position =Vector3.Slerp(Game_manager.Instance.shop.transform.position,player.transform.position, 0.2f);
+                transform.position = new Vector3(transform.position.x, transform.position.y,- 10);
+                size+=(0.7f-size)/10;
+            }
+        }
 
     }
 
-    public void Shake(float x=0,float y=0,float dire=0,float size=1,float length=10)
+    public void Shake(float x = 0, float y = 0, float dire = 0, float size = 1, float length = 10)
     {
         shake_x = x;
         shake_y = y;

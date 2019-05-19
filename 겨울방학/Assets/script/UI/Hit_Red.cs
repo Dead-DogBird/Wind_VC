@@ -24,7 +24,12 @@ public class Hit_Red : MonoBehaviour
              if( Input.GetMouseButton(0))
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+        if(monster_manager.Instance.player!=null)
         renderer.color = new Color(1, 1, 1, hitcolor);
+        else
+        {
+        renderer.color = new Color(1, 1, 1, 1);
+        }
 
 
     }

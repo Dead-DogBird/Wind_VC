@@ -26,7 +26,7 @@ public class monster_parents : GameMaker
     public float volume;
     public int giveMoney=5;
     public GameObject coin;
-
+    
 
     // Use this for initialization
     public void Start()
@@ -119,6 +119,7 @@ public class monster_parents : GameMaker
             hitcolor -= hitcolor / 4;
             foreach (var item in childs)
             {
+                //item.GetComponentInChildren<Renderer>().material.color = new Color(1 + (hitcolor * 2), 1 + (hitcolor * 2), 1 + (hitcolor *2));
                 item.GetComponentInChildren<Renderer>().material.color = new Color(1 + (hitcolor * 2), 1 - (hitcolor * 0.5f), 1 - (hitcolor * 0.5f));
             }
         }
