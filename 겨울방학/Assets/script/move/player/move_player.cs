@@ -27,6 +27,7 @@ public class move_player : GameMaker
         //Camera.main.GetComponent<ShakeManager>().Shake(0, 0, 0, 0.9f, 10);
         isJump = true;
         nextjump = Time.time + latejump;
+        GetComponent<fire_bomb>().a=new Vector2(0,0);
     }
     // Update is called once per frame
     void Update()
@@ -58,7 +59,9 @@ public class move_player : GameMaker
         }
         if (speedNomal.magnitude > 1)
             speedNomal = speedNomal.normalized;
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > nextfireQ)
+
+
+        if (Input.GetKey(KeyCode.Space) && Time.time > nextfireQ)
             Jump(speedNomal);
 
         transform.Translate(speedNomal * (speed));

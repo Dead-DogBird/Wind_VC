@@ -34,7 +34,8 @@ public class Game_manager : MonoBehaviour
 
     private bool touchOn;
 
-
+    public int true_money;
+    public int ui_money;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +51,8 @@ public class Game_manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(ui_money<true_money)
+            ui_money+=5;
         if (Input.touchCount > 0)
         {    //터치가 1개 이상이면.
             for (int i = 0; i < Input.touchCount; i++)

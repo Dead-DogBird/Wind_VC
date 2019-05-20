@@ -15,7 +15,7 @@ public class fire_bomb : MonoBehaviour
 
     public AudioClip fireSound;
     float nock_back = 0.2f;
-    Vector2 a;
+    public Vector2 a;
     public float volume, pitch;
     move_player player;
     hit_player hplayer;
