@@ -56,7 +56,6 @@ public class monster_parents : GameMaker
                 {
                 Doknockback(transform.position, i.transform.position);
                 this.audio.clip = this.fireSound;
-                    
                 }
                 
             }
