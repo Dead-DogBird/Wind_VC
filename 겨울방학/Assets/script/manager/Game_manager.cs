@@ -34,7 +34,7 @@ public class Game_manager : MonoBehaviour
 
     private bool touchOn;
 
-    public int true_money;
+    public int true_money = 100000;
     public int ui_money;
     // Start is called before the first frame update
     void Start()
@@ -51,8 +51,10 @@ public class Game_manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(ui_money<true_money)
-            ui_money+=5;
+        if (ui_money < true_money)
+            ui_money += 5;
+        if (ui_money > true_money)
+            ui_money -= 5;
         if (Input.touchCount > 0)
         {    //터치가 1개 이상이면.
             for (int i = 0; i < Input.touchCount; i++)
@@ -70,12 +72,12 @@ public class Game_manager : MonoBehaviour
                         {
                             Game_manager.Instance.shop_touch = true;
                         }
-                    else if (temp.tag != "shop")
-                    {
-                    Game_manager.Instance.shop_touch = false;
+                        else if (temp.tag != "shop")
+                        {
+                            Game_manager.Instance.shop_touch = false;
+                        }
                     }
-                    }
-                    
+
                     Debug.Log(touchOn);
                     break;   //한 프레임(update)에는 하나만.
                 }
@@ -88,18 +90,18 @@ public class Game_manager : MonoBehaviour
 
 
         }
-        if(touchOn!=true)
+        if (touchOn != true)
         {
-             touchedPos=new Vector3(0,0,0);
+            touchedPos = new Vector3(0, 0, 0);
         }
         // Debug.Log("상점!");
-                if(shop_touch)
-                {
-                    if (Input.GetMouseButtonDown(1))
-                    {
-                        shop_touch = !shop_touch;
-                    }
-                }
+        if (shop_touch)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                shop_touch = !shop_touch;
+            }
+        }
     }
 
 }
