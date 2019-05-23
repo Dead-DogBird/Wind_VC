@@ -8,7 +8,7 @@ public class boom_effect : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 0, 0.9f, 10);
+       // Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 0, 0.9f, 10);
 
         BoxCollider2D box_collider = transform.GetComponent<BoxCollider2D>();//컴포넌트를 얻어옴
         box_collider.enabled = false;//자신 충돌 체크 꺼줌

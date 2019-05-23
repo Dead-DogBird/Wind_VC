@@ -97,6 +97,7 @@ public class monster_parents : GameMaker
     }
     public void Kill()
     {
+         Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 0, 0.9f, 10);
         monster_manager.Instance.monsterList.Remove(this);
         monster_manager.Instance.isDead=true;
         monster_manager.Instance.combo++;
