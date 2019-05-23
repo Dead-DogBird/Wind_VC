@@ -58,13 +58,13 @@ public class Game_manager : MonoBehaviour
         Shop_Price_List.Add(new Shop_price(4, 650));
         Shop_Price_List.Add(new Shop_price(5, 650));
         JsonData ShopJson=JsonMapper.ToJson(Shop_Price_List);
-        File.WriteAllText(Application.dataPath+"/Shop_pricedata.json",ShopJson.ToString());
+        File.WriteAllText(Application.dataPath+"/game_data/Shop_pricedata.json",ShopJson.ToString());
     }
     public void Load()
     {
         Debug.Log("불러오기");
-        string Jsonstring=File.ReadAllText(Application.dataPath+"/Shop_pricedata.json");
-        Debug.Log(Jsonstring);
+        string Jsonstring=File.ReadAllText(Application.dataPath+"/game_data//Shop_pricedata.json");
+       // Debug.Log(Jsonstring);
         JsonData priceData=JsonMapper.ToObject(Jsonstring);
         for(int i=0;i<priceData.Count;i++)
         {
