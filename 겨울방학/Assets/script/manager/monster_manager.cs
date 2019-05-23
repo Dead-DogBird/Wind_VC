@@ -1,23 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using LitJson;
-using System.IO;
-public class Shop_price
-{
-    public int level, price;
-    public Shop_price(int Level, int Price)
-    {
-        level = Level;
-        price = Price;
-    }
 
-}
 public class monster_manager : MonoBehaviour
 {
 
 
-    public LinkedList<Shop_price> Shop_Price_List=new LinkedList<Shop_price>();
+
     public new AudioSource audio;
 
     public AudioClip fireSound;
@@ -65,12 +54,7 @@ public class monster_manager : MonoBehaviour
         audio.volume = volume;
         nextfireQ = Time.time + 5;
         wave = 0;
-        Shop_Price_List.AddLast(new Shop_price(0,650));
-        Shop_Price_List.AddLast(new Shop_price(1,650));
-        Shop_Price_List.AddLast(new Shop_price(2,650));
-        Shop_Price_List.AddLast(new Shop_price(3,650));
-        Shop_Price_List.AddLast(new Shop_price(4,650));
-        Shop_Price_List.AddLast(new Shop_price(5,650));
+
 
 
     }

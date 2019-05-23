@@ -1,9 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LitJson;
+using System.IO;
+public class Shop_price
+{
+    public int level, price;
+    public Shop_price(int Level, int Price)
+    {
+        level = Level;
+        price = Price;
+    }
 
+}
 public class Game_manager : MonoBehaviour
 {
+    public List<Shop_price> Shop_Price_List = new List<Shop_price>();
     private static Game_manager _instance;
     public shop_active shop;
     // Start is called before the first frame update  private static ksound_manager _instance;
@@ -36,6 +48,30 @@ public class Game_manager : MonoBehaviour
 
     public int true_money = 100000;
     public int ui_money;
+    public void save()
+    {
+        Debug.Log("저장하기");
+        Shop_Price_List.Add(new Shop_price(0, 650));
+        Shop_Price_List.Add(new Shop_price(1, 650));
+        Shop_Price_List.Add(new Shop_price(2, 650));
+        Shop_Price_List.Add(new Shop_price(3, 650));
+        Shop_Price_List.Add(new Shop_price(4, 650));
+        Shop_Price_List.Add(new Shop_price(5, 650));
+        JsonData ShopJson=JsonMapper.ToJson(Shop_Price_List);
+        File.WriteAllText(Application.dataPath+"/Shop_pricedata.json",ShopJson.ToString());
+    }
+    public void Load()
+    {
+        Debug.Log("불러오기");
+        string Jsonstring=File.ReadAllText(Application.dataPath+"/Shop_pricedata.json");
+        Debug.Log(Jsonstring);
+        JsonData priceData=JsonMapper.ToObject(Jsonstring);
+        for(int i=0;i<priceData.Count;i++)
+        {
+            Debug.Log(priceData[i]["level"].ToString());
+            Debug.Log(priceData[int.Parse(priceData[i]["level"].ToString())]["price"].ToString());
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
