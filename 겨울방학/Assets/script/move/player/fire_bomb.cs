@@ -27,7 +27,7 @@ public class fire_bomb : MonoBehaviour
         audio.volume = volume;
         audio.pitch = pitch;
         player = GetComponent<move_player>();
-        hplayer=GetComponent<hit_player>();
+        hplayer = GetComponent<hit_player>();
     }
     void nockback(shoot_direction dir)
     {
@@ -51,19 +51,21 @@ public class fire_bomb : MonoBehaviour
     }
     void fire(int dir)
     {
-        input_code = dir;
-        nextfireQ = Time.time + firerateQ;
-        audio.Play();
-        //this.audio.clip = this.fireSound;
-        bomb_boom tempbomb = Instantiate(Bomb).GetComponent<bomb_boom>();
-        //bomb_boom bomb_sh=Instantiate(Bomb).GetComponent<bomb_boom>();
-        tempbomb.dir = dir;
-        //bomb_sh.dir=tempbomb.dir;
-        //bomb_sh.transform.localScale+=new Vector3(0.75f,0.75f,0);
-        //bomb_sh.gameObject.GetComponent<Renderer>().material.color=new Color(0,0,0); 
-        tempbomb.transform.position = transform.position;
-        nockback((shoot_direction)dir);
-
+        if (Time.time > nextfireQ)
+        {
+            input_code = dir;
+            nextfireQ = Time.time + firerateQ;
+            audio.Play();
+            //this.audio.clip = this.fireSound;
+            bomb_boom tempbomb = Instantiate(Bomb).GetComponent<bomb_boom>();
+            //bomb_boom bomb_sh=Instantiate(Bomb).GetComponent<bomb_boom>();
+            tempbomb.dir = dir;
+            //bomb_sh.dir=tempbomb.dir;
+            //bomb_sh.transform.localScale+=new Vector3(0.75f,0.75f,0);
+            //bomb_sh.gameObject.GetComponent<Renderer>().material.color=new Color(0,0,0); 
+            tempbomb.transform.position = transform.position;
+            nockback((shoot_direction)dir);
+        }
 
     }
     // Update is called once per frame
@@ -74,21 +76,21 @@ public class fire_bomb : MonoBehaviour
 
         transform.position += (Vector3)a;
 
-        if (player.isJump == false&&hplayer.falling==false)
+        if (player.isJump == false && hplayer.falling == false)
         {
-            if (Input.GetKey(KeyCode.UpArrow) && Time.time > nextfireQ)
+            if (Input.GetKey(KeyCode.UpArrow))
             {
                 fire((int)shoot_direction.up);
             }
-            if (Input.GetKey(KeyCode.DownArrow) && Time.time > nextfireQ)
+            if (Input.GetKey(KeyCode.DownArrow))
             {
                 fire((int)shoot_direction.down);
             }
-            if (Input.GetKey(KeyCode.LeftArrow)&& Time.time > nextfireQ)
+            if (Input.GetKey(KeyCode.LeftArrow))
             {
                 fire((int)shoot_direction.right);
             }
-            if (Input.GetKey(KeyCode.RightArrow)&& Time.time > nextfireQ)
+            if (Input.GetKey(KeyCode.RightArrow))
             {
                 fire((int)shoot_direction.left);
             }
