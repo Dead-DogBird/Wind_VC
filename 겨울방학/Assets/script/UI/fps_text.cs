@@ -11,9 +11,11 @@ public class fps_text : MonoBehaviour {
 	int fa=0;
 	hit_player player;
 	// Use this for initialization
+	int oriHP;
 	void Start () {
 		myText=GetComponent<Text>();
 		player=GameObject.Find("player").GetComponent<hit_player>();
+		oriHP=player.hp;
 	}
 	
 	// Update is called once per frame
@@ -26,8 +28,8 @@ public class fps_text : MonoBehaviour {
 			frame=0;
 		}
 		//myText.text=""+fps;
-		if(monster_manager.Instance.player!=null)
-		myText.text=""+monster_manager.Instance.player.GetComponent<hit_player>().hp;
+		if(player!=null)
+		myText.text=""+player.hp+"/"+oriHP;
 		else
 		{
 			myText.text="game over";

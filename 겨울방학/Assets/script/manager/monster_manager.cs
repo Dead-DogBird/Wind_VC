@@ -44,10 +44,14 @@ public class monster_manager : MonoBehaviour
     public int wave;
 
     public GameObject hit_effect;
+    void OnEnable()
+    {
+        player = GameObject.Find("player").GetComponent<move_player>();
+
+    }
     // Use this for initialization
     void Start()
     {
-        player = GameObject.Find("player").GetComponent<move_player>();
         monsterList = new LinkedList<monster_parents>();
         audio = this.gameObject.AddComponent<AudioSource>();
         this.audio.clip = this.fireSound;

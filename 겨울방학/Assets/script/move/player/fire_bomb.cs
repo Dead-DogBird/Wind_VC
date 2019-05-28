@@ -49,7 +49,7 @@ public class fire_bomb : MonoBehaviour
             a = new Vector2(0, nock_back);
         }
     }
-    void fire(int dir)
+    public void fire(int dir=0)
     {
         if (Time.time > nextfireQ)
         {
