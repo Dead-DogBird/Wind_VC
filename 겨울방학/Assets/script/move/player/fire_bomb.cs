@@ -49,7 +49,7 @@ public class fire_bomb : MonoBehaviour
             a = new Vector2(0, nock_back);
         }
     }
-    public void fire(int dir=0)
+    public void fire(int dir = 0)
     {
         if (Time.time > nextfireQ)
         {
@@ -68,6 +68,8 @@ public class fire_bomb : MonoBehaviour
         }
 
     }
+    public int Dir;
+    public bool isActive;
     // Update is called once per frame
     void Update()
     {
@@ -75,24 +77,27 @@ public class fire_bomb : MonoBehaviour
         a -= a / 10;
 
         transform.position += (Vector3)a;
-
-        if (player.isJump == false && hplayer.falling == false)
+        if (isActive)
         {
-            if (Input.GetKey(KeyCode.UpArrow))
+            if (player.isJump == false && hplayer.falling == false)
             {
-                fire((int)shoot_direction.up);
-            }
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                fire((int)shoot_direction.down);
-            }
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                fire((int)shoot_direction.right);
-            }
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                fire((int)shoot_direction.left);
+                fire(Dir);
+                if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    fire((int)shoot_direction.up);
+                }
+                if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    fire((int)shoot_direction.down);
+                }
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    fire((int)shoot_direction.right);
+                }
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    fire((int)shoot_direction.left);
+                }
             }
         }
     }

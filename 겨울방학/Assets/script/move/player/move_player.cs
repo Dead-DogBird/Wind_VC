@@ -9,8 +9,10 @@ public class move_player : GameMaker
     float ori_x, ori_y;
     float nextfireQ, firerateQ = 0.8f;
     float nextjump, latejump = 0.2f;
-    Vector3 jump;
+     Vector3 jump;
+    public Vector3 plusVec;
     int x, y;
+
 
     public bool isJump;
     // Use this for initialization
@@ -20,22 +22,27 @@ public class move_player : GameMaker
         ori_y = transform.localScale.y;
         nextjump = Time.time + latejump;
     }
-    void Jump(Vector3 toVector)
+    public void Jump()
     {
-        jump = new Vector2(x, y);
-        nextfireQ = Time.time + firerateQ;
-        //Camera.main.GetComponent<ShakeManager>().Shake(0, 0, 0, 0.9f, 10);
-        isJump = true;
-        nextjump = Time.time + latejump;
-        GetComponent<fire_bomb>().a=new Vector2(0,0);
+        if (Time.time > nextfireQ)
+        {
+            jump = plusVec;
+            nextfireQ = Time.time + firerateQ;
+            //Camera.main.GetComponent<ShakeManager>().Shake(0, 0, 0, 0.9f, 10);
+            isJump = true;
+            nextjump = Time.time + latejump;
+            GetComponent<fire_bomb>().a = new Vector2(0, 0);
+        }
     }
+     Vector2 speedNomal;
+     public bool canJump=false;
     // Update is called once per frame
     void Update()
     {
 
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-        Vector2 speedNomal = (new Vector2(h, v));
+        speedNomal = (new Vector2(h, v));
 
         if (Input.GetKey(KeyCode.A))
             x = -1;
@@ -61,11 +68,11 @@ public class move_player : GameMaker
             speedNomal = speedNomal.normalized;
 
 
-        if (Input.GetKey(KeyCode.Space) && Time.time > nextfireQ)
-            Jump(speedNomal);
+       // if (Input.GetKey(KeyCode.Space) && Time.time > nextfireQ)
+            if(canJump)
+            Jump();
 
         transform.Translate(speedNomal * (speed));
-
         transform.Translate(jump * speed * 2.5f);
         if (nextjump < Time.time)
             jump = new Vector2(0, 0);

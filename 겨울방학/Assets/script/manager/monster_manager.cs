@@ -49,6 +49,23 @@ public class monster_manager : MonoBehaviour
         player = GameObject.Find("player").GetComponent<move_player>();
 
     }
+    public void pressButton(int dir)
+    {
+        player.GetComponent<fire_bomb>().isActive=true;
+        player.GetComponent<fire_bomb>().Dir=dir;
+    }
+    public void unpressButtom()
+    {
+         player.GetComponent<fire_bomb>().isActive=false;
+    }
+    public void Jump()
+    {
+        player.canJump=true;
+    }
+    public void disJump()
+    {
+        player.canJump=false;
+    }
     // Use this for initialization
     void Start()
     {
@@ -58,7 +75,7 @@ public class monster_manager : MonoBehaviour
         audio.volume = volume;
         nextfireQ = Time.time + 5;
         wave = 0;
-
+      
 
 
     }
