@@ -22,7 +22,7 @@ public class shop_active : MonoBehaviour
     
     void Update()
     {
-        
+
         
         if (monster_manager.Instance.monsterList.Count == 0)
         {

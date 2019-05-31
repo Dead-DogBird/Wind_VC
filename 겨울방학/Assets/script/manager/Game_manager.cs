@@ -17,7 +17,6 @@ public class Game_manager : MonoBehaviour
 {
     public List<Shop_price> Shop_Price_List = new List<Shop_price>();
     private static Game_manager _instance;
-    public shop_active shop;
     // Start is called before the first frame update  private static ksound_manager _instance;
     public static Game_manager Instance
     {
@@ -60,6 +59,7 @@ public class Game_manager : MonoBehaviour
         JsonData ShopJson=JsonMapper.ToJson(Shop_Price_List);
         File.WriteAllText(Application.dataPath+"/game_data/Shop_pricedata.json",ShopJson.ToString());
     }
+    public shop_active shop;
     public void Load()
     {
         Debug.Log("불러오기");
@@ -131,13 +131,13 @@ public class Game_manager : MonoBehaviour
             touchedPos = new Vector3(0, 0, 0);
         }
         // Debug.Log("상점!");
-        if (shop_touch)
-        {
-            if (Input.GetMouseButtonDown(1))
-            {
-                shop_touch = !shop_touch;
-            }
-        }
+        // if (shop_touch)
+        // {
+        //     if (Input.GetMouseButtonDown(1))
+        //     {
+        //         shop_touch = !shop_touch;
+        //     }
+        // }
     }
 
 }

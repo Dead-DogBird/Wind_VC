@@ -10,7 +10,10 @@ public class shop_ui : MonoBehaviour
     {
         shopUi = transform.position;
     }
-
+    public void Backshop()
+    {
+        Game_manager.Instance.shop_touch = false;
+    }
     // Update is called once per frame
     void Update()
     {
