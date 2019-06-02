@@ -9,9 +9,10 @@ public class boom_effect : MonoBehaviour
     void Start()
     {
        // Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 0, 0.9f, 10);
-
+        player_stats player=monster_manager.Instance.player.GetComponent<player_stats>();
         BoxCollider2D box_collider = transform.GetComponent<BoxCollider2D>();//컴포넌트를 얻어옴
         box_collider.enabled = false;//자신 충돌 체크 꺼줌
+        transform.localScale+=new Vector3(player.extent,player.extent);
         Collider2D[] hit = Physics2D.OverlapBoxAll(transform.position + new Vector3(box_collider.offset.x, box_collider.offset.y),
          new Vector2(box_collider.size.x * transform.localScale.x, box_collider.size.y * transform.localScale.y), 0, 1 << 8);//충돌  정보를 얻어옴
         if (hit != null)
@@ -20,7 +21,7 @@ public class boom_effect : MonoBehaviour
             {
                 if (i.tag == "monster")
                 {
-                    i.GetComponent<monster_parents>().hp -= 1f;
+                    i.GetComponent<monster_parents>().hp -= 1f+player.attack;
                     i.GetComponent<monster_parents>().Doknockback(i.transform.position, transform.position, 5f);
                     i.GetComponent<monster_parents>().hitcolor = 20;
                     i.GetComponent<monster_parents>().audio.Play();
@@ -29,27 +30,12 @@ public class boom_effect : MonoBehaviour
                     
                     EffectFont text = Instantiate(monster_manager.Instance.EffectText, i.GetComponent<monster_parents>().transform.position, Quaternion.identity).GetComponent<EffectFont>();
                     text.fwspeed=Random.Range(-0.05f,0.05f);
-                    switch (Random.Range(0, 0))
-                    {
-                        case 0:
+
                         if(i.GetComponent<monster_parents>().hp==0)
                         text.effectText = "처치!";
                         else
-                            text.effectText = "HP "+i.GetComponent<monster_parents>().hp;
-                            break;
-
-                        case 1:
-                            text.effectText = "2";
-                            break;
-
-                        case 2:
-                            text.effectText = "3";
-                            break;
-
-                        case 3:
-                            text.effectText = "@ㅏ";
-                            break;
-                    }
+                        text.effectText = "-"+(player.attack+1)*10;
+                         
                 }
             }
         }

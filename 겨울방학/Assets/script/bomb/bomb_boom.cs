@@ -31,6 +31,7 @@ public class bomb_boom : MonoBehaviour
         inst.transform.position = transform.position + new Vector3(0, -0.35f, 0);
         Y = transform.position.y - 0.5f;
         X = transform.localScale.x;
+        speed+=monster_manager.Instance.player.GetComponent<player_stats>().attackspeed;
         if (dir == (int)shoot_direction.left)
             moveboom = new Vector3(speed, 0, 0);
         if (dir == (int)shoot_direction.right)

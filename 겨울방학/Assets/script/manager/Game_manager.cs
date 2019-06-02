@@ -45,7 +45,7 @@ public class Game_manager : MonoBehaviour
 
     private bool touchOn;
 
-    public int true_money = 100000;
+    public int true_money = 0;
     public int ui_money;
     public void save()
     {

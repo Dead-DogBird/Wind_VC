@@ -64,6 +64,7 @@ GameObject:
   - component: {fileID: 3512643495764549075}
   - component: {fileID: 7508742274748325432}
   - component: {fileID: 3512643495764549080}
+  - component: {fileID: 2992322821496240054}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -104,7 +105,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.055
+  plusVec: {x: 0, y: 0, z: 0}
   isJump: 0
+  canJump: 0
 --- !u!114 &3512643495764549078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,8 +123,11 @@ MonoBehaviour:
   Bomb: {fileID: 6678565095104097360, guid: 6249690ea3d71464a80a4f0f93bad3a8, type: 3}
   audio: {fileID: 0}
   fireSound: {fileID: 8300000, guid: fdac3fdb0aee5334e9b8149542a65739, type: 3}
+  a: {x: 0, y: 0}
   volume: 1.2
   pitch: 1
+  Dir: 0
+  isActive: 0
 --- !u!95 &3512643495764549077
 Animator:
   serializedVersion: 3
@@ -171,6 +177,9 @@ MonoBehaviour:
   hit_Red: {fileID: 0}
   hitcolor: 0
   hit_time: 0
+  falling: 0
+  audio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!114 &7508742274748325432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,6 +218,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.0106611}
   m_EdgeRadius: 0
+--- !u!114 &2992322821496240054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3512643495764549074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d96b4a508e1236046b4f8c10f49737f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack: 0
+  attackspeed: 0
+  rapidfire: 0
+  speed: 0
+  extent: 0
 --- !u!1 &3512643496053175061
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,6 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parents: {fileID: 0}
+  Psprite: {fileID: 0}
 --- !u!1 &3512643496173454294
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,6 +470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parents: {fileID: 0}
+  Psprite: {fileID: 0}
 --- !u!1 &3512643496258880992
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,6 +564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parents: {fileID: 0}
+  Psprite: {fileID: 0}
 --- !u!1 &3512643496360529644
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,6 +706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parents: {fileID: 0}
+  Psprite: {fileID: 0}
 --- !u!1 &3512643496909241324
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,6 +800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parents: {fileID: 0}
+  Psprite: {fileID: 0}
 --- !u!1 &3512643496944563171
 GameObject:
   m_ObjectHideFlags: 0

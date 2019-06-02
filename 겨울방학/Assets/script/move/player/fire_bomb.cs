@@ -54,7 +54,7 @@ public class fire_bomb : MonoBehaviour
         if (Time.time > nextfireQ)
         {
             input_code = dir;
-            nextfireQ = Time.time + firerateQ;
+            nextfireQ = Time.time + (firerateQ-GetComponent<player_stats>().rapidfire);
             audio.Play();
             //this.audio.clip = this.fireSound;
             bomb_boom tempbomb = Instantiate(Bomb).GetComponent<bomb_boom>();
