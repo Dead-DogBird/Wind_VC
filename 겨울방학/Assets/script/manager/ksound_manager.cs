@@ -4,30 +4,17 @@ using UnityEngine;
 
 public class ksound_manager : MonoBehaviour
 {
-    private static ksound_manager _instance;
-    public static ksound_manager Instance
-    {
-        get
-        {
-            if (!_instance)
-            {
-                _instance = (ksound_manager)GameObject.FindObjectOfType(typeof(ksound_manager));
-                if (!_instance)
-                {
-                    GameObject container = new GameObject();
-                    container.name = "MyClassContainer";
-                    _instance = container.AddComponent(typeof(ksound_manager)) as ksound_manager;
-                }
-            }
-
-            return _instance;
-        }
-    }
+    public static ksound_manager Instance=null;
     public new AudioSource audio;
 
     public AudioClip fireSound;
     public float volume;
     // Start is called before the first frame update
+    void Awake()
+    {
+        if(Instance==null)
+        Instance=this;
+    }
     void Start()
     {
         audio = this.gameObject.AddComponent<AudioSource>();

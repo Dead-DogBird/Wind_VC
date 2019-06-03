@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class player_stats : MonoBehaviour
 {
-    public float attack,attackspeed,rapidfire,speed,extent;
+    public float attack,attackspeed,rapidfire,speed,extent=0;
     // Start is called before the first frame update
     void Start()
     {

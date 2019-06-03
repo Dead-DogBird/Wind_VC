@@ -15,27 +15,8 @@ public class Shop_price
 }
 public class Game_manager : MonoBehaviour
 {
+    public static Game_manager Instance = null;
     public List<Shop_price> Shop_Price_List = new List<Shop_price>();
-    private static Game_manager _instance;
-    // Start is called before the first frame update  private static ksound_manager _instance;
-    public static Game_manager Instance
-    {
-        get
-        {
-            if (!_instance)
-            {
-                _instance = (Game_manager)GameObject.FindObjectOfType(typeof(Game_manager));
-                if (!_instance)
-                {
-                    GameObject container = new GameObject();
-                    container.name = "MyClassContainer";
-                    _instance = container.AddComponent(typeof(Game_manager)) as Game_manager;
-                }
-            }
-
-            return _instance;
-        }
-    }
     public new AudioSource audio;
 
     public AudioClip audioClip;
@@ -47,6 +28,12 @@ public class Game_manager : MonoBehaviour
 
     public int true_money = 0;
     public int ui_money;
+
+    void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
     public void save()
     {
         Debug.Log("저장하기");
@@ -56,17 +43,17 @@ public class Game_manager : MonoBehaviour
         Shop_Price_List.Add(new Shop_price(3, 650));
         Shop_Price_List.Add(new Shop_price(4, 650));
         Shop_Price_List.Add(new Shop_price(5, 650));
-        JsonData ShopJson=JsonMapper.ToJson(Shop_Price_List);
-        File.WriteAllText(Application.dataPath+"/game_data/Shop_pricedata.json",ShopJson.ToString());
+        JsonData ShopJson = JsonMapper.ToJson(Shop_Price_List);
+        File.WriteAllText(Application.dataPath + "/game_data/Shop_pricedata.json", ShopJson.ToString());
     }
     public shop_active shop;
     public void Load()
     {
         Debug.Log("불러오기");
-        string Jsonstring=File.ReadAllText(Application.dataPath+"/game_data//Shop_pricedata.json");
-       // Debug.Log(Jsonstring);
-        JsonData priceData=JsonMapper.ToObject(Jsonstring);
-        for(int i=0;i<priceData.Count;i++)
+        string Jsonstring = File.ReadAllText(Application.dataPath + "/game_data//Shop_pricedata.json");
+        // Debug.Log(Jsonstring);
+        JsonData priceData = JsonMapper.ToObject(Jsonstring);
+        for (int i = 0; i < priceData.Count; i++)
         {
             Debug.Log(priceData[i]["level"].ToString());
             Debug.Log(priceData[int.Parse(priceData[i]["level"].ToString())]["price"].ToString());

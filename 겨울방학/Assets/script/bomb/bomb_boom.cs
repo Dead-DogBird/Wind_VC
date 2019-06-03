@@ -24,6 +24,7 @@ public class bomb_boom : MonoBehaviour
     public bool kill;
 
     Transform shadow_transform;
+    player_stats player;
     void Start()
     {
         a = firstnum;
@@ -31,7 +32,7 @@ public class bomb_boom : MonoBehaviour
         inst.transform.position = transform.position + new Vector3(0, -0.35f, 0);
         Y = transform.position.y - 0.5f;
         X = transform.localScale.x;
-        speed+=monster_manager.Instance.player.GetComponent<player_stats>().attackspeed;
+        speed += monster_manager.Instance.player.GetComponent<player_stats>().attackspeed;
         if (dir == (int)shoot_direction.left)
             moveboom = new Vector3(speed, 0, 0);
         if (dir == (int)shoot_direction.right)
@@ -41,8 +42,7 @@ public class bomb_boom : MonoBehaviour
         if (dir == (int)shoot_direction.down)
             moveboom = new Vector3(0, -speed, 0);
         Instantiate(pa).transform.position = transform.position;
-
-
+        player = GetComponent<player_stats>();
     }
     bool Is_hit()
     {
@@ -70,6 +70,7 @@ public class bomb_boom : MonoBehaviour
         GameObject temp = Instantiate(effect);
         GameObject temp_sh = Instantiate(effect_shadow);
         temp.transform.position = transform.position + new Vector3(0, 0, -0.1f);
+        
         temp_sh.transform.position = transform.position + new Vector3(0, 0, -0.05f);
         temp_sh.transform.rotation = temp.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
         temp_sh.transform.localScale += new Vector3(0.2f, 0.2f, 0);
@@ -138,7 +139,7 @@ public class bomb_boom : MonoBehaviour
                 ga = 0.005f;
                 g = 0.075f;
             }
-            inst.transform.position = new Vector2(transform.position.x,transform.position.y+g/2);
+            inst.transform.position = new Vector2(transform.position.x, transform.position.y + g / 2);
         }
 
         if (dir != (int)shoot_direction.left)

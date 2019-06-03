@@ -14,26 +14,7 @@ public class monster_manager : MonoBehaviour
     public bool isHit;
     public float firebombCount, hitbombCount;
     public GameObject EffectText;
-    //프로퍼티(속성)를 이용해서 좀 더 개선할 수 있다. 접근자 방식. 
-    private static monster_manager _instance;
-    public static monster_manager Instance
-    {
-        get
-        {
-            if (!_instance)
-            {
-                _instance = (monster_manager)GameObject.FindObjectOfType(typeof(monster_manager));
-                if (!_instance)
-                {
-                    GameObject container = new GameObject();
-                    container.name = "MyClassContainer";
-                    _instance = container.AddComponent(typeof(monster_manager)) as monster_manager;
-                }
-            }
-
-            return _instance;
-        }
-    }
+    public static monster_manager Instance=null;
     public LinkedList<monster_parents> monsterList;
     public GameObject monster_1;
     public GameObject[] Monster = new GameObject[3];
@@ -65,6 +46,11 @@ public class monster_manager : MonoBehaviour
     public void disJump()
     {
         player.canJump=false;
+    }
+    void Awake()
+    {
+        if(Instance==null)
+        Instance=this;
     }
     // Use this for initialization
     void Start()

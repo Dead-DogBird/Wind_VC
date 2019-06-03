@@ -7,14 +7,16 @@ using System.IO;
 public class shop_upgrade : MonoBehaviour
 {
     public Shop_price[] inst = new Shop_price[6];
-    int[] Level=new int[5];
+    int[] Level = new int[5] { 0, 0, 0, 0, 0 };
     player_stats player;
-    Game_manager Gm = Game_manager.Instance;
+    Game_manager Gm;
     int max = 5;
     // Start is called before the first frame update
     void Start()
     {
         player = monster_manager.Instance.player.GetComponent<player_stats>();
+        if(player==null)
+        Debug.Log("려ㅛ차");
         for (int i = 0; i < inst.Length; i++)
         {
             inst[i] = new Shop_price(0, 0);
@@ -29,33 +31,37 @@ public class shop_upgrade : MonoBehaviour
             Debug.Log(inst[i].level);
             Debug.Log(inst[i].price);
         }
-        for(int i=0;i<5;i++)
-        {
-            Level[i]=0;
-        }
+        Gm = Game_manager.Instance;
     }
     public void UpBoutton(int code)
     {
         switch (code)
         {
             case 0://공격력
-                if (Level[0]< max && Gm.true_money >= inst[Level[0]].price)
+                if (Level[0] < max && Gm.true_money >= inst[Level[0]].price)
                 {
-                    Gm.true_money-=inst[Level[0]].price;
+                    Gm.true_money -= inst[Level[0]].price;
                     player.attack += 0.5f;
                     Level[0]++;
                     Debug.Log("ATTACK UP!");
                 }
-                else
-                {
-                    Debug.Log("error");
-                }
                 break;
             case 1://탄속
-                player.attackspeed += 0.05f;
+                if (Level[1] < max && Gm.true_money >= inst[Level[0]].price)
+                {
+                    Gm.true_money -= inst[Level[1]].price;
+                    player.attackspeed += 0.05f;
+                    Level[1]++;
+                }
                 break;
             case 2://연사속도
-                player.rapidfire += 0.01f;
+
+                if (Level[2] < max && Gm.true_money >= inst[Level[0]].price)
+                {
+                    Gm.true_money -= inst[Level[1]].price;
+                    Level[2]++;
+                    player.rapidfire += 0.01f;
+                }
                 break;
             case 3://스피드
                 break;
@@ -66,6 +72,7 @@ public class shop_upgrade : MonoBehaviour
                 player.GetComponent<hit_player>().hp += 2;
                 break;
         }
+        Camera.main.GetComponent<ShakeManager>().Shake(0, 10f, 0, 0.7f, 4);
     }
     // Update is called once per frame
     void Update()
