@@ -24,13 +24,7 @@ public class shop_upgrade : MonoBehaviour
         string Jsonstring = File.ReadAllText(Application.dataPath + "/game_data//Shop_pricedata.json");
         // Debug.Log(Jsonstring);
         JsonData priceData = JsonMapper.ToObject(Jsonstring);
-        for (int i = 0; i < priceData.Count; i++)
-        {
-            inst[i].level = int.Parse(priceData[i]["level"].ToString());
-            inst[i].price = int.Parse(priceData[int.Parse(priceData[i]["level"].ToString())]["price"].ToString());
-            Debug.Log(inst[i].level);
-            Debug.Log(inst[i].price);
-        }
+
         Gm = Game_manager.Instance;
     }
     public void UpBoutton(int code)
@@ -43,7 +37,6 @@ public class shop_upgrade : MonoBehaviour
                     Gm.true_money -= inst[Level[0]].price;
                     player.attack += 0.5f;
                     Level[0]++;
-                    Debug.Log("ATTACK UP!");
                 }
                 break;
             case 1://탄속

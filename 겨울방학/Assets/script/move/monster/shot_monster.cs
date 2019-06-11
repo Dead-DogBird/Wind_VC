@@ -23,7 +23,7 @@ public class shot_monster : monster_parents
 	// Update is called once per frame
 	new void Update () {
 		base.Update();
-        animator.SetBool("isRun",is_player);
+		animator.SetBool("isRun",is_player);        
 		if(Time.time > nextfireQ&&player!=null)
 		{
 			fire();
