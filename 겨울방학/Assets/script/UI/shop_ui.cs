@@ -19,7 +19,7 @@ public class shop_ui : MonoBehaviour
     {
         if (Game_manager.Instance.shop_touch != false)
         {
-            shopUi.y += (0 - shopUi.y) / 10;
+            shopUi.y += (-50 - shopUi.y) / 10;
         }
         else
         {

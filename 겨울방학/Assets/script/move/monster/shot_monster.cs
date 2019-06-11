@@ -6,7 +6,7 @@ public class shot_monster : monster_parents
 {
     Animator animator;
 	public GameObject bullet;
-	float nextfireQ, firerateQ = 0.8f;
+	public float nextfireQ, firerateQ = 0.8f;
 	public float random=0;
     // Start is called before the first frame update
 	new void Start () {

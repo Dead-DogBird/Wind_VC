@@ -777,6 +777,8 @@ MonoBehaviour:
   giveMoney: 5
   coin: {fileID: 6594032475389129884, guid: 133b4a823db73af4aa66bd6fbbde9a77, type: 3}
   bullet: {fileID: 457003306112124824, guid: 5a5ecb5e1bb9f914399a8a52b9f0a9bd, type: 3}
+  nextfireQ: 0
+  firerateQ: 1.2
   random: 0
 --- !u!1 &2790176386557752749
 GameObject:
