@@ -31,7 +31,7 @@ public class joystick : MonoBehaviour
     void Update()
     {
         if (Player != null)
-            Player.transform.Translate(JoyVec * (Player.speed));
+            Player.transform.Translate(JoyVec * (Player.speed+player.GetComponent<player_stats>().speed));
 
         player.plusVec = JoyVec;
     }
