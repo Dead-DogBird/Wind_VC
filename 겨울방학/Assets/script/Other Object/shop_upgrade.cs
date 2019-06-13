@@ -4,14 +4,33 @@ using UnityEngine;
 using UnityEngine.UI;
 using LitJson;
 using System.IO;
+public class aText
+{
+    public Text Level;
+    public Text price;
+    public aText(Text Lv, Text Pr)
+    {
+        Level = Lv;
+        price = Pr;
+        Level = Level.GetComponent<Text>();
+        price = price.GetComponent<Text>();
+    }
+    public void ToText(string LV, string pr)
+    {
+        Level.text = LV;
+        price.text = pr;
+    }
+}
 public class shop_upgrade : MonoBehaviour
 {
     public Shop_price[] inst = new Shop_price[6];
-    int[] Level = new int[5] { 0, 0, 0, 0, 0 };
+    int[] Level = new int[6] { 0, 0, 0, 0, 0,0 };
     player_stats player;
     Game_manager Gm;
-    int max = 5;
-    
+    int max = 6;
+    public aText[] AllText = new aText[5];
+    public Text[] Levels;
+    public Text[] Prices;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +46,11 @@ public class shop_upgrade : MonoBehaviour
             inst[i].level = int.Parse(priceData[i]["level"].ToString());
             inst[i].price = int.Parse(priceData[inst[i].level]["price"].ToString());
         }
+        for (int i = 0; i < AllText.Length; i++)
+        {
+            AllText[i] = new aText(Levels[i], Prices[i]);
+            AllText[i].ToText("LV." + inst[0].level, inst[0].price + " G");
+        }
         Gm = Game_manager.Instance;
     }
     public void UpBoutton(int code)
@@ -39,14 +63,25 @@ public class shop_upgrade : MonoBehaviour
                     Gm.true_money -= inst[Level[0]].price;
                     player.attack += 0.5f;
                     Level[0]++;
+                if (Level[0] == max)
+                {
+                    AllText[0].ToText("LV.MAX!", "MAX!");
+                }
+                 else
+                    AllText[0].ToText("LV." + Level[0], inst[Level[0]].price + " G");
                 }
                 break;
             case 1://탄속
                 if (Level[1] < max && Gm.true_money >= inst[Level[1]].price)
                 {
                     Gm.true_money -= inst[Level[1]].price;
-                    player.attackspeed += 0.05f;
+                    player.attackspeed += 0.015f;
                     Level[1]++;
+                if (Level[1] == max)
+                {
+                    AllText[1].ToText("LV.MAX!", "MAX!");
+                }
+                else   AllText[1].ToText("LV." + Level[1], inst[Level[1]].price + " G");
                 }
                 break;
             case 2://연사속도
@@ -54,8 +89,13 @@ public class shop_upgrade : MonoBehaviour
                 if (Level[2] < max && Gm.true_money >= inst[Level[2]].price)
                 {
                     Gm.true_money -= inst[Level[2]].price;
+                    player.rapidfire += 0.04f;
                     Level[2]++;
-                    player.rapidfire += 0.01f;
+                if (Level[2] == max)
+                {
+                    AllText[2].ToText("LV.MAX!", "MAX!");
+                }
+                else AllText[2].ToText("LV." + Level[2], inst[Level[2]].price + " G");
                 }
                 break;
             case 3://스피드
@@ -64,6 +104,11 @@ public class shop_upgrade : MonoBehaviour
                     Gm.true_money -= inst[Level[3]].price;
                     Level[3]++;
                     player.speed += 0.015f;
+                 if (Level[3] == max)
+                {
+                    AllText[3].ToText("LV.MAX!", "MAX!");
+                }
+                    else AllText[3].ToText("LV." + Level[3], inst[Level[3]].price + " G");
                 }
                 break;
             case 4://범위
@@ -72,6 +117,11 @@ public class shop_upgrade : MonoBehaviour
                     Gm.true_money -= inst[Level[4]].price;
                     Level[4]++;
                     player.extent += 0.1f;
+                 if (Level[4] == max)
+                {
+                    AllText[4].ToText("LV.MAX!", "MAX!");
+                }
+                    else AllText[4].ToText("LV." + Level[4], inst[Level[4]].price + " G");
                 }
                 break;
             case 5://체력 회복

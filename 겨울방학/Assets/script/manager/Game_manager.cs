@@ -75,9 +75,15 @@ public class Game_manager : MonoBehaviour
     void Update()
     {
         if (ui_money < true_money)
-            ui_money += 5;
+            ui_money += 10;
+
         if (ui_money > true_money)
-            ui_money -= 5;
+        {
+            if (ui_money - true_money < 500)
+                ui_money = true_money;
+            ui_money -= 10;
+        }
+
         if (Input.touchCount > 0)
         {    //터치가 1개 이상이면.
             for (int i = 0; i < Input.touchCount; i++)
