@@ -20,7 +20,7 @@ public class joystick : MonoBehaviour
     move_player player;
     void Start()
     {
-        Radius = GetComponent<RectTransform>().sizeDelta.y * 0.5f;
+        Radius = GetComponent<RectTransform>().sizeDelta.y * 0.75f;
         StickFirstPos = Stick.transform.position;
 
         // 캔버스 크기에대한 반지름 조절.

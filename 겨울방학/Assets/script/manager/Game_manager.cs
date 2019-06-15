@@ -38,19 +38,21 @@ public class Game_manager : MonoBehaviour
     {
         Debug.Log("저장하기");
         Shop_Price_List.Add(new Shop_price(0, 650));
-        Shop_Price_List.Add(new Shop_price(1, 650));
-        Shop_Price_List.Add(new Shop_price(2, 650));
-        Shop_Price_List.Add(new Shop_price(3, 650));
-        Shop_Price_List.Add(new Shop_price(4, 650));
-        Shop_Price_List.Add(new Shop_price(5, 650));
+        Shop_Price_List.Add(new Shop_price(1, 675));
+        Shop_Price_List.Add(new Shop_price(2, 725));
+        Shop_Price_List.Add(new Shop_price(3, 800));
+        Shop_Price_List.Add(new Shop_price(4, 900));
+        Shop_Price_List.Add(new Shop_price(5, 1025));
         JsonData ShopJson = JsonMapper.ToJson(Shop_Price_List);
+
+
         File.WriteAllText(Application.dataPath + "/game_data/Shop_pricedata.json", ShopJson.ToString());
     }
     public shop_active shop;
     public void Load()
     {
         Debug.Log("불러오기");
-        string Jsonstring = File.ReadAllText(Application.dataPath + "/game_data//Shop_pricedata.json");
+        string Jsonstring = File.ReadAllText(Application.dataPath + "/game_data/Shop_pricedata.json");
         // Debug.Log(Jsonstring);
         JsonData priceData = JsonMapper.ToObject(Jsonstring);
         for (int i = 0; i < priceData.Count; i++)
@@ -62,6 +64,7 @@ public class Game_manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        save();
         touchOn = false;
 
         audio = this.gameObject.AddComponent<AudioSource>();

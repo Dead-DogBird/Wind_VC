@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 using LitJson;
@@ -28,6 +29,7 @@ public class shop_upgrade : MonoBehaviour
     player_stats player;
     Game_manager Gm;
     int max = 6;
+    int fullhp;
     public aText[] AllText = new aText[5];
     public Text[] Levels;
     public Text[] Prices;
@@ -38,7 +40,12 @@ public class shop_upgrade : MonoBehaviour
         if (player == null)
             Debug.Log("려ㅛ차");
 
-        string Jsonstring = File.ReadAllText(Application.dataPath + "/game_data//Shop_pricedata.json");
+        //string Jsonstring = File.ReadAllText(Application.dataPath + "/game_data/Shop_pricedata.json");
+        TextAsset test =Resources.Load("Shop_pricedata") as TextAsset;        
+        string Jsonstring=test.text;
+
+
+        //JsonData priceData = JsonMapper.ToObject(Jsonstring);
         JsonData priceData = JsonMapper.ToObject(Jsonstring);
         for (int i = 0; i < inst.Length; i++)
         {
@@ -52,6 +59,7 @@ public class shop_upgrade : MonoBehaviour
             AllText[i].ToText("LV." + inst[0].level, inst[0].price + " G");
         }
         Gm = Game_manager.Instance;
+        fullhp=player.GetComponent<hit_player>().hp;
     }
     public void UpBoutton(int code)
     {
@@ -125,7 +133,11 @@ public class shop_upgrade : MonoBehaviour
                 }
                 break;
             case 5://체력 회복
+                if(player.GetComponent<hit_player>().hp+2<=fullhp)
                 player.GetComponent<hit_player>().hp += 2;
+                else
+                player.GetComponent<hit_player>().hp=fullhp;
+                Gm.true_money-=500;
                 break;
         }
         Camera.main.GetComponent<ShakeManager>().Shake(0, 10f, 0, 0.7f, 4);

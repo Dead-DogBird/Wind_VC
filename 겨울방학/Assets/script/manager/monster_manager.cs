@@ -59,7 +59,7 @@ public class monster_manager : MonoBehaviour
         audio = this.gameObject.AddComponent<AudioSource>();
         this.audio.clip = this.fireSound;
         audio.volume = volume;
-        nextfireQ = Time.time + 5;
+        nextfireQ = Time.time + 10;
         wave = 0;
       
 
