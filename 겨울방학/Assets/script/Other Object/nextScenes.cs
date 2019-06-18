@@ -14,6 +14,6 @@ public class nextScenes : MonoBehaviour
     void Update()
     {
           if( Input.GetMouseButton(0))
-            SceneManager.LoadScene("stage1");
+            SceneManager.LoadScene("mainmenu");
     }
 }
