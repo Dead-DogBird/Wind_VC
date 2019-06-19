@@ -37,6 +37,7 @@ public class boom_effect : MonoBehaviour
                         text.effectText = "처치!";
                         else
                         text.effectText = "-"+(player.attack+1)*10;
+                        Camera.main.GetComponent<ShakeManager>().Shake(0f, 0f, 0, 0.9f, 10);
                          
                 }
             }

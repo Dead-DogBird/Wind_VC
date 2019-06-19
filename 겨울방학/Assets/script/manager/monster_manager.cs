@@ -10,6 +10,7 @@ public class monster_manager : MonoBehaviour
     public new AudioSource audio;
 
     public AudioClip fireSound;
+    public AudioClip hitMonster;
     public float volume;
     public bool isHit;
     public float firebombCount, hitbombCount;

@@ -22,7 +22,6 @@ public class monster_parents : GameMaker
     public bool is_player;
     public new AudioSource audio;
 
-    public AudioClip fireSound;
     public float volume;
     public int giveMoney=5;
     public GameObject coin;
@@ -38,7 +37,7 @@ public class monster_parents : GameMaker
         childs = new LinkedList<child_manager>();
 
         audio = this.gameObject.AddComponent<AudioSource>();
-        this.audio.clip = this.fireSound;
+        this.audio.clip = monster_manager.Instance.hitMonster;
         audio.volume =volume;
     }
     bool Is_hit()
@@ -55,7 +54,7 @@ public class monster_parents : GameMaker
                 if (i.gameObject.tag == "monster")
                 {
                 Doknockback(transform.position, i.transform.position);
-                this.audio.clip = this.fireSound;
+                //this.audio.clip = this.fireSound;
                 }
                 
             }

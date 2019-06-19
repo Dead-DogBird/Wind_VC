@@ -12,7 +12,7 @@ public class hit_player : GameMaker
     public bool falling;
     public new AudioSource audio;
 
-    public AudioClip fireSound;
+    public AudioClip fireSound,ouchSound;
 
     void hit()
     {
@@ -27,6 +27,7 @@ public class hit_player : GameMaker
             {
                  if (i.CompareTag("fall")&&falling!=true)
                     {
+                        audio.clip=fireSound;
                         audio.Play();
                         StartCoroutine("FallSmall");
                         StartCoroutine("HitOn");
@@ -40,6 +41,7 @@ public class hit_player : GameMaker
                         hp -= 1;
                         monster_manager.Instance.isHit = true;
                         Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 6f, 0.9f, 10);
+                         audio.clip=ouchSound;
                     }
                     if (i.CompareTag("bullet"))
                     {
@@ -47,12 +49,15 @@ public class hit_player : GameMaker
                         hp -= 1;
                         Destroy(i.gameObject);
                         Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 6f, 0.9f, 10);
+                         audio.clip=ouchSound;
                     }
 
                     hitcolor = 10;
                     
                     hit_Red.hitcolor = 1;
                     hit_time = 1;
+                   
+                    audio.Play();
                     StartCoroutine("HitOn");
 
                 }

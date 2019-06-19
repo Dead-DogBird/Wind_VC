@@ -225,7 +225,7 @@ MonoBehaviour:
   hitcolor: 0
   is_player: 0
   audio: {fileID: 0}
-  fireSound: {fileID: 8300000, guid: ca27a04ee96c457468bcfc870b11bc7e, type: 3}
+  fireSound: {fileID: 8300000, guid: 0febfa633b653f2478cd914f8c6ebfe1, type: 3}
   volume: 0.5
   giveMoney: 5
   coin: {fileID: 6594032475389129884, guid: 133b4a823db73af4aa66bd6fbbde9a77, type: 3}
