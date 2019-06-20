@@ -26,9 +26,11 @@ public class monster_manager : MonoBehaviour
     public int wave;
 
     public GameObject hit_effect;
+    public wave_start wave_start_;
     void OnEnable()
     {
         player = GameObject.Find("player").GetComponent<move_player>();
+        wave_start_ = wave_start_.transform.GetComponent<wave_start>();
 
     }
     public void pressButton(int dir)
@@ -66,7 +68,19 @@ public class monster_manager : MonoBehaviour
 
 
     }
-
+    void nextWave()
+    {
+         wave++;
+                Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 6f, 3f, 10);
+                for (int i = 0; i < 5; i++)
+                {
+                    GameObject temp = Instantiate(Monster[Random.Range(0, 3)]);
+                    temp.transform.position = new Vector3(player.transform.position.x + Random.Range(-10.0f, 10.0f), player.transform.position.y + Random.Range(-10.0f, 10.0f));
+                }
+                wave_start_.is_startWave=true;
+                wave_start_.lateTime=Time.time+wave_start_.lateQ;
+                nextfireQ = Time.time + firerateQ;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -74,14 +88,7 @@ public class monster_manager : MonoBehaviour
         {
             if (Time.time > nextfireQ)
             {
-                wave++;
-                Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 6f, 1.5f, 10);
-                for (int i = 0; i < 5; i++)
-                {
-                    GameObject temp = Instantiate(Monster[Random.Range(0, 3)]);
-                    temp.transform.position = new Vector3(player.transform.position.x + Random.Range(-10.0f, 10.0f), player.transform.position.y + Random.Range(-10.0f, 10.0f));
-                }
-                nextfireQ = Time.time + firerateQ;
+                   nextWave();
             }
             if (isHit)
             {

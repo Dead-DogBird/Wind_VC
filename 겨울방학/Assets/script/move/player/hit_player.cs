@@ -11,7 +11,7 @@ public class hit_player : GameMaker
     public float hit_time;
     public bool falling;
     public new AudioSource audio;
-
+    public float volume=0.7f;
     public AudioClip fireSound,ouchSound;
 
     void hit()
@@ -73,6 +73,7 @@ public class hit_player : GameMaker
     {
         audio=gameObject.AddComponent<AudioSource>();
         audio.clip=fireSound;
+        audio.volume = volume;
     }
     void die()
     {
