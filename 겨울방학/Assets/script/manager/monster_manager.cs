@@ -27,6 +27,7 @@ public class monster_manager : MonoBehaviour
 
     public GameObject hit_effect;
     public wave_start wave_start_;
+    public GameObject coin;
     void OnEnable()
     {
         player = GameObject.Find("player").GetComponent<move_player>();

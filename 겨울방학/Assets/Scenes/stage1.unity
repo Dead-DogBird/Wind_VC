@@ -1133,6 +1133,7 @@ MonoBehaviour:
   hit_effect: {fileID: 6911512430751686933, guid: 7298ba7cf99a5c24ba61a49a2011b435,
     type: 3}
   wave_start_: {fileID: 1246382426}
+  coin: {fileID: 6594032475389129884, guid: 133b4a823db73af4aa66bd6fbbde9a77, type: 3}
 --- !u!4 &219770576
 Transform:
   m_ObjectHideFlags: 0
