@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class intro : MonoBehaviour
 {
     Vector3 toVec;
     float startTime;
     float pi = 3.14f;
+    bool nextScene=false;
     // Start is called before the first frame update
     void Start()
     {
@@ -66,12 +68,25 @@ public class intro : MonoBehaviour
             toVec.y += (0 - toVec.y) / 10;
         }
         transform.localScale = new Vector3(moveElastic(t), moveElastic(t));
-        if (GetTime() >= 3.5f)
+        if (GetTime() >= 3.5f&&nextScene==false)
         {
             toVec.y += (600 - toVec.y) / 20;
             transform.localScale = new Vector3(1, 1);
             transform.GetComponent<Image>().color=new Color(1,1,1,alpha);
             alpha+=(0-alpha)/30;
+            if(Input.GetMouseButton(0))
+            {
+                nextScene=true;
+            }
+        }
+        else if(nextScene)
+        {
+            transform.GetComponent<Image>().color=new Color(1,1,1,alpha);
+            alpha+=(1-alpha)/10;
+            if(alpha>=0.99f)
+            {
+                 SceneManager.LoadScene("mainmenu");
+            }
         }
 
         if (t <= 1)
@@ -84,7 +99,7 @@ public class intro : MonoBehaviour
         }
 
         transform.localPosition = toVec;
-
+    
 
     }
 }

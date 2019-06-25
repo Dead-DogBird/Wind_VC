@@ -28,7 +28,7 @@ public class wave_start : MonoBehaviour
         }
         else
         {
-            Transform.y += (600 - Transform.y) / 10;
+            Transform.y += (700 - Transform.y) / 10;
         }
 
         transform.localPosition = Transform;
