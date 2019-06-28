@@ -11,7 +11,7 @@ public class inGame : MonoBehaviour
     }
     public void GOingame()
     {
-           SceneManager.LoadScene("stage1");
+        LoadingSceneManager.LoadScene("stage1");
     }
     // Update is called once per frame
     void Update()

@@ -33,31 +33,6 @@ public class intro : MonoBehaviour
 
         return Mathf.Pow(2, -10 * argument0) * Mathf.Sin((argument0 - s) * (2 * pi) / p) + 1;
     }
-    float moveBounce(float argument0)
-    {
-        var t = argument0;
-
-        if (t < 1 / 2.75f)
-        {
-            return 7.5625f * t * t;
-        }
-        else if (t < 2f / 2.75f)
-        {
-            t -= 1.5f / 2.75f;
-            return 7.5625f * t * t + 0.75f;
-        }
-        else if (t < 2.5f / 2.75f)
-        {
-            t -= 2.25f / 2.75f;
-            return 7.5625f * t * t + 0.9375f;
-        }
-        else
-        {
-            t -= 2.625f / 2.75f;
-            return 7.5625f * t * t + 0.984375f;
-        }
-
-    }
     // Update is called once per frame
     float t = 0.2f;
     float alpha=1;
@@ -85,7 +60,7 @@ public class intro : MonoBehaviour
             alpha+=(1-alpha)/10;
             if(alpha>=0.99f)
             {
-                 SceneManager.LoadScene("mainmenu");
+                LoadingSceneManager.LoadScene("mainmenu");
             }
         }
 
