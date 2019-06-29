@@ -36,7 +36,7 @@ public class intro : MonoBehaviour
     // Update is called once per frame
     float t = 0.2f;
     float alpha=1;
-    void Update()
+    void FixedUpdate()
     {
         if (GetTime() < 1.5f)
         {

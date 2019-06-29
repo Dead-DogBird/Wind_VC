@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using static System.Math;
 public class LoadingSceneManager : MonoBehaviour
 {
     public static string nextScene;
@@ -12,7 +12,7 @@ public class LoadingSceneManager : MonoBehaviour
     Image progressBar;
 
 
-
+    public Text percent;
 
     private void Start()
     {
@@ -57,6 +57,7 @@ public class LoadingSceneManager : MonoBehaviour
                     timer = 0f;
                 }
             }
+            percent.text= (progressBar.fillAmount*100).ToString("")+" %";
         }
     }
 }

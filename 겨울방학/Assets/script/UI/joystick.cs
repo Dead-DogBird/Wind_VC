@@ -28,7 +28,7 @@ public class joystick : MonoBehaviour
         Radius *= Can;
         player = monster_manager.Instance.player.GetComponent<move_player>();
     }
-    void Update()
+    void FixedUpdate()
     {
         if (Player != null)
             Player.transform.Translate(JoyVec * (Player.speed+player.GetComponent<player_stats>().speed));

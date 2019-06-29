@@ -6130,7 +6130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lateTime: 0
-  lateQ: 1
+  lateQ: 1.5
   is_startWave: 0
 --- !u!1 &1266669434
 GameObject:

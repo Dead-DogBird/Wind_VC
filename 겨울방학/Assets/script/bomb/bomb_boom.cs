@@ -12,9 +12,9 @@ public class bomb_boom : MonoBehaviour
     enum shoot_direction { up = 0, down, left, right };
     public float speed = 0.17f;
     float i_z;
-    float a = 0.025f;
+
     bool isGround = false;
-    public float firstnum, plus;
+
     public GameObject effect, effect_shadow;
     float nextfireQ, firerateQ = 0.01f;
     GameObject inst;
@@ -27,7 +27,25 @@ public class bomb_boom : MonoBehaviour
     player_stats player;
     void Start()
     {
-        a = firstnum;
+        inst = Instantiate(shadow);
+        inst.transform.position = transform.position + new Vector3(0, -0.35f, 0);
+        Y = transform.position.y - 0.5f;
+        X = transform.localScale.x;
+        speed += monster_manager.Instance.player.GetComponent<player_stats>().attackspeed;
+        if (dir == (int)shoot_direction.left)
+            moveboom = new Vector3(speed, 0, 0);
+        if (dir == (int)shoot_direction.right)
+            moveboom = new Vector3(-speed, 0, 0);
+        if (dir == (int)shoot_direction.up)
+            moveboom = new Vector3(0, speed, 0);
+        if (dir == (int)shoot_direction.down)
+            moveboom = new Vector3(0, -speed, 0);
+        Instantiate(pa).transform.position = transform.position;
+        player = GetComponent<player_stats>();
+    }
+    public void reActive(int dir)
+    {
+        speed = 0.17f;
         inst = Instantiate(shadow);
         inst.transform.position = transform.position + new Vector3(0, -0.35f, 0);
         Y = transform.position.y - 0.5f;
@@ -70,13 +88,14 @@ public class bomb_boom : MonoBehaviour
         GameObject temp = Instantiate(effect);
         GameObject temp_sh = Instantiate(effect_shadow);
         temp.transform.position = transform.position + new Vector3(0, 0, -0.1f);
-        
+
         temp_sh.transform.position = transform.position + new Vector3(0, 0, -0.05f);
         temp_sh.transform.rotation = temp.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
         temp_sh.transform.localScale += new Vector3(0.2f, 0.2f, 0);
         temp_sh.gameObject.GetComponent<Renderer>().material.color = new Color(0, 0, 0);
         Destroy(inst);
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
     }
     void CoolTime()
     {

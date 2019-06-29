@@ -64,7 +64,7 @@ public class Game_manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        save();
+      //  save();
         touchOn = false;
 
         audio = this.gameObject.AddComponent<AudioSource>();
@@ -75,7 +75,7 @@ public class Game_manager : MonoBehaviour
     }
     public bool shop_touch = false;
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (ui_money < true_money)
             ui_money += 10;

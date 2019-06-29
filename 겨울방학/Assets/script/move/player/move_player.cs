@@ -37,7 +37,7 @@ public class move_player : GameMaker
      Vector2 speedNomal;
      public bool canJump=false;
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         float h = Input.GetAxis("Horizontal");
