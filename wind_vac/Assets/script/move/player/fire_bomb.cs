@@ -19,6 +19,8 @@ public class fire_bomb : MonoBehaviour
     public float volume, pitch;
     move_player player;
     hit_player hplayer;
+
+    GameObject[] BombList=new GameObject[5];
     // Use this for initialization
     void Start()
     {
@@ -28,6 +30,11 @@ public class fire_bomb : MonoBehaviour
         audio.pitch = pitch;
         player = GetComponent<move_player>();
         hplayer = GetComponent<hit_player>();
+        for(int i=0;i<5;i++)
+        {
+            BombList[i]=Instantiate(Bomb);
+            BombList[i].SetActive(false);
+        }
     }
     void nockback(shoot_direction dir)
     {
@@ -49,6 +56,22 @@ public class fire_bomb : MonoBehaviour
             a = new Vector2(0, nock_back);
         }
     }
+    public GameObject returnActiveObject(int dir)//현재 비활성화된 오브젝트 반환
+    {
+        int i=0;
+        while(true)
+        {
+            if(BombList[i].activeSelf==false)
+            {
+                BombList[i].SetActive(true);
+                BombList[i].GetComponent<bomb_boom>().reActive(dir,transform.position);
+            return BombList[i];
+            }
+            i++;
+            if(i>=5)
+            return null;
+        }
+    }
     public void fire(int dir = 0)
     {
         if (Time.time > nextfireQ)
@@ -57,13 +80,13 @@ public class fire_bomb : MonoBehaviour
             nextfireQ = Time.time + (firerateQ-GetComponent<player_stats>().rapidfire);
             audio.Play();
             //this.audio.clip = this.fireSound;
-            bomb_boom tempbomb = Instantiate(Bomb).GetComponent<bomb_boom>();
+            /*bomb_boom tempbomb = */returnActiveObject(dir).GetComponent<bomb_boom>();
+           // tempbomb.transform.position = transform.position;
             //bomb_boom bomb_sh=Instantiate(Bomb).GetComponent<bomb_boom>();
-            tempbomb.dir = dir;
+           // tempbomb.dir = dir;
             //bomb_sh.dir=tempbomb.dir;
             //bomb_sh.transform.localScale+=new Vector3(0.75f,0.75f,0);
             //bomb_sh.gameObject.GetComponent<Renderer>().material.color=new Color(0,0,0); 
-            tempbomb.transform.position = transform.position;
             nockback((shoot_direction)dir);
         }
 

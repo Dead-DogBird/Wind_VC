@@ -11,7 +11,7 @@ public class wave_start : MonoBehaviour
     void Start()
     {
         Transform = transform.localPosition;
-        lateTime = Time.time + 3;
+        lateTime = Time.time + 6;
         Transform.y =50;
         transform.localPosition = Transform;
     }
@@ -28,7 +28,7 @@ public class wave_start : MonoBehaviour
                 is_startWave = false;
             }
         }
-        else if(monster_manager.Instance.wave!=0)
+        else /*if(monster_manager.Instance.wave!=0)*/
         {
             Transform.y += (700 - Transform.y) / 10;
         }

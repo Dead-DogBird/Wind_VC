@@ -24,32 +24,29 @@ public class bomb_boom : MonoBehaviour
     public bool kill;
 
     Transform shadow_transform;
-    player_stats player;
+    float g = 0.15f;
+    float ga = 0.005f;
+    float gg=0.15f;
     void Start()
     {
-        inst = Instantiate(shadow);
-        inst.transform.position = transform.position + new Vector3(0, -0.35f, 0);
-        Y = transform.position.y - 0.5f;
+       // Y = transform.position.y - 1.5f;
         X = transform.localScale.x;
         speed += monster_manager.Instance.player.GetComponent<player_stats>().attackspeed;
-        if (dir == (int)shoot_direction.left)
-            moveboom = new Vector3(speed, 0, 0);
-        if (dir == (int)shoot_direction.right)
-            moveboom = new Vector3(-speed, 0, 0);
-        if (dir == (int)shoot_direction.up)
-            moveboom = new Vector3(0, speed, 0);
-        if (dir == (int)shoot_direction.down)
-            moveboom = new Vector3(0, -speed, 0);
         Instantiate(pa).transform.position = transform.position;
-        player = GetComponent<player_stats>();
     }
-    public void reActive(int dir)
+    public void reActive(int Dir, Vector3 rePosition)
     {
-        speed = 0.17f;
+        kill = false;
+        transform.position = rePosition;
+        speed = 0.115f;
+        g = 0.15f;
+        gg=g;
+        ga = 0.01f;
         inst = Instantiate(shadow);
+        dir=Dir;
         inst.transform.position = transform.position + new Vector3(0, -0.35f, 0);
-        Y = transform.position.y - 0.5f;
-        X = transform.localScale.x;
+        transform.localScale = new Vector3(0.65f, 0.65f);
+        Y = monster_manager.Instance.player.transform.position.y-0.5f;
         speed += monster_manager.Instance.player.GetComponent<player_stats>().attackspeed;
         if (dir == (int)shoot_direction.left)
             moveboom = new Vector3(speed, 0, 0);
@@ -60,7 +57,7 @@ public class bomb_boom : MonoBehaviour
         if (dir == (int)shoot_direction.down)
             moveboom = new Vector3(0, -speed, 0);
         Instantiate(pa).transform.position = transform.position;
-        player = GetComponent<player_stats>();
+
     }
     bool Is_hit()
     {
@@ -93,8 +90,9 @@ public class bomb_boom : MonoBehaviour
         temp_sh.transform.rotation = temp.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
         temp_sh.transform.localScale += new Vector3(0.2f, 0.2f, 0);
         temp_sh.gameObject.GetComponent<Renderer>().material.color = new Color(0, 0, 0);
-        Destroy(inst);
+        Destroy(inst.gameObject);
         //Destroy(gameObject);
+        Y=0;
         gameObject.SetActive(false);
     }
     void CoolTime()
@@ -112,10 +110,6 @@ public class bomb_boom : MonoBehaviour
         tempObshadow.gameObject.GetComponent<Renderer>().material.color = new Color(0.2f, 0.2f, 0.2f);
         nextfireQ = Time.time + firerateQ;
     }
-    float g = 0.15f;
-    float ga = 0.005f;
-
-    float colorr = 4.5f;
     // Update is called once per frame
     void Update()
     {
@@ -130,18 +124,23 @@ public class bomb_boom : MonoBehaviour
         if (speed < 0)
             speed = 0;
 
-        transform.localScale += new Vector3(0.005f, 0.005f, 0);
-
+       // transform.localScale += new Vector3(0.005f, 0.005f, 0);
+        
         if (dir == (int)shoot_direction.left || dir == (int)shoot_direction.right)
         {
+            
             transform.position += new Vector3(0, g, 0);
+         
+               
             g -= ga;
             ga += 0.0005f;
-            inst.transform.localScale -= new Vector3(g / 7, g / 7);
+            
+           // inst.transform.localScale -= new Vector3(g / 7, g / 7);
             if (transform.position.y <= Y)
             {
-                ga = 0.005f;
-                g = 0.075f;
+                gg=gg/1.1f;
+                ga = 0.01f;
+                g =gg;
             }
             inst.transform.position = new Vector2(transform.position.x, Y - 0.5f);
         }
