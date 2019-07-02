@@ -127,7 +127,7 @@ public class hit_player : GameMaker
         hit_time=0;
         yield return null;
     }
-    void Update()
+    void FixedUpdate()
     {
         // num++;
         // if (hit_time != 0)

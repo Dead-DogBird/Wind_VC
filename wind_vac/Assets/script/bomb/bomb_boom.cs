@@ -111,7 +111,7 @@ public class bomb_boom : MonoBehaviour
         nextfireQ = Time.time + firerateQ;
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Is_hit();
         if (Time.time > nextfireQ)
