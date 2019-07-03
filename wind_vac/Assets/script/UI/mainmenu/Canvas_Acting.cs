@@ -21,7 +21,7 @@ public class Canvas_Acting : MonoBehaviour
         }
         else
         {
-            positon.y+=(-1000-positon.y)/10;
+            positon.y+=(-1200-positon.y)/10;
         }
         transform.localPosition=positon;
     }
