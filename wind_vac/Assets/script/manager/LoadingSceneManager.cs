@@ -48,9 +48,9 @@ public class LoadingSceneManager : MonoBehaviour
             }
             else
             {
-                progressBar.fillAmount = 0.9f/op.progress;
+                progressBar.fillAmount = op.progress/0.9f;
             }
-            percent.text= (progressBar.fillAmount*100).ToString("")+" %";
+            percent.text= (progressBar.fillAmount*100).ToString("F1")+" %";
         }
     }
 }

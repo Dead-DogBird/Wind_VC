@@ -20,7 +20,12 @@ public class Canvas_select : MonoBehaviour
     {
         
     }
+    public void GoIngame(int i)
+    {
+        string map="stage"+i;
+        LoadingSceneManager.LoadScene(map);
 
+    }
     // Update is called once per frame
     void Update()
     {

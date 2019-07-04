@@ -27,6 +27,7 @@ public class bomb_boom : MonoBehaviour
     float g = 0.15f;
     float ga = 0.005f;
     float gg=0.15f;
+    public bool Uactive;
     void Start()
     {
        // Y = transform.position.y - 1.5f;
@@ -36,6 +37,7 @@ public class bomb_boom : MonoBehaviour
     }
     public void reActive(int Dir, Vector3 rePosition)
     {
+        Uactive=true;
         kill = false;
         transform.position = rePosition;
         speed = 0.115f;
@@ -79,6 +81,11 @@ public class bomb_boom : MonoBehaviour
         box_collider.enabled = true;//다시 자신의 충돌 체크를 켜줌			
         return (hit != null);//부딫혔을때 true반환 아닐경우에는 false 반환
     }
+    public void samyDie()
+    {
+        transform.position=new Vector3(1000,1000);
+        Uactive=false;
+    }
     void Die()
     {
         monster_manager.Instance.firebombCount++;
@@ -93,7 +100,9 @@ public class bomb_boom : MonoBehaviour
         Destroy(inst.gameObject);
         //Destroy(gameObject);
         Y=0;
-        gameObject.SetActive(false);
+        transform.position=new Vector3(1000,1000);
+        Uactive=false;
+        //gameObject.SetActive(false);
     }
     void CoolTime()
     {
@@ -113,6 +122,10 @@ public class bomb_boom : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(Uactive==false)
+        return;
+
+
         Is_hit();
         if (Time.time > nextfireQ)
         {
