@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class unji : MonoBehaviour {
+public class falling : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

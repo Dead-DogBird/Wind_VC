@@ -10,18 +10,18 @@ public class Canvas_Acting : MonoBehaviour
     void Start()
     {
         positon=transform.localPosition;    
-         positon.y=-1000;
+         positon.y=-1200;
     }
     // Update is called once per frame
     void FixedUpdate()
     {
         if(MyNumber==Canvas_select.Instance.CanvasCode)
         {
-            positon.y+=(0-positon.y)/10;
+            positon.y+=(0-positon.y)*0.1f;
         }
         else
         {
-            positon.y+=(-1200-positon.y)/10;
+            positon.y+=(-1500-positon.y)*0.1f;
         }
         transform.localPosition=positon;
     }
