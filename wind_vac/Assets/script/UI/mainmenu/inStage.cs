@@ -10,7 +10,7 @@ public class inStage : MonoBehaviour
     void Start()
     {
         MyTransform = transform.localPosition;
-        MyTransform.y=-56;
+        MyTransform.y=0;
     }
 
     // Update is called once per frame

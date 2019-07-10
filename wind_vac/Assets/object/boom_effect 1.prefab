@@ -94,6 +94,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f97ed5110a48f44913cb1eaab65ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audio: {fileID: 0}
+  fireSound: {fileID: 8300000, guid: 9dc26a01ca39ec34a9a2d99ad74b9d00, type: 3}
+  volume: 0.5
+  pitch: 1
 --- !u!95 &95219305831044736
 Animator:
   serializedVersion: 3

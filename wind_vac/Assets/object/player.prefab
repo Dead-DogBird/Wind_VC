@@ -122,7 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bomb: {fileID: 6678565095104097360, guid: 6249690ea3d71464a80a4f0f93bad3a8, type: 3}
   audio: {fileID: 0}
-  fireSound: {fileID: 8300000, guid: fdac3fdb0aee5334e9b8149542a65739, type: 3}
+  fireSound: {fileID: 8300000, guid: 8bba222735261fb4c9b89cafb5d6363d, type: 3}
   a: {x: 0, y: 0}
   volume: 1.2
   pitch: 1
@@ -179,7 +179,9 @@ MonoBehaviour:
   hit_time: 0
   falling: 0
   audio: {fileID: 0}
+  volume: 0.7
   fireSound: {fileID: 0}
+  ouchSound: {fileID: 0}
 --- !u!114 &7508742274748325432
 MonoBehaviour:
   m_ObjectHideFlags: 0
