@@ -73,10 +73,29 @@ public class Game_manager : MonoBehaviour
         audio.loop = true;
         audio.Play();
     }
+    public void pause(bool ispause)
+    {
+        if(ispause)
+        Time.timeScale = 0;
+        else
+        Time.timeScale =1;
+    }
     public bool shop_touch = false;
+    public GameObject pauseCanvas;
+    void Update()
+    {
+                if(Time.timeScale==1)
+        pauseCanvas.SetActive(false);
+        else
+        pauseCanvas.SetActive(true);
+
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        Debug.Log(Time.timeScale);
+
         if (ui_money < true_money)
             ui_money += 10;
 

@@ -632,7 +632,6 @@ MonoBehaviour:
   hitcolor: 0
   is_player: 0
   audio: {fileID: 0}
-  fireSound: {fileID: 8300000, guid: ca27a04ee96c457468bcfc870b11bc7e, type: 3}
   volume: 0.5
   giveMoney: 5
   coin: {fileID: 6594032475389129884, guid: 133b4a823db73af4aa66bd6fbbde9a77, type: 3}
@@ -710,8 +709,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7673333954023508224}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.203, y: 0.966, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.203, y: 1.0411, z: 0}
+  m_LocalScale: {x: 1, y: 2.0008, z: 1}
   m_Children: []
   m_Father: {fileID: 3673260119520635409}
   m_RootOrder: 2

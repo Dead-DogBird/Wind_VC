@@ -53,7 +53,7 @@ public class boom_effect : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.localScale += new Vector3(0.075f, 0.075f, 0);
         Destroy(gameObject, 0.3f);
