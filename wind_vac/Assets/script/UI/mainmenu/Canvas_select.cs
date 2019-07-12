@@ -26,9 +26,9 @@ public class Canvas_select : MonoBehaviour
     public Text StageComent, StageName, StageNumber;
     public void saveStageInfo()
     {
-        StageInfolist.Add(new Stage_info(1, "시작의 항구", "위대한 발견의 향한 여정의 시작 \n 모든것이 시작된다."));
-        StageInfolist.Add(new Stage_info(2, "스탠다드 하늘섬", "낮선 기류에 휩쓸려 도착한 곳은 \n 알수없는 하늘섬, 범상치 않다."));
-        StageInfolist.Add(new Stage_info(3, "미스테리 사막유적", "작열하는 태양, 때때로의 야자수 \n 그리고 알수없는 사막의 고대유적"));
+        StageInfolist.Add(new Stage_info(1, "하늘 간이역", "위대한 발견을 향한 여정의 시작 \n 모든것이 시작된다.(기차표 별도 구매)(배 무단 주차금지)"));
+        StageInfolist.Add(new Stage_info(2, "스탠다드 하늘섬", "낮선 기류에 휩쓸려 도착한 곳은 \n 알수없는 하늘섬, 범상치 않다.(쓰레기 무단투기 금지)"));
+        StageInfolist.Add(new Stage_info(3, "미스테리 사막유적", "작열하는 태양, 때때로의 야자수 \n 그리고 알수없는 사막의 고대유적.(낙서 금지)"));
         JsonData ShopJson = JsonMapper.ToJson(StageInfolist);
 
         File.WriteAllText(Application.dataPath + "/Resources/StageInfo.json", ShopJson.ToString());
@@ -74,7 +74,7 @@ public class Canvas_select : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //saveStageInfo();
+        saveStageInfo();
         //Load();
         anotherLoad();
     }

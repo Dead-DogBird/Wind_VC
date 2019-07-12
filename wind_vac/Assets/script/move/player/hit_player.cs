@@ -78,7 +78,8 @@ public class hit_player : GameMaker
     void die()
     {
         Camera.main.GetComponent<ShakeManager>().Shake(3f, 3f, 10f, 1.2f, 10);
-
+        if(Game_manager.Instance.NowWhatMode==Game_manager.gameMode.endlessMode&&monster_manager.Instance.wave>Game_manager.Instance.highScore)
+        PlayerPrefs.SetInt("endLessHigh",monster_manager.Instance.wave);
         Destroy(gameObject);
     }
     IEnumerator FallSmall()

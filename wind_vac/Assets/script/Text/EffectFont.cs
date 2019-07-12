@@ -25,8 +25,8 @@ public class EffectFont : MonoBehaviour {
 		text.text = effectText;
 
 		wspeed=fwspeed;
-		float red = Random.Range(0.2f,0.7f);
-		text.color = new Color(1,red,0,1);
+	//	float red = Random.Range(0.2f,0.7f);
+		//text.color = new Color(1,red,0,1);
 	}
 
 	void Update () {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using LitJson;
 using System.IO;
 public class Shop_price
@@ -15,6 +16,8 @@ public class Shop_price
 }
 public class Game_manager : MonoBehaviour
 {
+    public enum gameMode{stageMode,acadeMode,endlessMode};
+    public gameMode NowWhatMode;
     public static Game_manager Instance = null;
     public List<Shop_price> Shop_Price_List = new List<Shop_price>();
     public new AudioSource audio;
@@ -28,6 +31,7 @@ public class Game_manager : MonoBehaviour
 
     public int true_money = 0;
     public int ui_money;
+    public int highScore;
 
     void Awake()
     {
@@ -66,7 +70,17 @@ public class Game_manager : MonoBehaviour
     {
       //  save();
         touchOn = false;
-
+        if(NowWhatMode==gameMode.endlessMode)
+        {
+         if(!PlayerPrefs.HasKey("endLessHigh"))
+         {
+             PlayerPrefs.SetInt("endLessHigh",0);
+         }
+         else
+         {
+             highScore=PlayerPrefs.GetInt("endLessHigh");
+         }
+        }
         audio = this.gameObject.AddComponent<AudioSource>();
         this.audio.clip = this.audioClip;
         audio.volume = volume;

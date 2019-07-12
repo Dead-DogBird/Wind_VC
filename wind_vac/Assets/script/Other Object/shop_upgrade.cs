@@ -69,7 +69,7 @@ public class shop_upgrade : MonoBehaviour
                 if (Level[0] < max && Gm.true_money >= inst[Level[0]].price)
                 {
                     Gm.true_money -= inst[Level[0]].price;
-                    player.attack += 0.5f;
+                    player.attack += 0.25f;
                     Level[0]++;
                 if (Level[0] == max)
                 {
