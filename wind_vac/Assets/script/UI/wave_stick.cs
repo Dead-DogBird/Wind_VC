@@ -16,7 +16,7 @@ public class wave_stick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(monster_manager.Instance.player!=null)
+       if(monster_manager.Instance.player!=null&&!monster_manager.Instance.isClear)
        myImage.fillAmount= ((monster_manager.Instance.nextfireQ - Time.time) / monster_manager.Instance.firerateQ);
        // transform.localScale=new Vector3((,1);
     }

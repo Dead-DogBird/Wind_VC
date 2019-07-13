@@ -7,7 +7,7 @@ public class golem_monster : monster_parents
     // Start is called before the first frame update
     float nextfireQ, firerateQ = 4f;
     float mNext,mLate=0.5f;
-    int ChargeCount = 3;
+    public int ChargeCount = 3;
     float length = 1;
     Vector3 toVector;
     new void Start()
@@ -26,8 +26,13 @@ public class golem_monster : monster_parents
             if (ChargeCount != 0&&mNext<Time.time)
             {
                 Doknockback(player.transform.position,transform.position,7);
+                nockback_length=0;
                 ChargeCount--;
                 mNext = Time.time + mLate;
+            }
+            else
+            {
+                nockback_length=0.5f;
             }
             if(nextfireQ<Time.time)
             {

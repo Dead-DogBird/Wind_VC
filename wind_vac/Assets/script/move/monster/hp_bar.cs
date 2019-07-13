@@ -6,7 +6,7 @@ public class hp_bar : MonoBehaviour
 {
      GameObject parents;
      monster_parents parMon;
-    float oriHp,curHp;
+    float oriHp,curHp,orix;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +24,13 @@ public class hp_bar : MonoBehaviour
         }
         parMon=parents.gameObject.GetComponent<monster_parents>();
         oriHp=parMon.hp;
+        orix=transform.localScale.x;
     }
     // Update is called once per frame
     void Update()
     {
         curHp=parMon.hp;
-        transform.localScale=new Vector3((curHp/oriHp),transform.localScale.y);
+        transform.localScale=new Vector3(orix*(curHp/oriHp),transform.localScale.y);
         GetComponent<Renderer>().material.color=new Color(1+(2-(curHp/oriHp)),1,1);
     }
 }

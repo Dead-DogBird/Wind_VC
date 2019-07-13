@@ -17,17 +17,19 @@ public class monster_manager : MonoBehaviour
     public GameObject EffectText;
     public static monster_manager Instance = null;
     public LinkedList<monster_parents> monsterList;
-    public GameObject monster_1;
+    public GameObject bossMonster;
     public GameObject[] Monster = new GameObject[3];
     public float nextfireQ, firerateQ = 15f;
     public move_player player;
     public bool isDead;
     public int combo;
-    public int wave;
+    public int wave, boss_wave;
 
     public GameObject hit_effect;
     public wave_start wave_start_;
     public GameObject coin;
+    public GameObject instanceBoss;
+    public int SumonTime=2;
     void OnEnable()
     {
         player = GameObject.Find("player").GetComponent<move_player>();
@@ -57,7 +59,7 @@ public class monster_manager : MonoBehaviour
             Instance = this;
     }
     // Use this for initialization
-    float TnextfireQ,TfirelateQ;
+    float TnextfireQ, TfirelateQ;
     void Start()
     {
         monsterList = new LinkedList<monster_parents>();
@@ -65,8 +67,8 @@ public class monster_manager : MonoBehaviour
         this.audio.clip = this.fireSound;
         audio.volume = volume;
         nextfireQ = Time.time + 10;
-        TfirelateQ=firerateQ+1f;
-        TnextfireQ=nextfireQ+1f;
+        TfirelateQ = firerateQ + 1f;
+        TnextfireQ = nextfireQ + 1f;
         wave = 0;
 
 
@@ -85,7 +87,7 @@ public class monster_manager : MonoBehaviour
 
         float ang = a;
 
-        Vector3 pos=new Vector3(0,0,0);
+        Vector3 pos = new Vector3(0, 0, 0);
 
         pos.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
 
@@ -94,28 +96,65 @@ public class monster_manager : MonoBehaviour
         return pos;
 
     }
-    void trueNextWave()
+    void trueNextWave(bool boss=false)
     {
         Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 0, 1.5f, 5);
-        for (int i = 0; i < 5; i++)
+        SumonTime=wave;
+        for (int i = 0; i < SumonTime; i++)
         {
-            GameObject temp = Instantiate(Monster[Random.Range(0, 3)]);
-            temp.transform.position = RandomCircle(player.transform.position,10, Random.Range(0,360));
+            GameObject temp = Instantiate(Monster[Random.Range(0, Monster.Length)]);
+            temp.transform.position = RandomCircle(player.transform.position, 10, Random.Range(0, 360));
         }
+        if(boss&&!wave_start_.is_startWave)
+        wave=boss_wave+1;
+
         TnextfireQ = Time.time + TfirelateQ;
     }
+    void sumBoss()
+    {
+         Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 0, 1.5f, 5);
+         GameObject temp=Instantiate(bossMonster);
+         temp.transform.position = RandomCircle(player.transform.position, 10, Random.Range(0, 360));
+         instanceBoss=temp;
+    }
+    public bool isClear;
     // Update is called once per frame
     void Update()
     {
         if (player != null)
         {
-            if (Time.time > nextfireQ)
+            if (wave < boss_wave)
             {
-                nextWave();
+                if (Time.time > nextfireQ)
+                {
+                    nextWave();
+                }
+                if (Time.time > TnextfireQ)
+                {
+                    trueNextWave();
+                }
             }
-            if (Time.time > TnextfireQ)
+            else if(wave == boss_wave)
             {
-                trueNextWave();
+                 if (Time.time > nextfireQ)
+                {
+                    nextWave();
+                }
+                if (Time.time > TnextfireQ)
+                {
+                sumBoss();
+                trueNextWave(true);
+                }
+            }
+            if(wave==boss_wave&&!wave_start_.is_startWave)
+            {
+                if(instanceBoss==null)
+                isClear=true;
+
+            }
+            if(isClear)
+            {
+                Time.timeScale=0.3f;
             }
             if (isHit)
             {
@@ -128,6 +167,7 @@ public class monster_manager : MonoBehaviour
                 // }
                 isHit = false;
             }
+
         }
         if (isDead)
         {

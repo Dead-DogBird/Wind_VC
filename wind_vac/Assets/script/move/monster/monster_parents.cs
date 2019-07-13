@@ -123,7 +123,7 @@ public class monster_parents : GameMaker
                 item.GetComponentInChildren<Renderer>().material.color = new Color(1 + (hitcolor * 2), 1 - (hitcolor * 0.5f), 1 - (hitcolor * 0.5f));
             }
         }
-        if (hp <= 0)
+        if (hp <= 0||monster_manager.Instance.isClear)
             Kill();
     }
 

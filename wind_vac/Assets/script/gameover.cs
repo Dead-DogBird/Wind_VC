@@ -30,5 +30,14 @@ public class gameover : MonoBehaviour
             }
             myText.color = new Color(1, 0, 0, 1);
         }
+        if(monster_manager.Instance.isClear)
+        {
+            myText.text="Game Clear!";
+            myText.color = new Color(1, 1, 1, 1);
+        }
+        else
+        {
+               myText.color = new Color(1, 1, 1,0);
+        }
     }
 }

@@ -16,6 +16,8 @@ public class wave_text : MonoBehaviour
     {
         if(monster_manager.Instance.wave==0)
         myText.text="준비시간!";
+        else if(monster_manager.Instance.wave==monster_manager.Instance.boss_wave)
+        myText.text="BOSS WAVE!";
         else
         myText.text=monster_manager.Instance.wave+"WAVE";
 

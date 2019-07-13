@@ -98,7 +98,7 @@ public class Game_manager : MonoBehaviour
     public GameObject pauseCanvas;
     void Update()
     {
-                if(Time.timeScale==1)
+        if(Time.timeScale!=0)
         pauseCanvas.SetActive(false);
         else
         pauseCanvas.SetActive(true);
