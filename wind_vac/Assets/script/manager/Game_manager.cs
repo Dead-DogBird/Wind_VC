@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using LitJson;
 using System.IO;
+using UnityEngine.SceneManagement;
 public class Shop_price
 {
     public int level, price;
@@ -16,7 +17,7 @@ public class Shop_price
 }
 public class Game_manager : MonoBehaviour
 {
-    public enum gameMode{stageMode,acadeMode,endlessMode};
+    public enum gameMode { stageMode, acadeMode, endlessMode};
     public gameMode NowWhatMode;
     public static Game_manager Instance = null;
     public List<Shop_price> Shop_Price_List = new List<Shop_price>();
@@ -68,47 +69,57 @@ public class Game_manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      //  save();
+        //  save();
         touchOn = false;
-        if(NowWhatMode==gameMode.endlessMode)
+        if (NowWhatMode == gameMode.endlessMode)
         {
-         if(!PlayerPrefs.HasKey("endLessHigh"))
-         {
-             PlayerPrefs.SetInt("endLessHigh",0);
-         }
-         else
-         {
-             highScore=PlayerPrefs.GetInt("endLessHigh");
-         }
+            if (!PlayerPrefs.HasKey("endLessHigh"))
+            {
+                PlayerPrefs.SetInt("endLessHigh", 0);
+            }
+            else
+            {
+                highScore = PlayerPrefs.GetInt("endLessHigh");
+            }
         }
         audio = this.gameObject.AddComponent<AudioSource>();
         this.audio.clip = this.audioClip;
         audio.volume = volume;
         audio.loop = true;
         audio.Play();
+        GameOver.SetActive(false);
     }
     public void pause(bool ispause)
     {
-        if(ispause)
-        Time.timeScale = 0;
+        if (ispause)
+            Time.timeScale = 0;
         else
-        Time.timeScale =1;
+            Time.timeScale = 1;
     }
     public bool shop_touch = false;
     public GameObject pauseCanvas;
+    public GameObject GameOver;
     void Update()
     {
-        if(Time.timeScale!=0)
-        pauseCanvas.SetActive(false);
+        if (Time.timeScale != 0)
+            pauseCanvas.SetActive(false);
         else
-        pauseCanvas.SetActive(true);
+            pauseCanvas.SetActive(true);
+
+  
+            if ((monster_manager.Instance.isClear || monster_manager.Instance.player == null))
+                GameOver.SetActive(true);
+            else
+            {
+                GameOver.SetActive(false);
+            }
+        
 
     }
     // Update is called once per frame
     void FixedUpdate()
     {
 
-        Debug.Log(Time.timeScale);
 
         if (ui_money < true_money)
             ui_money += 10;

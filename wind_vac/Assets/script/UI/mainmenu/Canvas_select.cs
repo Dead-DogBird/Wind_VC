@@ -11,8 +11,8 @@ public class Stage_info
     public Stage_info(int SNUM, string SN, string SC)
     {
         stageCode = SNUM;
-        StageComent= SC;
-        StageName= SN;
+        StageComent = SC;
+        StageName = SN;
         StageNumber_text = SNUM + " 스테이지";
     }
 
@@ -35,21 +35,21 @@ public class Canvas_select : MonoBehaviour
         Debug.Log("저장됨!");
     }
     JsonData priceData;
-     public void Load()
+    public void Load()
     {
         Debug.Log("불러오기");
         string Jsonstring = File.ReadAllText(Application.dataPath + "/Resources/StageInfo.json");
         // Debug.Log(Jsonstring);
-     priceData = JsonMapper.ToObject(Jsonstring);
+        priceData = JsonMapper.ToObject(Jsonstring);
         for (int i = 0; i < priceData.Count; i++)
         {
-           Debug.Log(priceData[i]["StageName"].ToString());
+            Debug.Log(priceData[i]["StageName"].ToString());
         }
     }
     public void anotherLoad()
     {
-        TextAsset test =Resources.Load("StageInfo") as TextAsset;        
-        string Jsonstring=test.text;
+        TextAsset test = Resources.Load("StageInfo") as TextAsset;
+        string Jsonstring = test.text;
         priceData = JsonMapper.ToObject(Jsonstring);
     }
     public void ToStage(bool isUp)
@@ -63,6 +63,10 @@ public class Canvas_select : MonoBehaviour
             StageCode--;
         }
     }
+    public void DataDelete()
+    {
+        PlayerPrefs.DeleteAll();
+    }
     public void toCanvas(int num)
     {
         CanvasCode = num;
@@ -74,27 +78,32 @@ public class Canvas_select : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        saveStageInfo();
+        //saveStageInfo();
         //Load();
         anotherLoad();
     }
     public void GoIngame(int i)
     {
-        if (i == 999)
+        switch (i)
         {
+            case 666:
+            LoadingSceneManager.LoadScene("Hellsight");
+            break;
+            case 999:
             LoadingSceneManager.LoadScene("endless");
-        }
-        else
-        {
-            string map = "stage" + i;
-            LoadingSceneManager.LoadScene(map);
+            break;
+            
+            default:
+                string map = "stage" + i;
+                LoadingSceneManager.LoadScene(map);
+            break;
         }
     }
     // Update is called once per frame
     void Update()
     {
-        StageComent.text=priceData[StageCode-1]["StageComent"].ToString();
-        StageName.text=priceData[StageCode-1]["StageName"].ToString();
-        StageNumber.text=priceData[StageCode-1]["StageNumber_text"].ToString();
+        StageComent.text = priceData[StageCode - 1]["StageComent"].ToString();
+        StageName.text = priceData[StageCode - 1]["StageName"].ToString();
+        StageNumber.text = priceData[StageCode - 1]["StageNumber_text"].ToString();
     }
 }

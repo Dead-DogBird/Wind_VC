@@ -372,7 +372,7 @@ MonoBehaviour:
   is_player: 0
   audio: {fileID: 0}
   volume: 0
-  giveMoney: 10
+  giveMoney: 20
   coin: {fileID: 6594032475389129884, guid: 133b4a823db73af4aa66bd6fbbde9a77, type: 3}
   FnextfireQ: 0
   FfirerateQ: 5

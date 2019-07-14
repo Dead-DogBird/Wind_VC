@@ -2,42 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class gameover : MonoBehaviour
 {
     move_player player;
-    Text myText;
+    public Text myText;
     float nextfire, firelate = 0.4f;
+    Image myImage;
+    Vector3 Mytransform;
     void Start()
     {
-        myText = GetComponent<Text>();
-        player = GameObject.Find("player").GetComponent<move_player>();
+        //        myText = myText.gameObject.GetComponent<Text>();
+        player = monster_manager.Instance.player;
+        myImage = gameObject.GetComponent<Image>();
+        myText.color = new Color(1, 1, 1, 1);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (player != null)
+        if (player == null || SceneManager.GetActiveScene().name == "endless")
         {
-            myText.color = new Color(1, 1, 1, 0);
+            myText.text = "Game Over!";
         }
-        else
+
+        if (monster_manager.Instance.isClear && SceneManager.GetActiveScene().name != "endless")
         {
-            if (nextfire < Time.time)
-            {
-                Camera.main.GetComponent<ShakeManager>().Shake(0, 0, 0, 0.9f, 4);
-                nextfire = +firelate + Time.time;
-            }
-            myText.color = new Color(1, 0, 0, 1);
-        }
-        if(monster_manager.Instance.isClear)
-        {
-            myText.text="Game Clear!";
-            myText.color = new Color(1, 1, 1, 1);
-        }
-        else
-        {
-               myText.color = new Color(1, 1, 1,0);
+            myText.text = "Game Clear!";
         }
     }
+    public void GoToMain()
+    {
+        LoadingSceneManager.LoadScene("mainmenu");
+        Time.timeScale = 1;
+    }
+
+    public void Retry() { LoadingSceneManager.LoadScene(SceneManager.GetActiveScene().name); Time.timeScale = 1; }
 }

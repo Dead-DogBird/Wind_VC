@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class monster_manager : MonoBehaviour
 {
 
@@ -29,7 +29,7 @@ public class monster_manager : MonoBehaviour
     public wave_start wave_start_;
     public GameObject coin;
     public GameObject instanceBoss;
-    public int SumonTime=2;
+    public int SumonTime = 2;
     void OnEnable()
     {
         player = GameObject.Find("player").GetComponent<move_player>();
@@ -60,6 +60,9 @@ public class monster_manager : MonoBehaviour
     }
     // Use this for initialization
     float TnextfireQ, TfirelateQ;
+    public Text leftWave;
+    public GameObject altar;
+    
     void Start()
     {
         monsterList = new LinkedList<monster_parents>();
@@ -70,8 +73,7 @@ public class monster_manager : MonoBehaviour
         TfirelateQ = firerateQ + 1f;
         TnextfireQ = nextfireQ + 1f;
         wave = 0;
-
-
+    
 
     }
     void nextWave()
@@ -79,10 +81,17 @@ public class monster_manager : MonoBehaviour
         wave++;
         Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 6f, 3f, 10);
         wave_start_.is_startWave = true;
-        wave_start_.lateTime = Time.time + wave_start_.lateQ;
+        if (wave == boss_wave)
+        { sumBoss();
+            wave_start_.lateTime = Time.time + wave_start_.lateQ + 1; }
+        else
+          {  wave_start_.lateTime = Time.time + wave_start_.lateQ;
+         }
+         if(leftWave!=null)
+          leftWave.text=(wave == boss_wave)?"보스등장!":"보스까지 "+(boss_wave-wave)+"웨이브 남았습니다! 현재 "+wave+"웨이브.";
         nextfireQ = Time.time + firerateQ;
     }
-    Vector3 RandomCircle(Vector3 center, float radius, float a)
+    public Vector3 RandomCircle(Vector3 center, float radius, float a)
     {
 
         float ang = a;
@@ -96,31 +105,32 @@ public class monster_manager : MonoBehaviour
         return pos;
 
     }
-    void trueNextWave(bool boss=false)
+    void trueNextWave(bool boss = false)
     {
         Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 0, 1.5f, 5);
-        SumonTime=wave;
+        SumonTime = (wave <= 7) ? wave*2 : 7 + (wave - 7) / 3;
         for (int i = 0; i < SumonTime; i++)
         {
             GameObject temp = Instantiate(Monster[Random.Range(0, Monster.Length)]);
             temp.transform.position = RandomCircle(player.transform.position, 10, Random.Range(0, 360));
         }
-        if(boss&&!wave_start_.is_startWave)
-        wave=boss_wave+1;
+        if (boss && !wave_start_.is_startWave)
+            wave = boss_wave + 1;
 
         TnextfireQ = Time.time + TfirelateQ;
     }
     void sumBoss()
     {
-         Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 0, 1.5f, 5);
-         GameObject temp=Instantiate(bossMonster);
-         temp.transform.position = RandomCircle(player.transform.position, 10, Random.Range(0, 360));
-         instanceBoss=temp;
+        Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 0, 1.5f, 5);
+        GameObject temp = Instantiate(bossMonster);
+        temp.transform.position = RandomCircle(player.transform.position, 10, Random.Range(0, 360));
+        instanceBoss = temp;
     }
     public bool isClear;
     // Update is called once per frame
     void Update()
     {
+
         if (player != null)
         {
             if (wave < boss_wave)
@@ -134,27 +144,31 @@ public class monster_manager : MonoBehaviour
                     trueNextWave();
                 }
             }
-            else if(wave == boss_wave)
+            else if (wave == boss_wave)
             {
-                 if (Time.time > nextfireQ)
+                if (Time.time > nextfireQ)
                 {
                     nextWave();
+                    trueNextWave(true);
                 }
                 if (Time.time > TnextfireQ)
                 {
-                sumBoss();
-                trueNextWave(true);
+                }
+                if (instanceBoss != null || isClear)
+                {
+                    nextfireQ = Time.time + 1;
+                    TnextfireQ = Time.time + 1;
                 }
             }
-            if(wave==boss_wave&&!wave_start_.is_startWave)
+            if (wave >= boss_wave && Time.time > wave_start_.lateTime+1)
             {
-                if(instanceBoss==null)
-                isClear=true;
+                if (instanceBoss == null)
+                    isClear = true;
 
             }
-            if(isClear)
+            if (isClear || player == null)
             {
-                Time.timeScale=0.3f;
+                Time.timeScale += (0 - Time.timeScale) / 20;
             }
             if (isHit)
             {

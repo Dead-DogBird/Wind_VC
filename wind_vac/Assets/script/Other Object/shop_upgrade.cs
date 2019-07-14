@@ -133,11 +133,13 @@ public class shop_upgrade : MonoBehaviour
                 }
                 break;
             case 5://체력 회복
-                if(player.GetComponent<hit_player>().hp+2<=fullhp)
+               if(Gm.true_money-500>=0)
+                {if(player.GetComponent<hit_player>().hp+2<=fullhp)
                 player.GetComponent<hit_player>().hp += 2;
                 else
                 player.GetComponent<hit_player>().hp=fullhp;
                 Gm.true_money-=500;
+                }
                 break;
         }
         Camera.main.GetComponent<ShakeManager>().Shake(0, 10f, 0, 0.7f, 4);

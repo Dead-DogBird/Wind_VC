@@ -17,7 +17,7 @@ public class wave_start : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (is_startWave)
         {

@@ -34,7 +34,7 @@ public class drop_coin : MonoBehaviour
                 Vector3 temp = new Vector3(transform.position.x + Random.Range(-0.5f, 0.5f), transform.position.y + Random.Range(-0.5f, 0.5f));
                 Instantiate(paticle, temp, Quaternion.Euler(0, 0, 0));
                 ksound_manager.Instance.get = true;
-                Game_manager.Instance.true_money+=15;
+                Game_manager.Instance.true_money+=25;
                 Destroy(gameObject);
             }
     }
