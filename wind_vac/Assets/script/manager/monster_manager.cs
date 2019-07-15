@@ -38,20 +38,26 @@ public class monster_manager : MonoBehaviour
     }
     public void pressButton(int dir)
     {
-        player.GetComponent<fire_bomb>().isActive = true;
-        player.GetComponent<fire_bomb>().Dir = dir;
+        if (player != null)
+        {
+            player.GetComponent<fire_bomb>().isActive = true;
+            player.GetComponent<fire_bomb>().Dir = dir;
+        }
     }
     public void unpressButtom()
     {
-        player.GetComponent<fire_bomb>().isActive = false;
+        if (player != null)
+            player.GetComponent<fire_bomb>().isActive = false;
     }
     public void Jump()
     {
-        player.canJump = true;
+        if (player != null)
+            player.canJump = true;
     }
     public void disJump()
     {
-        player.canJump = false;
+        if (player != null)
+            player.canJump = false;
     }
     void Awake()
     {
@@ -62,7 +68,7 @@ public class monster_manager : MonoBehaviour
     float TnextfireQ, TfirelateQ;
     public Text leftWave;
     public GameObject altar;
-    
+
     void Start()
     {
         monsterList = new LinkedList<monster_parents>();
@@ -73,7 +79,7 @@ public class monster_manager : MonoBehaviour
         TfirelateQ = firerateQ + 1f;
         TnextfireQ = nextfireQ + 1f;
         wave = 0;
-    
+
 
     }
     void nextWave()
@@ -82,13 +88,16 @@ public class monster_manager : MonoBehaviour
         Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 6f, 3f, 10);
         wave_start_.is_startWave = true;
         if (wave == boss_wave)
-        { sumBoss();
-            wave_start_.lateTime = Time.time + wave_start_.lateQ + 1; }
+        {
+            sumBoss();
+            wave_start_.lateTime = Time.time + wave_start_.lateQ + 1;
+        }
         else
-          {  wave_start_.lateTime = Time.time + wave_start_.lateQ;
-         }
-         if(leftWave!=null)
-          leftWave.text=(wave == boss_wave)?"보스등장!":"보스까지 "+(boss_wave-wave)+"웨이브 남았습니다! 현재 "+wave+"웨이브.";
+        {
+            wave_start_.lateTime = Time.time + wave_start_.lateQ;
+        }
+        if (leftWave != null)
+            leftWave.text = (wave == boss_wave) ? "보스등장!" : "보스까지 " + (boss_wave - wave) + "웨이브 남았습니다! 현재 " + wave + "웨이브.";
         nextfireQ = Time.time + firerateQ;
     }
     public Vector3 RandomCircle(Vector3 center, float radius, float a)
@@ -108,7 +117,7 @@ public class monster_manager : MonoBehaviour
     void trueNextWave(bool boss = false)
     {
         Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 0, 1.5f, 5);
-        SumonTime = (wave <= 7) ? wave*2 : 7 + (wave - 7) / 3;
+        SumonTime = (wave <= 7) ? wave * 2 : 7 + (wave - 7) / 3;
         for (int i = 0; i < SumonTime; i++)
         {
             GameObject temp = Instantiate(Monster[Random.Range(0, Monster.Length)]);
@@ -160,7 +169,7 @@ public class monster_manager : MonoBehaviour
                     TnextfireQ = Time.time + 1;
                 }
             }
-            if (wave >= boss_wave && Time.time > wave_start_.lateTime+1)
+            if (wave >= boss_wave && Time.time > wave_start_.lateTime + 1)
             {
                 if (instanceBoss == null)
                     isClear = true;

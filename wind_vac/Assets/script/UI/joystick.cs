@@ -53,7 +53,8 @@ public class joystick : MonoBehaviour
         {
              monster_manager.Instance.disJump();
             Stick.position = StickFirstPos + JoyVec * Dis;
-        }// 거리가 반지름보다 커지면 조이스틱을 반지름의 크기만큼만 이동.
+        }
+        // 거리가 반지름보다 커지면 조이스틱을 반지름의 크기만큼만 이동.
         else
         {
             monster_manager.Instance.Jump();

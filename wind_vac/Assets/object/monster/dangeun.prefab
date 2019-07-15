@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 3052550874557947497}
   - component: {fileID: 1192367319649115237}
   - component: {fileID: 5347905125017609588}
+  - component: {fileID: -353571088852333346}
   - component: {fileID: 228193766898815220}
   m_Layer: 8
   m_Name: dangeun
@@ -178,6 +179,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-353571088852333346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3299028206334883317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82a1685aa4aae8c4f881018071f3c9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &228193766898815220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,6 +205,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroy_time: 1
   minus: 0.001
+  want: 0.2
+  justTime: 0
 --- !u!1 &6190409090235313049
 GameObject:
   m_ObjectHideFlags: 0
