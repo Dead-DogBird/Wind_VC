@@ -306,6 +306,7 @@ GameObject:
   - component: {fileID: 6008335605041500072}
   - component: {fileID: 4561514627363355074}
   - component: {fileID: 6594320563212579986}
+  - component: {fileID: 2978850279494053859}
   - component: {fileID: 5432007568606947473}
   m_Layer: 8
   m_Name: Altar
@@ -388,6 +389,18 @@ MonoBehaviour:
   boss:
   - {fileID: 5286430305333866398, guid: 42815e86fd2d34845ad81eb89a5f9b1f, type: 3}
   - {fileID: 794107921380521512, guid: 7a86c4793ca8c4e4da5b07f1384544ba, type: 3}
+--- !u!114 &2978850279494053859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6061318883659136072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82a1685aa4aae8c4f881018071f3c9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &5432007568606947473
 Animator:
   serializedVersion: 3

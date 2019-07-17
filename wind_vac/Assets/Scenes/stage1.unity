@@ -1325,7 +1325,8 @@ MonoBehaviour:
   instanceBoss: {fileID: 0}
   SumonTime: 2
   leftWave: {fileID: 464802187}
-  altar: {fileID: 0}
+  waringMark: {fileID: 1851723089820910930, guid: 80315eaa8c92dbf41b38f7a235dc3cb7,
+    type: 3}
   isClear: 0
 --- !u!4 &219770576
 Transform:
@@ -10925,6 +10926,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8371049429305823177, guid: 365daf749e482a44b85b33d2485440b7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1033925276}
     - target: {fileID: 8371049429305823178, guid: 365daf749e482a44b85b33d2485440b7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -10934,6 +10940,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987705559253359304, guid: 365daf749e482a44b85b33d2485440b7,
+        type: 3}
+      propertyPath: m_Name
+      value: Retry
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807926012097699631, guid: 365daf749e482a44b85b33d2485440b7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6501240336343193029}
+    - target: {fileID: 1807926012097699631, guid: 365daf749e482a44b85b33d2485440b7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Retry
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807926012097699631, guid: 365daf749e482a44b85b33d2485440b7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8371049429058568676, guid: 365daf749e482a44b85b33d2485440b7,
         type: 3}
@@ -10961,31 +10987,6 @@ PrefabInstance:
       value: GoToMain
       objectReference: {fileID: 0}
     - target: {fileID: 8371049429058568676, guid: 365daf749e482a44b85b33d2485440b7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 8371049429305823177, guid: 365daf749e482a44b85b33d2485440b7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1033925276}
-    - target: {fileID: 6987705559253359304, guid: 365daf749e482a44b85b33d2485440b7,
-        type: 3}
-      propertyPath: m_Name
-      value: Retry
-      objectReference: {fileID: 0}
-    - target: {fileID: 1807926012097699631, guid: 365daf749e482a44b85b33d2485440b7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 6501240336343193029}
-    - target: {fileID: 1807926012097699631, guid: 365daf749e482a44b85b33d2485440b7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Retry
-      objectReference: {fileID: 0}
-    - target: {fileID: 1807926012097699631, guid: 365daf749e482a44b85b33d2485440b7,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine

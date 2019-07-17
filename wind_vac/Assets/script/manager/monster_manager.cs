@@ -67,8 +67,7 @@ public class monster_manager : MonoBehaviour
     // Use this for initialization
     float TnextfireQ, TfirelateQ;
     public Text leftWave;
-    public GameObject altar;
-
+    public GameObject waringMark;
     void Start()
     {
         monsterList = new LinkedList<monster_parents>();
@@ -82,7 +81,7 @@ public class monster_manager : MonoBehaviour
 
 
     }
-    void nextWave()
+    void nextWave(bool boss = false)
     {
         wave++;
         Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 6f, 3f, 10);
@@ -98,6 +97,7 @@ public class monster_manager : MonoBehaviour
         }
         if (leftWave != null)
             leftWave.text = (wave == boss_wave) ? "보스등장!" : "보스까지 " + (boss_wave - wave) + "웨이브 남았습니다! 현재 " + wave + "웨이브.";
+        trueNextWave(boss);
         nextfireQ = Time.time + firerateQ;
     }
     public Vector3 RandomCircle(Vector3 center, float radius, float a)
@@ -120,13 +120,11 @@ public class monster_manager : MonoBehaviour
         SumonTime = (wave <= 7) ? wave * 2 : 7 + (wave - 7) / 3;
         for (int i = 0; i < SumonTime; i++)
         {
-            GameObject temp = Instantiate(Monster[Random.Range(0, Monster.Length)]);
-            temp.transform.position = RandomCircle(player.transform.position, 10, Random.Range(0, 360));
+            GameObject temp = Instantiate(waringMark,RandomCircle(player.transform.position, 10, Random.Range(0, 360)),Quaternion.identity);
+            temp=temp.GetComponent<waringmark>().monster=Monster[Random.Range(0, Monster.Length)];
         }
         if (boss && !wave_start_.is_startWave)
             wave = boss_wave + 1;
-
-        TnextfireQ = Time.time + TfirelateQ;
     }
     void sumBoss()
     {
@@ -148,20 +146,12 @@ public class monster_manager : MonoBehaviour
                 {
                     nextWave();
                 }
-                if (Time.time > TnextfireQ)
-                {
-                    trueNextWave();
-                }
             }
             else if (wave == boss_wave)
             {
                 if (Time.time > nextfireQ)
                 {
-                    nextWave();
-                    trueNextWave(true);
-                }
-                if (Time.time > TnextfireQ)
-                {
+                    nextWave(true);
                 }
                 if (instanceBoss != null || isClear)
                 {

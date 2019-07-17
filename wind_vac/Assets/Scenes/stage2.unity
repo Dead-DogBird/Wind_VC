@@ -1468,7 +1468,8 @@ MonoBehaviour:
   instanceBoss: {fileID: 0}
   SumonTime: 2
   leftWave: {fileID: 464802187}
-  altar: {fileID: 0}
+  waringMark: {fileID: 1851723089820910930, guid: 80315eaa8c92dbf41b38f7a235dc3cb7,
+    type: 3}
   isClear: 0
 --- !u!4 &219770576
 Transform:

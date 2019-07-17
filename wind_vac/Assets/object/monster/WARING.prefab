@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1851723089820910932}
   - component: {fileID: 1851723089820910931}
+  - component: {fileID: 2130605930285863145}
   - component: {fileID: 756254659141832007}
   m_Layer: 0
   m_Name: WARING
@@ -80,6 +81,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2130605930285863145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851723089820910930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82a1685aa4aae8c4f881018071f3c9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &756254659141832007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,3 +105,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e777c6acc0f9671439c268e4be2f9878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monster: {fileID: 0}
+  coolTime: 2.5
