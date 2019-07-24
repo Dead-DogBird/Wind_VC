@@ -41,11 +41,12 @@ public class fire_bomb : MonoBehaviour
         if (dir == shoot_direction.left)
         {
             a = new Vector2(-nock_back, 0);
-
+            transform.localScale = new Vector3(0.6f, 0.6f);
         }
         if (dir == shoot_direction.right)
         {
             a = new Vector2(nock_back, 0);
+             transform.localScale = new Vector3(-0.6f, 0.6f);
         }
         if (dir == shoot_direction.up)
         {
@@ -61,11 +62,12 @@ public class fire_bomb : MonoBehaviour
         int i = 0;
         while (true)
         {
-            if (BombList[i].GetComponent<bomb_boom>().Uactive == false)
+            if (BombList[i].GetComponent<bomb_boom>().Uactive == false)//해당하는 번호의 폭탄이 비활성화일때
             {
                 //BombList[i].SetActive(true);
-                BombList[i].GetComponent<bomb_boom>().reActive(dir, transform.position);
-                return BombList[i];
+
+                BombList[i].GetComponent<bomb_boom>().reActive(dir, transform.position);//활성화 해주시고
+                return BombList[i];//잡았다!
             }
             i++;
             if (i >= 5)
@@ -82,7 +84,7 @@ public class fire_bomb : MonoBehaviour
             //this.audio.clip = this.fireSound;
             /*bomb_boom tempbomb = */
 
-            returnActiveObject(dir).GetComponent<bomb_boom>();
+            returnActiveObject(dir);
             // tempbomb.transform.position = transform.position;
             //bomb_boom bomb_sh=Instantiate(Bomb).GetComponent<bomb_boom>();
             // tempbomb.dir = dir;

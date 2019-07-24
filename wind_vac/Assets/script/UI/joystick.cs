@@ -17,7 +17,7 @@ public class joystick : MonoBehaviour
     bool isDrag;
     Vector3 Pos;
     public player_anime player_Anime;
-    move_player player;
+
     void Start()
     {
         Radius = GetComponent<RectTransform>().sizeDelta.y * 0.4f;
@@ -26,14 +26,15 @@ public class joystick : MonoBehaviour
         // 캔버스 크기에대한 반지름 조절.
         float Can = transform.parent.GetComponent<RectTransform>().localScale.x;
         Radius *= Can;
-        player = monster_manager.Instance.player.GetComponent<move_player>();
+        Player = monster_manager.Instance.player.GetComponent<move_player>();
+        player_Anime=Player.GetComponent<player_anime>();
     }
     void FixedUpdate()
     {
         if (Player != null)
-            Player.transform.Translate(JoyVec * (Player.speed+player.GetComponent<player_stats>().speed));
+            Player.transform.Translate(JoyVec * (Player.speed+Player.GetComponent<player_stats>().speed));
 
-        player.plusVec = JoyVec;
+        Player.plusVec = JoyVec;
     }
 
     // 드래그

@@ -1914,7 +1914,6 @@ MonoBehaviour:
   instanceBoss: {fileID: 0}
   SumonTime: 2
   leftWave: {fileID: 0}
-  altar: {fileID: 0}
   waringMark: {fileID: 1851723089820910930, guid: 80315eaa8c92dbf41b38f7a235dc3cb7,
     type: 3}
   isClear: 0
@@ -4320,7 +4319,7 @@ Transform:
   - {fileID: 1818849017}
   - {fileID: 2101810678}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &521368397
 GameObject:
@@ -6461,30 +6460,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 924195713}
   m_CullTransparentMesh: 0
---- !u!114 &942632516 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3512643495764549076, guid: 3278493c0376c5b49ab0d54d79ade007,
-    type: 3}
-  m_PrefabInstance: {fileID: 3512643496434381712}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c30e6d0cd3e9674caf040d79f6cac0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &942632519 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3512643495764549079, guid: 3278493c0376c5b49ab0d54d79ade007,
-    type: 3}
-  m_PrefabInstance: {fileID: 3512643496434381712}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 090baf1619f422143980103d94b9161c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &953968466
 GameObject:
   m_ObjectHideFlags: 0
@@ -6676,8 +6651,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stick: {fileID: 1957609561}
-  Player: {fileID: 942632519}
-  player_Anime: {fileID: 942632516}
+  Player: {fileID: 0}
+  player_Anime: {fileID: 0}
 --- !u!114 &967670495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14283,6 +14258,11 @@ PrefabInstance:
       propertyPath: pitch
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7656016678055715623, guid: 3278493c0376c5b49ab0d54d79ade007,
+        type: 3}
+      propertyPath: hit_Red
+      value: 
+      objectReference: {fileID: 2101810680}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3278493c0376c5b49ab0d54d79ade007, type: 3}
 --- !u!1001 &6818264984128073570

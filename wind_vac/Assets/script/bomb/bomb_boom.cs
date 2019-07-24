@@ -13,7 +13,7 @@ public class bomb_boom : MonoBehaviour
     public float speed = 0.17f;
     float i_z;
 
-    bool isGround = false;
+    //bool isGround = false;
 
     public GameObject effect, effect_shadow;
     float nextfireQ, firerateQ = 0.01f;

@@ -8,7 +8,7 @@ public class fps_text : MonoBehaviour {
 	public Text myText;
 	float nextfireQ, firerateQ = 1f;
 	int frame=0,fps=0;
-	int fa=0;
+	//int fa=0;
 	hit_player player;
 	// Use this for initialization
 	int oriHP;

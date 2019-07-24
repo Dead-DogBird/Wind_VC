@@ -25,7 +25,6 @@ public class summon_Altar : MonoBehaviour
             for (int i = 0; i <randaltar; i++)
             {
                 Instantiate(altar,monster_manager.Instance.RandomCircle(monster_manager.Instance.player.transform.position, 6, Random.Range(0, 360)),Quaternion.identity);
-
             }
     }
     // Update is called once per frame
