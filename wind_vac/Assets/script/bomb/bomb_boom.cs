@@ -26,29 +26,29 @@ public class bomb_boom : MonoBehaviour
     Transform shadow_transform;
     float g = 0.15f;
     float ga = 0.005f;
-    float gg=0.15f;
+    float gg = 0.15f;
     public bool Uactive;
     void Start()
     {
-       // Y = transform.position.y - 1.5f;
+        // Y = transform.position.y - 1.5f;
         X = transform.localScale.x;
         speed += monster_manager.Instance.player.GetComponent<player_stats>().attackspeed;
         Instantiate(pa).transform.position = transform.position;
     }
     public void reActive(int Dir, Vector3 rePosition)
     {
-        Uactive=true;
+        Uactive = true;
         kill = false;
         transform.position = rePosition;
         speed = 0.115f;
         g = 0.15f;
-        gg=g;
+        gg = g;
         ga = 0.01f;
         inst = Instantiate(shadow);
-        dir=Dir;
+        dir = Dir;
         inst.transform.position = transform.position + new Vector3(0, -0.35f, 0);
         transform.localScale = new Vector3(0.65f, 0.65f);
-        Y = monster_manager.Instance.player.transform.position.y-0.5f;
+        Y = monster_manager.Instance.player.transform.position.y - 0.5f;
         speed += monster_manager.Instance.player.GetComponent<player_stats>().attackspeed;
         if (dir == (int)shoot_direction.left)
             moveboom = new Vector3(speed, 0, 0);
@@ -83,25 +83,30 @@ public class bomb_boom : MonoBehaviour
     }
     public void samyDie()
     {
-        transform.position=new Vector3(1000,1000);
-        Uactive=false;
+        transform.position = new Vector3(1000, 1000);
+        Uactive = false;
     }
     void Die()
     {
         monster_manager.Instance.firebombCount++;
         GameObject temp = Instantiate(effect);
-        GameObject temp_sh = Instantiate(effect_shadow);
+
+        if (effect_shadow != null)
+        {
+            GameObject temp_sh = Instantiate(effect_shadow);
+            temp_sh.transform.position = transform.position + new Vector3(0, 0, -0.05f);
+            temp_sh.transform.rotation = temp.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+            temp_sh.transform.localScale += new Vector3(0.2f, 0.2f, 0);
+            temp_sh.gameObject.GetComponent<Renderer>().material.color = new Color(0, 0, 0);
+        }
         temp.transform.position = transform.position + new Vector3(0, 0, -0.1f);
 
-        temp_sh.transform.position = transform.position + new Vector3(0, 0, -0.05f);
-        temp_sh.transform.rotation = temp.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
-        temp_sh.transform.localScale += new Vector3(0.2f, 0.2f, 0);
-        temp_sh.gameObject.GetComponent<Renderer>().material.color = new Color(0, 0, 0);
+
         Destroy(inst.gameObject);
         //Destroy(gameObject);
-        Y=0;
-        transform.position=new Vector3(1000,1000);
-        Uactive=false;
+        Y = 0;
+        transform.position = new Vector3(1000, 1000);
+        Uactive = false;
         //gameObject.SetActive(false);
     }
     void CoolTime()
@@ -122,8 +127,8 @@ public class bomb_boom : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(Uactive==false)
-        return;
+        if (Uactive == false)
+            return;
 
 
         Is_hit();
@@ -137,23 +142,23 @@ public class bomb_boom : MonoBehaviour
         if (speed < 0)
             speed = 0;
 
-       // transform.localScale += new Vector3(0.005f, 0.005f, 0);
-        
+        // transform.localScale += new Vector3(0.005f, 0.005f, 0);
+
         if (dir == (int)shoot_direction.left || dir == (int)shoot_direction.right)
         {
-            
+
             transform.position += new Vector3(0, g, 0);
-         
-               
+
+
             g -= ga;
             ga += 0.0005f;
-            
-           // inst.transform.localScale -= new Vector3(g / 7, g / 7);
+
+            // inst.transform.localScale -= new Vector3(g / 7, g / 7);
             if (transform.position.y <= Y)
             {
-                gg=gg/1.1f;
+                gg = gg / 1.1f;
                 ga = 0.01f;
-                g =gg;
+                g = gg;
             }
             inst.transform.position = new Vector2(transform.position.x, Y - 0.5f);
         }
