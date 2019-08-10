@@ -19,7 +19,7 @@ public class ksound_manager : MonoBehaviour
     {
         audio = this.gameObject.AddComponent<AudioSource>();
         this.audio.clip = this.fireSound;
-        audio.volume = volume;
+        audio.volume = PlayerPrefs.GetFloat("SfxVoluim")*PlayerPrefs.GetFloat("MasterVoluim");
         audio.loop=false;
         
     }

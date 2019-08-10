@@ -84,7 +84,7 @@ public class Game_manager : MonoBehaviour
         }
         audio = this.gameObject.AddComponent<AudioSource>();
         this.audio.clip = this.audioClip;
-        audio.volume = volume;
+        audio.volume = PlayerPrefs.GetFloat("BgmVoluim")*PlayerPrefs.GetFloat("MasterVoluim");
         audio.loop = true;
         audio.Play();
         GameOver.SetActive(false);

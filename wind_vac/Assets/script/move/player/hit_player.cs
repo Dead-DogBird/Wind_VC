@@ -73,7 +73,7 @@ public class hit_player : GameMaker
     {
         audio=gameObject.AddComponent<AudioSource>();
         audio.clip=fireSound;
-        audio.volume = volume;
+        audio.volume =  PlayerPrefs.GetFloat("SfxVoluim")*PlayerPrefs.GetFloat("MasterVoluim");
     }
     void die()
     {

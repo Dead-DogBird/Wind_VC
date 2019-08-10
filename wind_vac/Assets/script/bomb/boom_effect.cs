@@ -13,7 +13,7 @@ public class boom_effect : MonoBehaviour
     {
         audio = this.gameObject.AddComponent<AudioSource>();
         this.audio.clip = this.fireSound;
-        audio.volume = volume;
+        audio.volume = PlayerPrefs.GetFloat("SfxVoluim")*PlayerPrefs.GetFloat("MasterVoluim");
         audio.pitch = pitch;
         audio.Play();
         // Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 0, 0.9f, 10);

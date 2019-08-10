@@ -1336,81 +1336,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &219770574
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 219770576}
-  - component: {fileID: 219770575}
-  m_Layer: 0
-  m_Name: monster_manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &219770575
+--- !u!114 &219770575 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 7213700224275911843, guid: 9fce84439c4bbd14380d05dfd0f01a85,
+    type: 3}
+  m_PrefabInstance: {fileID: 7213700224223967852}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219770574}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97d35e142bcb7a746b32e4d7b446dfd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 0}
-  fireSound: {fileID: 8300000, guid: 63bef09985a66424f8030e3c0d62c245, type: 3}
-  hitMonster: {fileID: 8300000, guid: 0febfa633b653f2478cd914f8c6ebfe1, type: 3}
-  volume: 0.5
-  isHit: 0
-  firebombCount: 0
-  hitbombCount: 0
-  EffectText: {fileID: 3714972570154082091, guid: 0d41bae09a9dad045b0ec2329f300519,
-    type: 3}
-  bossMonster: {fileID: 794107921380521512, guid: 7a86c4793ca8c4e4da5b07f1384544ba,
-    type: 3}
-  Monster:
-  - {fileID: 3625794051807221197, guid: 8ea961b667de54447804c3e81f9b411a, type: 3}
-  - {fileID: 1150948527257995521, guid: e6b65f2267d9501438d4e598e94297bc, type: 3}
-  - {fileID: 3433869748688375914, guid: c8d52fa9f26e15944815bfd740ba335c, type: 3}
-  nextfireQ: 0
-  firerateQ: 30
-  player: {fileID: 0}
-  isDead: 0
-  combo: 0
-  wave: 0
-  boss_wave: 8
-  hit_effect: {fileID: 6911512430751686933, guid: 7298ba7cf99a5c24ba61a49a2011b435,
-    type: 3}
-  wave_start_: {fileID: 1246382426}
-  coin: {fileID: 6594032475389129884, guid: 133b4a823db73af4aa66bd6fbbde9a77, type: 3}
-  instanceBoss: {fileID: 0}
-  SumonTime: 2
-  leftWave: {fileID: 464802187}
-  waringMark: {fileID: 1851723089820910930, guid: 80315eaa8c92dbf41b38f7a235dc3cb7,
-    type: 3}
-  isClear: 0
---- !u!4 &219770576
+--- !u!4 &219770576 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 7213700224275911868, guid: 9fce84439c4bbd14380d05dfd0f01a85,
+    type: 3}
+  m_PrefabInstance: {fileID: 7213700224223967852}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219770574}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -190.01819, y: -68.73654, z: -0.045939602}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 93409375}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &230398001
 GameObject:
   m_ObjectHideFlags: 0
@@ -10755,6 +10698,85 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1819a916b1eea19499ee7b2c55a3d5f9, type: 3}
+--- !u!1001 &7213700224223967852
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 93409375}
+    m_Modifications:
+    - target: {fileID: 7213700224275911842, guid: 9fce84439c4bbd14380d05dfd0f01a85,
+        type: 3}
+      propertyPath: m_Name
+      value: monster_manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213700224275911868, guid: 9fce84439c4bbd14380d05dfd0f01a85,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -190.01819
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213700224275911868, guid: 9fce84439c4bbd14380d05dfd0f01a85,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -68.73654
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213700224275911868, guid: 9fce84439c4bbd14380d05dfd0f01a85,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.045939602
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213700224275911868, guid: 9fce84439c4bbd14380d05dfd0f01a85,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213700224275911868, guid: 9fce84439c4bbd14380d05dfd0f01a85,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213700224275911868, guid: 9fce84439c4bbd14380d05dfd0f01a85,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213700224275911868, guid: 9fce84439c4bbd14380d05dfd0f01a85,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213700224275911868, guid: 9fce84439c4bbd14380d05dfd0f01a85,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213700224275911868, guid: 9fce84439c4bbd14380d05dfd0f01a85,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213700224275911868, guid: 9fce84439c4bbd14380d05dfd0f01a85,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213700224275911868, guid: 9fce84439c4bbd14380d05dfd0f01a85,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213700224275911843, guid: 9fce84439c4bbd14380d05dfd0f01a85,
+        type: 3}
+      propertyPath: wave_start_
+      value: 
+      objectReference: {fileID: 1246382426}
+    - target: {fileID: 7213700224275911843, guid: 9fce84439c4bbd14380d05dfd0f01a85,
+        type: 3}
+      propertyPath: leftWave
+      value: 
+      objectReference: {fileID: 464802187}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9fce84439c4bbd14380d05dfd0f01a85, type: 3}
 --- !u!1001 &8371049428743261931
 PrefabInstance:
   m_ObjectHideFlags: 0

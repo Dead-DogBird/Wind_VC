@@ -73,7 +73,7 @@ public class monster_manager : MonoBehaviour
         monsterList = new LinkedList<monster_parents>();
         audio = this.gameObject.AddComponent<AudioSource>();
         this.audio.clip = this.fireSound;
-        audio.volume = volume;
+        audio.volume = PlayerPrefs.GetFloat("SfxVoluim")*PlayerPrefs.GetFloat("MasterVoluim");
         nextfireQ = Time.time + 10;
         TfirelateQ = firerateQ + 1f;
         TnextfireQ = nextfireQ + 1f;

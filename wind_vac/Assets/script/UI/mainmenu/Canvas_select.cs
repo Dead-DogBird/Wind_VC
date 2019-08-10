@@ -24,6 +24,12 @@ public class Canvas_select : MonoBehaviour
     public static Canvas_select Instance = null;
     public List<Stage_info> StageInfolist = new List<Stage_info>();
     public Text StageComent, StageName, StageNumber;
+    public Slider Master,Bgm,Sfx;
+    void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
     public void saveStageInfo()
     {
         StageInfolist.Add(new Stage_info(1, "하늘 간이역", "위대한 발견을 향한 여정의 시작 \n 모든것이 시작된다.(기차표 별도 구매)(배 무단 주차금지)"));
@@ -62,6 +68,10 @@ public class Canvas_select : MonoBehaviour
         {
             StageCode--;
         }
+         StageComent.text = priceData[StageCode - 1]["StageComent"].ToString();
+        StageName.text = priceData[StageCode - 1]["StageName"].ToString();
+        StageNumber.text = priceData[StageCode - 1]["StageNumber_text"].ToString();
+        
     }
     public void DataDelete()
     {
@@ -71,9 +81,18 @@ public class Canvas_select : MonoBehaviour
     {
         CanvasCode = num;
     }
-    void Awake()
+    void SetsoundKey()
     {
-        Instance = this;
+        if (!PlayerPrefs.HasKey("MasterVoluim"))
+            PlayerPrefs.SetFloat("MasterVoluim", 1);
+        if (!PlayerPrefs.HasKey("SfxVoluim"))
+            PlayerPrefs.SetFloat("SfxVoluim", 1);
+        if (!PlayerPrefs.HasKey("BgmVoluim"))
+            PlayerPrefs.SetFloat("BgmVoluim", 1);
+
+        Master.value=PlayerPrefs.GetFloat("MasterVoluim");
+        Sfx.value=PlayerPrefs.GetFloat("SfxVoluim");
+        Bgm.value=PlayerPrefs.GetFloat("BgmVoluim");
     }
     // Start is called before the first frame update
     void Start()
@@ -81,29 +100,38 @@ public class Canvas_select : MonoBehaviour
         //saveStageInfo();
         //Load();
         anotherLoad();
+        SetsoundKey();
+
     }
     public void GoIngame(int i)
     {
         switch (i)
         {
             case 666:
-            LoadingSceneManager.LoadScene("Hellsight");
-            break;
+                LoadingSceneManager.LoadScene("Hellsight");
+                break;
             case 999:
-            LoadingSceneManager.LoadScene("endless");
-            break;
-            
+                LoadingSceneManager.LoadScene("endless");
+                break;
+
             default:
                 string map = "stage" + i;
                 LoadingSceneManager.LoadScene(map);
-            break;
+                break;
         }
+    }
+    void Option()
+    {
+        PlayerPrefs.SetFloat("MasterVoluim", Master.value);
+         PlayerPrefs.SetFloat("SfxVoluim", Sfx.value);
+         PlayerPrefs.SetFloat("BgmVoluim", Bgm.value);
     }
     // Update is called once per frame
     void Update()
     {
-        StageComent.text = priceData[StageCode - 1]["StageComent"].ToString();
-        StageName.text = priceData[StageCode - 1]["StageName"].ToString();
-        StageNumber.text = priceData[StageCode - 1]["StageNumber_text"].ToString();
+       if(CanvasCode==3)
+       {
+           Option();
+       }
     }
 }

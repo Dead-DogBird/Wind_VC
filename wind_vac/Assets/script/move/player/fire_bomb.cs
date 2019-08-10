@@ -26,7 +26,7 @@ public class fire_bomb : MonoBehaviour
     {
         audio = this.gameObject.AddComponent<AudioSource>();
         this.audio.clip = this.fireSound;
-        audio.volume = 1;
+        audio.volume = PlayerPrefs.GetFloat("SfxVoluim")*PlayerPrefs.GetFloat("MasterVoluim");
         audio.pitch = pitch;
         player = GetComponent<move_player>();
         hplayer = GetComponent<hit_player>();

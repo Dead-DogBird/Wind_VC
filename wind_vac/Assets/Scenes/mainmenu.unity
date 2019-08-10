@@ -906,7 +906,7 @@ GameObject:
   - component: {fileID: 318740747}
   - component: {fileID: 318740748}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: SfxSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1325,7 +1325,7 @@ GameObject:
   - component: {fileID: 519018457}
   - component: {fileID: 519018456}
   m_Layer: 5
-  m_Name: sfxVoluim
+  m_Name: SfxVoluim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3017,7 +3017,7 @@ GameObject:
   - component: {fileID: 1062132645}
   - component: {fileID: 1062132646}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: BgmSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3313,7 +3313,7 @@ GameObject:
   - component: {fileID: 1108090878}
   - component: {fileID: 1108090879}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: MasterSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3441,12 +3441,12 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1980, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -4182,7 +4182,7 @@ GameObject:
   - component: {fileID: 1461517497}
   - component: {fileID: 1461517496}
   m_Layer: 5
-  m_Name: bgmVoiuim
+  m_Name: bgmVoluim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4858,6 +4858,9 @@ MonoBehaviour:
   StageComent: {fileID: 381983776}
   StageName: {fileID: 1487309876}
   StageNumber: {fileID: 964240354}
+  Master: {fileID: 1108090879}
+  Bgm: {fileID: 1062132646}
+  Sfx: {fileID: 318740748}
 --- !u!1 &1729635630
 GameObject:
   m_ObjectHideFlags: 0
