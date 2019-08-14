@@ -90,12 +90,13 @@ public class bomb_boom : MonoBehaviour
     {
         monster_manager.Instance.firebombCount++;
         GameObject temp = Instantiate(effect);
+        temp.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
 
         if (effect_shadow != null)
         {
             GameObject temp_sh = Instantiate(effect_shadow);
             temp_sh.transform.position = transform.position + new Vector3(0, 0, -0.05f);
-            temp_sh.transform.rotation = temp.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+            temp_sh.transform.rotation = temp.transform.rotation;
             temp_sh.transform.localScale += new Vector3(0.2f, 0.2f, 0);
             temp_sh.gameObject.GetComponent<Renderer>().material.color = new Color(0, 0, 0);
         }

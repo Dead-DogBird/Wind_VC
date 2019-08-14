@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -55,11 +55,13 @@ public class boom_effect : MonoBehaviour
             box_collider.enabled = true;
             }//다시 자신의 충돌 체크를 켜줌		
         }
-
+        public bool isbig=true;
         // Update is called once per frame
         void FixedUpdate()
         {
+            if(isbig)
             transform.localScale += new Vector3(0.075f, 0.075f, 0);
-            Destroy(gameObject, 0.3f);
+            
+            Destroy(gameObject, 0.4f);
         }
     }

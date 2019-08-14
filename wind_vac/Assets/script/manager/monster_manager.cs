@@ -73,7 +73,7 @@ public class monster_manager : MonoBehaviour
         monsterList = new LinkedList<monster_parents>();
         audio = this.gameObject.AddComponent<AudioSource>();
         this.audio.clip = this.fireSound;
-        audio.volume = PlayerPrefs.GetFloat("SfxVoluim")*PlayerPrefs.GetFloat("MasterVoluim");
+        audio.volume = PlayerPrefs.GetFloat("SfxVoluim") * PlayerPrefs.GetFloat("MasterVoluim");
         nextfireQ = Time.time + 10;
         TfirelateQ = firerateQ + 1f;
         TnextfireQ = nextfireQ + 1f;
@@ -118,10 +118,13 @@ public class monster_manager : MonoBehaviour
     {
         Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 0, 1.5f, 5);
         SumonTime = (wave <= 7) ? wave * 2 : 7 + (wave - 7) / 3;
-        for (int i = 0; i < SumonTime; i++)
+        if (!boss)
         {
-            GameObject temp = Instantiate(waringMark,RandomCircle(player.transform.position, 10, Random.Range(0, 360)),Quaternion.identity);
-            temp=temp.GetComponent<waringmark>().monster=Monster[Random.Range(0, Monster.Length)];
+            for (int i = 0; i < SumonTime; i++)
+            {
+                GameObject temp = Instantiate(waringMark, RandomCircle(player.transform.position, 10, Random.Range(0, 360)), Quaternion.identity);
+                temp = temp.GetComponent<waringmark>().monster = Monster[Random.Range(0, Monster.Length)];
+            }
         }
         if (boss && !wave_start_.is_startWave)
             wave = boss_wave + 1;
