@@ -17,6 +17,8 @@ public class Shop_price
 }
 public class Game_manager : MonoBehaviour
 {
+    public enum Player {Capatain,Knight};
+    public Player playerType;
     public enum gameMode { stageMode, acadeMode, endlessMode};
     public gameMode NowWhatMode;
     public static Game_manager Instance = null;

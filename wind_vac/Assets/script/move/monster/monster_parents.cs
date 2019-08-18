@@ -38,7 +38,7 @@ public class monster_parents : GameMaker
 
         audio = this.gameObject.AddComponent<AudioSource>();
         this.audio.clip = monster_manager.Instance.hitMonster;
-        audio.volume =volume;
+        audio.volume = PlayerPrefs.GetFloat("SfxVoluim")*PlayerPrefs.GetFloat("MasterVoluim");;
         coin=monster_manager.Instance.coin;
     }
     bool Is_hit()

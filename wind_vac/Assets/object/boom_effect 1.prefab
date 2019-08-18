@@ -98,6 +98,7 @@ MonoBehaviour:
   fireSound: {fileID: 8300000, guid: 9dc26a01ca39ec34a9a2d99ad74b9d00, type: 3}
   volume: 0.5
   pitch: 1
+  isbig: 1
 --- !u!95 &95219305831044736
 Animator:
   serializedVersion: 3

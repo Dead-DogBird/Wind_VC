@@ -24,7 +24,8 @@ public class Canvas_select : MonoBehaviour
     public static Canvas_select Instance = null;
     public List<Stage_info> StageInfolist = new List<Stage_info>();
     public Text StageComent, StageName, StageNumber;
-    public Slider Master,Bgm,Sfx;
+    public Slider Master, Bgm, Sfx;
+    public GameObject Ship, Ship_Cloud;
     void Awake()
     {
         if (Instance == null)
@@ -68,10 +69,10 @@ public class Canvas_select : MonoBehaviour
         {
             StageCode--;
         }
-         StageComent.text = priceData[StageCode - 1]["StageComent"].ToString();
+        StageComent.text = priceData[StageCode - 1]["StageComent"].ToString();
         StageName.text = priceData[StageCode - 1]["StageName"].ToString();
         StageNumber.text = priceData[StageCode - 1]["StageNumber_text"].ToString();
-        
+
     }
     public void DataDelete()
     {
@@ -90,10 +91,11 @@ public class Canvas_select : MonoBehaviour
         if (!PlayerPrefs.HasKey("BgmVoluim"))
             PlayerPrefs.SetFloat("BgmVoluim", 1);
 
-        Master.value=PlayerPrefs.GetFloat("MasterVoluim");
-        Sfx.value=PlayerPrefs.GetFloat("SfxVoluim");
-        Bgm.value=PlayerPrefs.GetFloat("BgmVoluim");
+        Master.value = PlayerPrefs.GetFloat("MasterVoluim");
+        Sfx.value = PlayerPrefs.GetFloat("SfxVoluim");
+        Bgm.value = PlayerPrefs.GetFloat("BgmVoluim");
     }
+    Vector3 ship_position, cloud_position;
     // Start is called before the first frame update
     void Start()
     {
@@ -101,7 +103,8 @@ public class Canvas_select : MonoBehaviour
         //Load();
         anotherLoad();
         SetsoundKey();
-
+        ship_position = new Vector3(-2000, -150, 0);
+        cloud_position = new Vector3(-2000, 0, 0);
     }
     public void GoIngame(int i)
     {
@@ -123,15 +126,50 @@ public class Canvas_select : MonoBehaviour
     void Option()
     {
         PlayerPrefs.SetFloat("MasterVoluim", Master.value);
-         PlayerPrefs.SetFloat("SfxVoluim", Sfx.value);
-         PlayerPrefs.SetFloat("BgmVoluim", Bgm.value);
+        PlayerPrefs.SetFloat("SfxVoluim", Sfx.value);
+        PlayerPrefs.SetFloat("BgmVoluim", Bgm.value);
     }
     // Update is called once per frame
     void Update()
     {
-       if(CanvasCode==3)
-       {
-           Option();
-       }
+
+
+        if (CanvasCode == 3)
+        {
+            Option();
+        }
+    }
+    float shipsin, sizesin;
+    void ShipUpdate()
+    {
+        shipsin += 0.005f;
+        if (shipsin > 10000)
+            shipsin = 0;
+        ship_position.y = ship_position.y + Mathf.Sin(shipsin) * 0.5f;
+        ship_position.x = ship_position.x + Mathf.Cos(shipsin) * 0.5f;
+
+    }
+    void FixedUpdate()
+    {
+
+        if (CanvasCode == 0)
+        {
+            if (ship_position.x <= -250)
+                ship_position.x += (-250 - ship_position.x) / 15;
+            ShipUpdate();
+            if (cloud_position.x <= -91)
+                cloud_position.x += (-91 - cloud_position.x) / 10;
+        }
+        else
+        {
+             if (ship_position.x >= -2500)
+                ship_position.x += (-2500 - ship_position.x) / 15;
+            ShipUpdate();
+            if (cloud_position.x >= -901)
+                cloud_position.x += (-901 - cloud_position.x) / 10;  
+        }
+        Ship.transform.localPosition = ship_position;
+        Ship_Cloud.transform.localPosition = cloud_position;
     }
 }
+ 
