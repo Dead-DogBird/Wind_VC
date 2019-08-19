@@ -28,11 +28,11 @@ public class monster_manager : MonoBehaviour
     public GameObject hit_effect;
     public wave_start wave_start_;
     public GameObject coin;
-    public GameObject instanceBoss;
+    GameObject instanceBoss;
     public int SumonTime = 2;
     void OnEnable()
     {
-        player = GameObject.Find("player").GetComponent<move_player>();
+       // player = GameObject.Find("player").GetComponent<move_player>();
         wave_start_ = wave_start_.transform.GetComponent<wave_start>();
 
     }
@@ -68,6 +68,10 @@ public class monster_manager : MonoBehaviour
     float TnextfireQ, TfirelateQ;
     public Text leftWave;
     public GameObject waringMark;
+    public GameObject skipButton;
+    Vector3 skipPosition;
+    float oriY;
+    bool isSkip;
     void Start()
     {
         monsterList = new LinkedList<monster_parents>();
@@ -78,8 +82,21 @@ public class monster_manager : MonoBehaviour
         TfirelateQ = firerateQ + 1f;
         TnextfireQ = nextfireQ + 1f;
         wave = 0;
-
-
+     
+     
+        skipPosition=skipButton.transform.localPosition;
+        oriY=skipPosition.y;
+    }
+    bool SkipActive()
+    {
+        if(monsterList.Count == 0)
+        return true;
+        else
+        return false;
+    }
+    public void Skip()
+    {
+        nextfireQ=Time.time;
     }
     void nextWave(bool boss = false)
     {
@@ -190,5 +207,10 @@ public class monster_manager : MonoBehaviour
             audio.Play();
             isDead = false;
         }
+        
+        if(!SkipActive())skipPosition.y+=(700-skipPosition.y)*0.1f;
+        else skipPosition.y+=(oriY-skipPosition.y)*0.1f;
+
+        skipButton.transform.localPosition=skipPosition;
     }
 }

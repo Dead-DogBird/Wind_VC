@@ -25,11 +25,14 @@ public class Canvas_select : MonoBehaviour
     public List<Stage_info> StageInfolist = new List<Stage_info>();
     public Text StageComent, StageName, StageNumber;
     public Slider Master, Bgm, Sfx;
-    public GameObject Ship, Ship_Cloud;
+    public GameObject Ship, Ship_Cloud,Background;
+    public Sprite Bullred,oriImg;
     void Awake()
     {
         if (Instance == null)
             Instance = this;
+        if(!PlayerPrefs.HasKey("PlayerType"))
+        PlayerPrefs.SetInt("PlayerType",0);
     }
     public void saveStageInfo()
     {
@@ -81,6 +84,10 @@ public class Canvas_select : MonoBehaviour
     public void toCanvas(int num)
     {
         CanvasCode = num;
+        if(CanvasCode==0)
+        Background.GetComponent<Image>().sprite=oriImg;
+        else
+        Background.GetComponent<Image>().sprite=Bullred;
     }
     void SetsoundKey()
     {
@@ -105,6 +112,7 @@ public class Canvas_select : MonoBehaviour
         SetsoundKey();
         ship_position = new Vector3(-2000, -150, 0);
         cloud_position = new Vector3(-2000, 0, 0);
+        oriImg=Background.GetComponent<Image>().sprite;
     }
     public void GoIngame(int i)
     {
@@ -165,8 +173,8 @@ public class Canvas_select : MonoBehaviour
              if (ship_position.x >= -2500)
                 ship_position.x += (-2500 - ship_position.x) / 15;
             ShipUpdate();
-            if (cloud_position.x >= -901)
-                cloud_position.x += (-901 - cloud_position.x) / 10;  
+            if (cloud_position.x >= -1201)
+                cloud_position.x += (-1201 - cloud_position.x) / 10;  
         }
         Ship.transform.localPosition = ship_position;
         Ship_Cloud.transform.localPosition = cloud_position;

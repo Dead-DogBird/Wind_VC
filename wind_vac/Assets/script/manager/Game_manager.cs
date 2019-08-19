@@ -19,6 +19,7 @@ public class Game_manager : MonoBehaviour
 {
     public enum Player {Capatain,Knight};
     public Player playerType;
+    public GameObject[] Players=new GameObject[2]; 
     public enum gameMode { stageMode, acadeMode, endlessMode};
     public gameMode NowWhatMode;
     public static Game_manager Instance = null;
@@ -35,11 +36,20 @@ public class Game_manager : MonoBehaviour
     public int true_money = 0;
     public int ui_money;
     public int highScore;
-
+    public GameObject hit_red;
+    GameObject temp;
     void Awake()
     {
         if (Instance == null)
             Instance = this;
+       
+       playerType=(Player)PlayerPrefs.GetInt("PlayerType");
+
+       temp=Instantiate(Players[(int)playerType],new Vector3(0,0,0),Quaternion.identity);
+    }
+    void OnEnable()
+    {
+        monster_manager.Instance.player=temp.GetComponent<move_player>();
     }
     public void save()
     {
@@ -71,6 +81,7 @@ public class Game_manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        temp.GetComponent<hit_player>().hit_Red=hit_red.GetComponent<Hit_Red>();
         //  save();
         touchOn = false;
         if (NowWhatMode == gameMode.endlessMode)

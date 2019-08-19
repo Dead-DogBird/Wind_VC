@@ -14,7 +14,8 @@ public class fps_text : MonoBehaviour {
 	int oriHP;
 	void Start () {
 		myText=GetComponent<Text>();
-		player=GameObject.Find("player").GetComponent<hit_player>();
+		player=monster_manager.Instance.player.GetComponent<hit_player>();
+		
 		oriHP=player.hp;
 	}
 	

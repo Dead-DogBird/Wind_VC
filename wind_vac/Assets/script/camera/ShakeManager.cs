@@ -18,7 +18,7 @@ public class ShakeManager : MonoBehaviour
     {
         camera_main = Camera.main;
         camera_size = camera_main.orthographicSize;
-        player = GameObject.Find("player");
+        player = monster_manager.Instance.player.gameObject;
         Shake(0, 0, 0, 1.5f, 15);
     }
 

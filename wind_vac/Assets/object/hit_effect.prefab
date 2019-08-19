@@ -193,3 +193,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroy_time: 0.3
+  minus: 0.01
+  want: 0.2
+  justTime: 1

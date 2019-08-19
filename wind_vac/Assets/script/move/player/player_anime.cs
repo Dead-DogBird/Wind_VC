@@ -27,6 +27,7 @@ public class player_anime : MonoBehaviour {
 			isrun=false;
 		}
 		animator.SetBool("isRun",isrun);
+		if(player!=null)
 		animator.SetBool("isJump",player.isJump);
 	}
 }
