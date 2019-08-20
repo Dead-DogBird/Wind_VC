@@ -27,6 +27,7 @@ public class Canvas_select : MonoBehaviour
     public Slider Master, Bgm, Sfx;
     public GameObject Ship, Ship_Cloud,Background;
     public Sprite Bullred,oriImg;
+    public int playerCode,Maxplayer;
     void Awake()
     {
         if (Instance == null)
@@ -77,6 +78,21 @@ public class Canvas_select : MonoBehaviour
         StageNumber.text = priceData[StageCode - 1]["StageNumber_text"].ToString();
 
     }
+    public void SetPlayer_button(bool isUp)
+    {
+        if (isUp && playerCode + 1 <= Maxplayer)
+        {
+            playerCode++;
+        }
+        if (!isUp && playerCode - 1 >= 0)
+        {
+            playerCode--;
+        }
+    }
+    public void ChoosePlayer()
+    {
+        PlayerPrefs.SetInt("PlayerType",playerCode);
+    }
     public void DataDelete()
     {
         PlayerPrefs.DeleteAll();
@@ -110,9 +126,13 @@ public class Canvas_select : MonoBehaviour
         //Load();
         anotherLoad();
         SetsoundKey();
+        playerCode=PlayerPrefs.GetInt("PlayerType");
         ship_position = new Vector3(-2000, -150, 0);
         cloud_position = new Vector3(-2000, 0, 0);
         oriImg=Background.GetComponent<Image>().sprite;
+        StageComent.text = priceData[StageCode - 1]["StageComent"].ToString();
+        StageName.text = priceData[StageCode - 1]["StageName"].ToString();
+        StageNumber.text = priceData[StageCode - 1]["StageNumber_text"].ToString();
     }
     public void GoIngame(int i)
     {
