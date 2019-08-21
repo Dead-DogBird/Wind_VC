@@ -52,7 +52,7 @@ public class joystick : MonoBehaviour
         // 거리가 반지름보다 작으면 조이스틱을 현재 터치하고 있는곳으로 이동. 
         if (Dis < Radius)
         {
-             //monster_manager.Instance.disJump();
+            //monster_manager.Instance.disJump();
             Stick.position = StickFirstPos + JoyVec * Dis;
         }
         // 거리가 반지름보다 커지면 조이스틱을 반지름의 크기만큼만 이동.

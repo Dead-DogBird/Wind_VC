@@ -100,6 +100,7 @@ public class Game_manager : MonoBehaviour
         audio.volume = PlayerPrefs.GetFloat("BgmVoluim")*PlayerPrefs.GetFloat("MasterVoluim");
         audio.loop = true;
         audio.Play();
+        AdBanner.Instance.banner.Hide();
         GameOver.SetActive(false);
     }
     public void pause(bool ispause)

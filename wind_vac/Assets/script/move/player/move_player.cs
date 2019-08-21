@@ -7,9 +7,9 @@ public class move_player : GameMaker
     public float speed = 0.1f;
     float hspeed, vspeed;
     float ori_x, ori_y;
-    float nextfireQ, firerateQ = 0.8f;
+    float nextfireQ, firerateQ = 0.5f;
     float nextjump, latejump = 0.2f;
-     Vector3 jump;
+    Vector3 jump;
     public Vector3 plusVec;
     int x, y;
 
@@ -34,8 +34,8 @@ public class move_player : GameMaker
             GetComponent<fire_bomb>().a = new Vector2(0, 0);
         }
     }
-     Vector2 speedNomal;
-     public bool canJump=false;
+    Vector2 speedNomal;
+    public bool canJump = false;
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -68,18 +68,21 @@ public class move_player : GameMaker
             speedNomal = speedNomal.normalized;
 
 
-       // if (Input.GetKey(KeyCode.Space) && Time.time > nextfireQ)
-            if(canJump)
+        // if (Input.GetKey(KeyCode.Space) && Time.time > nextfireQ)
+        if (canJump)
             Jump();
 
         transform.Translate(speedNomal * (speed));
-        transform.Translate(jump * speed * 2.5f);
+        transform.Translate(jump * speed * 4f);
         if (nextjump < Time.time)
             jump = new Vector2(0, 0);
 
 
         if (Mathf.Abs(jump.x) + Mathf.Abs(jump.y) <= 0.05f)
+        {
             isJump = false;
+            //canJump = false;
+        }
         //if(Time.time>nextjump)
         //{
         //    jump=new Vector3(0,0,0);

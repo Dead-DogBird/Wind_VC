@@ -6,25 +6,38 @@ using GoogleMobileAds.Api;
 
 public class AdBanner : MonoBehaviour
 {
-
+    public static AdBanner Instance;
     //string AdUnitID = "ca-app-pub-7121838771446885~4925473176";//원 광고
     string AdUnitID = "ca-app-pub-3940256099942544/6300978111";//테스트 광고
 
 
     // string AdUnitID = "unDefind";
 
-    BannerView banner;
+    public BannerView banner;
     AdRequest request;
 
     static bool isAdsBannerSet = false;
 
 
     // Use this for initialization
-
-    void Start()
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+        
+        if(Instance==null)
+        Instance=this;
+        else
+        Destroy(gameObject);
+        
+    }
+    void OnEnable()
     {
         if (!isAdsBannerSet)
             RequestBanner();
+    }
+    void Start()
+    {
+        
     }
 
 
@@ -40,7 +53,8 @@ public class AdBanner : MonoBehaviour
 
         banner.LoadAd(request);
         banner.Show();
-
+        if(Game_manager.Instance!=null)
+        banner.Hide();
         isAdsBannerSet = true;
 
     }

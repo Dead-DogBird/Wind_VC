@@ -17,23 +17,37 @@ public class Stage_info
     }
 
 }
+public class Character
+{
+    public int playerCode;
+    public string playerStory, playerName;
+    public Character(int p_code, string pN, string pS)
+    {
+        playerCode = p_code;
+        playerStory = pS;
+        playerName = pN;
+    }
+
+}
 public class Canvas_select : MonoBehaviour
 {
     public int CanvasCode;
     public int StageCode = 1, maxNum;
     public static Canvas_select Instance = null;
+    public int playerCode, Maxplayer;
+    public List<Character> playerList = new List<Character>();
     public List<Stage_info> StageInfolist = new List<Stage_info>();
     public Text StageComent, StageName, StageNumber;
+    public Text CharacterName, CharacterStory,Selected;
     public Slider Master, Bgm, Sfx;
-    public GameObject Ship, Ship_Cloud,Background;
-    public Sprite Bullred,oriImg;
-    public int playerCode,Maxplayer;
+    public GameObject Ship, Ship_Cloud, Background;
+    public Sprite Bullred, oriImg;
     void Awake()
     {
         if (Instance == null)
             Instance = this;
-        if(!PlayerPrefs.HasKey("PlayerType"))
-        PlayerPrefs.SetInt("PlayerType",0);
+        if (!PlayerPrefs.HasKey("PlayerType"))
+            PlayerPrefs.SetInt("PlayerType", 0);
     }
     public void saveStageInfo()
     {
@@ -43,26 +57,42 @@ public class Canvas_select : MonoBehaviour
         JsonData ShopJson = JsonMapper.ToJson(StageInfolist);
 
         File.WriteAllText(Application.dataPath + "/Resources/StageInfo.json", ShopJson.ToString());
+
+        playerList.Add(new Character(0, "캡틴", "낯선 섬에 불시착한 1인 해적단의 선장. \n\n탈출이 1 순위 인듯 하다"));
+        playerList.Add(new Character(1, "나이트", "용병일을 하는 기사.\n\n험난한 전장을 누비며 명성을 쌓았다.\n꿈은 부귀영화"));
+        JsonData PlayerJson = JsonMapper.ToJson(playerList);
+
+        File.WriteAllText(Application.dataPath + "/Resources/playerList.json", PlayerJson.ToString());
         Debug.Log("저장됨!");
     }
-    JsonData priceData;
+    JsonData priceData, PlayerData;
     public void Load()
     {
         Debug.Log("불러오기");
-        string Jsonstring = File.ReadAllText(Application.dataPath + "/Resources/StageInfo.json");
-        // Debug.Log(Jsonstring);
-        priceData = JsonMapper.ToObject(Jsonstring);
-        for (int i = 0; i < priceData.Count; i++)
         {
-            Debug.Log(priceData[i]["StageName"].ToString());
+            string Jsonstring = File.ReadAllText(Application.dataPath + "/Resources/StageInfo.json");
+            // Debug.Log(Jsonstring);
+            priceData = JsonMapper.ToObject(Jsonstring);
         }
+        {
+            string Jsonstring = File.ReadAllText(Application.dataPath + "/Resources/playerList.json");
+            // Debug.Log(Jsonstring);
+            PlayerData = JsonMapper.ToObject(Jsonstring);
+        }
+
     }
     public void anotherLoad()
     {
-        TextAsset test = Resources.Load("StageInfo") as TextAsset;
-        string Jsonstring = test.text;
-        priceData = JsonMapper.ToObject(Jsonstring);
+        {
+            TextAsset test = Resources.Load("StageInfo") as TextAsset;
+            priceData = JsonMapper.ToObject(test.text);
+        }
+        {
+            TextAsset test = Resources.Load("playerList") as TextAsset;
+            PlayerData = JsonMapper.ToObject(test.text);
+        }
     }
+
     public void ToStage(bool isUp)
     {
         if (isUp && StageCode + 1 <= maxNum)
@@ -88,10 +118,15 @@ public class Canvas_select : MonoBehaviour
         {
             playerCode--;
         }
+        Selected.text=(playerCode==PlayerPrefs.GetInt("PlayerType", playerCode))?"선택됨":"";
+        CharacterName.text=PlayerData[playerCode]["playerName"].ToString();
+        CharacterStory.text=PlayerData[playerCode]["playerStory"].ToString();
+        
     }
     public void ChoosePlayer()
     {
-        PlayerPrefs.SetInt("PlayerType",playerCode);
+        PlayerPrefs.SetInt("PlayerType", playerCode);
+        Selected.text=(playerCode==PlayerPrefs.GetInt("PlayerType", playerCode))?"선택됨":"";
     }
     public void DataDelete()
     {
@@ -100,10 +135,10 @@ public class Canvas_select : MonoBehaviour
     public void toCanvas(int num)
     {
         CanvasCode = num;
-        if(CanvasCode==0)
-        Background.GetComponent<Image>().sprite=oriImg;
+        if (CanvasCode == 0)
+            Background.GetComponent<Image>().sprite = oriImg;
         else
-        Background.GetComponent<Image>().sprite=Bullred;
+            Background.GetComponent<Image>().sprite = Bullred;
     }
     void SetsoundKey()
     {
@@ -126,13 +161,17 @@ public class Canvas_select : MonoBehaviour
         //Load();
         anotherLoad();
         SetsoundKey();
-        playerCode=PlayerPrefs.GetInt("PlayerType");
+        playerCode = PlayerPrefs.GetInt("PlayerType");
         ship_position = new Vector3(-2000, -150, 0);
         cloud_position = new Vector3(-2000, 0, 0);
-        oriImg=Background.GetComponent<Image>().sprite;
+        oriImg = Background.GetComponent<Image>().sprite;
         StageComent.text = priceData[StageCode - 1]["StageComent"].ToString();
         StageName.text = priceData[StageCode - 1]["StageName"].ToString();
         StageNumber.text = priceData[StageCode - 1]["StageNumber_text"].ToString();
+        CharacterName.text=PlayerData[playerCode]["playerName"].ToString();
+        CharacterStory.text=PlayerData[playerCode]["playerStory"].ToString();
+        Selected.text=(playerCode==PlayerPrefs.GetInt("PlayerType", playerCode))?"선택됨":"";
+        AdBanner.Instance.banner.Show();
     }
     public void GoIngame(int i)
     {
@@ -190,14 +229,13 @@ public class Canvas_select : MonoBehaviour
         }
         else
         {
-             if (ship_position.x >= -2500)
+            if (ship_position.x >= -2500)
                 ship_position.x += (-2500 - ship_position.x) / 15;
             ShipUpdate();
             if (cloud_position.x >= -1201)
-                cloud_position.x += (-1201 - cloud_position.x) / 10;  
+                cloud_position.x += (-1201 - cloud_position.x) / 10;
         }
         Ship.transform.localPosition = ship_position;
         Ship_Cloud.transform.localPosition = cloud_position;
     }
 }
- 
