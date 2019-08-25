@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using LitJson;
 using System.IO;
+using UnityEngine.SceneManagement;
 public class Stage_info
 {
     public int stageCode;
@@ -38,17 +39,50 @@ public class Canvas_select : MonoBehaviour
     public List<Character> playerList = new List<Character>();
     public List<Stage_info> StageInfolist = new List<Stage_info>();
     public Text StageComent, StageName, StageNumber;
-    public Text CharacterName, CharacterStory,Selected;
+    public Text CharacterName, CharacterStory, Selected;
     public Slider Master, Bgm, Sfx;
     public GameObject Ship, Ship_Cloud, Background;
     public Sprite Bullred, oriImg;
+    public Text PlayerMoneyText;
+    public int playermoney
+    {
+        get
+        {
+            if (!PlayerPrefs.HasKey("playermoney"))
+                PlayerPrefs.SetInt("playermoney", 0);
+
+            return PlayerPrefs.GetInt("playermoney");
+        }
+        set
+        {
+            PlayerPrefs.SetInt("playermoney", value);
+        }
+
+    }
+    public GameObject Locker;
     void Awake()
     {
         if (Instance == null)
             Instance = this;
         if (!PlayerPrefs.HasKey("PlayerType"))
             PlayerPrefs.SetInt("PlayerType", 0);
+
     }
+    float pi = 3.14f;
+    float moveElastic(float num)
+    {
+        float argument0 = num;
+        if (argument0 <= 0)
+            return 0;
+        else if (argument0 >= 1)
+            return 1;
+
+        float p = 0.3f;
+        float s = p / 4;
+
+        return Mathf.Pow(2, -10 * argument0) * Mathf.Sin((argument0 - s) * (2 * pi) / p) + 1;
+    }
+
     public void saveStageInfo()
     {
         StageInfolist.Add(new Stage_info(1, "하늘 간이역", "위대한 발견을 향한 여정의 시작 \n 모든것이 시작된다.(기차표 별도 구매)(배 무단 주차금지)"));
@@ -118,19 +152,20 @@ public class Canvas_select : MonoBehaviour
         {
             playerCode--;
         }
-        Selected.text=(playerCode==PlayerPrefs.GetInt("PlayerType", playerCode))?"선택됨":"";
-        CharacterName.text=PlayerData[playerCode]["playerName"].ToString();
-        CharacterStory.text=PlayerData[playerCode]["playerStory"].ToString();
-        
+        Selected.text = (playerCode == PlayerPrefs.GetInt("PlayerType", playerCode)) ? "선택됨" : "";
+        CharacterName.text = PlayerData[playerCode]["playerName"].ToString();
+        CharacterStory.text = PlayerData[playerCode]["playerStory"].ToString();
+
     }
     public void ChoosePlayer()
     {
         PlayerPrefs.SetInt("PlayerType", playerCode);
-        Selected.text=(playerCode==PlayerPrefs.GetInt("PlayerType", playerCode))?"선택됨":"";
+        Selected.text = (playerCode == PlayerPrefs.GetInt("PlayerType", playerCode)) ? "선택됨" : "";
     }
     public void DataDelete()
     {
         PlayerPrefs.DeleteAll();
+        SceneManager.LoadScene("title");
     }
     public void toCanvas(int num)
     {
@@ -154,6 +189,7 @@ public class Canvas_select : MonoBehaviour
         Bgm.value = PlayerPrefs.GetFloat("BgmVoluim");
     }
     Vector3 ship_position, cloud_position;
+    public GameObject resetWaring;
     // Start is called before the first frame update
     void Start()
     {
@@ -168,10 +204,16 @@ public class Canvas_select : MonoBehaviour
         StageComent.text = priceData[StageCode - 1]["StageComent"].ToString();
         StageName.text = priceData[StageCode - 1]["StageName"].ToString();
         StageNumber.text = priceData[StageCode - 1]["StageNumber_text"].ToString();
-        CharacterName.text=PlayerData[playerCode]["playerName"].ToString();
-        CharacterStory.text=PlayerData[playerCode]["playerStory"].ToString();
-        Selected.text=(playerCode==PlayerPrefs.GetInt("PlayerType", playerCode))?"선택됨":"";
+        CharacterName.text = PlayerData[playerCode]["playerName"].ToString();
+        CharacterStory.text = PlayerData[playerCode]["playerStory"].ToString();
+        Selected.text = (playerCode == PlayerPrefs.GetInt("PlayerType", playerCode)) ? "선택됨" : "";
         AdBanner.Instance.banner.Show();
+        resetWaring.transform.localScale = new Vector3(0, 0, 0);
+        PlayerMoneyText.text=playermoney.ToString();
+        if(!PlayerPrefs.HasKey("Stage_Num1"))
+        PlayerPrefs.SetInt("Stage_Num1",1);
+        if(!PlayerPrefs.HasKey("Player_Num0"))
+        PlayerPrefs.SetInt("Player_Num0",1);
     }
     public void GoIngame(int i)
     {
@@ -197,13 +239,37 @@ public class Canvas_select : MonoBehaviour
         PlayerPrefs.SetFloat("BgmVoluim", Bgm.value);
     }
     // Update is called once per frame
+    bool isReset = false;
+    public void Reset()
+    {
+        isReset = true;
+    }
+    public void Reset_true(bool isyes)
+    {
+        if (isyes)
+            DataDelete();
+        else
+            isReset = false;
+    }
+    float elastic = 0;
     void Update()
     {
 
 
         if (CanvasCode == 3)
         {
-            Option();
+            if (isReset)
+            {
+                if (elastic < 1)
+                    elastic += 0.015f;
+            }
+            else
+            {
+                Option();
+                if (elastic >= 0)
+                    elastic -= 0.03f;
+            }
+            resetWaring.transform.localScale = new Vector3(moveElastic(elastic), moveElastic(elastic));
         }
     }
     float shipsin, sizesin;

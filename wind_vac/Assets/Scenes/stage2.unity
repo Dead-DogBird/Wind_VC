@@ -3603,42 +3603,42 @@ PrefabInstance:
     - target: {fileID: 5483635127422228435, guid: 58e1d0c94b98b0243992fca3e3d32976,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -261.66
+      value: 770.33997
       objectReference: {fileID: 0}
     - target: {fileID: 5483635127422228435, guid: 58e1d0c94b98b0243992fca3e3d32976,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 449.06
+      value: -52.940002
       objectReference: {fileID: 0}
     - target: {fileID: 5483635127422228435, guid: 58e1d0c94b98b0243992fca3e3d32976,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 109.95
+      value: 109.95001
       objectReference: {fileID: 0}
     - target: {fileID: 5483635127422228435, guid: 58e1d0c94b98b0243992fca3e3d32976,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 69.11
+      value: 69.109985
       objectReference: {fileID: 0}
     - target: {fileID: 5483635127422228435, guid: 58e1d0c94b98b0243992fca3e3d32976,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5483635127422228435, guid: 58e1d0c94b98b0243992fca3e3d32976,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5483635127422228435, guid: 58e1d0c94b98b0243992fca3e3d32976,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5483635127422228435, guid: 58e1d0c94b98b0243992fca3e3d32976,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5483635127422228435, guid: 58e1d0c94b98b0243992fca3e3d32976,
         type: 3}
@@ -5819,7 +5819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3966ff89719042a40b2430f7d8a9b98c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerType: 0
+  StageCode: 2
   Players:
   - {fileID: 7656016678055715675, guid: 3278493c0376c5b49ab0d54d79ade007, type: 3}
   - {fileID: 5620015652575204737, guid: 7c14463a1d0393b46bd8533f1529c68c, type: 3}
@@ -7943,7 +7943,7 @@ PrefabInstance:
     - target: {fileID: 7340935074044559400, guid: 3b1079536ec8a0044aaaa37e7cb98aed,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 936.60077
+      value: -95.39923
       objectReference: {fileID: 0}
     - target: {fileID: 7340935074044559400, guid: 3b1079536ec8a0044aaaa37e7cb98aed,
         type: 3}
@@ -7963,7 +7963,7 @@ PrefabInstance:
     - target: {fileID: 7340935074044559400, guid: 3b1079536ec8a0044aaaa37e7cb98aed,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7340935074044559400, guid: 3b1079536ec8a0044aaaa37e7cb98aed,
         type: 3}
@@ -7973,7 +7973,7 @@ PrefabInstance:
     - target: {fileID: 7340935074044559400, guid: 3b1079536ec8a0044aaaa37e7cb98aed,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7340935074044559400, guid: 3b1079536ec8a0044aaaa37e7cb98aed,
         type: 3}
