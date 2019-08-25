@@ -38,6 +38,7 @@ public class Game_manager : MonoBehaviour
     public int ui_money;
     public int highScore;
     public GameObject hit_red;
+    public GameObject shopInterface;
     GameObject temp;
     void Awake()
     {
@@ -96,11 +97,16 @@ public class Game_manager : MonoBehaviour
                 highScore = PlayerPrefs.GetInt("endLessHigh");
             }
         }
+        if(NowWhatMode==gameMode.acadeMode)
+        {
+            shopInterface.GetComponent<shop_upgrade>().pullupgrade();
+        }
         audio = this.gameObject.AddComponent<AudioSource>();
         this.audio.clip = this.audioClip;
         audio.volume = PlayerPrefs.GetFloat("BgmVoluim") * PlayerPrefs.GetFloat("MasterVoluim");
         audio.loop = true;
         audio.Play();
+        if(AdBanner.Instance!=null)
         AdBanner.Instance.banner.Hide();
         GameOver.SetActive(false);
     }

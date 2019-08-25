@@ -548,7 +548,7 @@ RectTransform:
   - {fileID: 336172124}
   - {fileID: 1306136585}
   m_Father: {fileID: 627813196}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -628,6 +628,7 @@ MonoBehaviour:
   - {fileID: 1014803761}
   - {fileID: 1501248712}
   - {fileID: 459212551}
+  Heal: {fileID: 1594882137}
 --- !u!1 &46671383
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,7 +660,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 627813196}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1879,7 +1880,7 @@ RectTransform:
   - {fileID: 133476057}
   - {fileID: 1995540395}
   m_Father: {fileID: 627813196}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4984,11 +4985,11 @@ RectTransform:
   - {fileID: 1803338739}
   - {fileID: 1063152902}
   - {fileID: 677095923}
+  - {fileID: 1644391812}
   - {fileID: 46671384}
   - {fileID: 22781063}
   - {fileID: 164197565}
   - {fileID: 1838891699}
-  - {fileID: 1644391812}
   - {fileID: 1677513554}
   - {fileID: 128494155}
   m_Father: {fileID: 2099410428}
@@ -7515,7 +7516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3966ff89719042a40b2430f7d8a9b98c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerType: 0
+  StageCode: 1
   Players:
   - {fileID: 7656016678055715675, guid: 3278493c0376c5b49ab0d54d79ade007, type: 3}
   - {fileID: 5620015652575204737, guid: 7c14463a1d0393b46bd8533f1529c68c, type: 3}
@@ -7524,10 +7525,11 @@ MonoBehaviour:
   audioClip: {fileID: 8300000, guid: a961d11b96f15514ab514ff03a82eedf, type: 3}
   volume: 1
   touchedPos: {x: 0, y: 0, z: 0}
-  true_money: 25000
-  ui_money: 25000
+  true_money: 0
+  ui_money: 0
   highScore: 0
   hit_red: {fileID: 2101810677}
+  shopInterface: {fileID: 0}
   shop: {fileID: 0}
   shop_touch: 0
   pauseCanvas: {fileID: 1923559915}
@@ -10892,7 +10894,7 @@ RectTransform:
   - {fileID: 437037872}
   - {fileID: 1842662390}
   m_Father: {fileID: 627813196}
-  m_RootOrder: 13
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -12506,7 +12508,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 627813196}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}

@@ -37,9 +37,10 @@ public class gameover : MonoBehaviour
     }
     public void GoToMain()
     {
-        if (!PlayerPrefs.HasKey("Stage_Num" + Game_manager.Instance.StageCode + 1) && myText.text == "Game Clear!")
+        //Debug.Log(Game_manager.Instance.StageCode + 1+"번 잠금 해제됨!");
+        if (!PlayerPrefs.HasKey("Stage_Num" +(Game_manager.Instance.StageCode + 1)) && myText.text == "Game Clear!"&&Game_manager.Instance.NowWhatMode==Game_manager.gameMode.stageMode)
         {
-            PlayerPrefs.SetInt("Stage_Num" + Game_manager.Instance.StageCode + 1, 1);
+            PlayerPrefs.SetInt("Stage_Num" + (Game_manager.Instance.StageCode + 1), 1);
             Debug.Log(PlayerPrefs.HasKey("Stage_Num" + Game_manager.Instance.StageCode + 1) + " 이렇게 됨!");
         }
         LoadingSceneManager.LoadScene("mainmenu");

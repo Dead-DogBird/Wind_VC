@@ -33,9 +33,15 @@ public class shop_upgrade : MonoBehaviour
     public aText[] AllText = new aText[5];
     public Text[] Levels;
     public Text[] Prices;
+    public Text Heal;
+    int heal=500;
+    void OnEnable()
+    {
+    }
     // Start is called before the first frame update
     void Start()
     {
+        Game_manager.Instance.shopInterface=this.gameObject;
         player = monster_manager.Instance.player.GetComponent<player_stats>();
         if (player == null)
             Debug.Log("려ㅛ차");
@@ -60,6 +66,11 @@ public class shop_upgrade : MonoBehaviour
         }
         Gm = Game_manager.Instance;
         fullhp=player.GetComponent<hit_player>().hp;
+        if(Game_manager.gameMode.acadeMode==Gm.NowWhatMode)
+        {
+            heal=5000;
+            Heal.text="5000 G";
+        }
     }
     public void UpBoutton(int code)
     {
@@ -133,16 +144,29 @@ public class shop_upgrade : MonoBehaviour
                 }
                 break;
             case 5://체력 회복
-               if(Gm.true_money-500>=0)
+               if(Gm.true_money-heal>=0)
                 {if(player.GetComponent<hit_player>().hp+2<=fullhp)
                 player.GetComponent<hit_player>().hp += 2;
                 else
                 player.GetComponent<hit_player>().hp=fullhp;
-                Gm.true_money-=500;
+                Gm.true_money-=heal;
                 }
                 break;
         }
         Camera.main.GetComponent<ShakeManager>().Shake(0, 10f, 0, 0.7f, 4);
+    }
+    public void pullupgrade()
+    {
+        for(int i=0;i<5;i++)
+        {
+            Level[i]=max;
+            AllText[i].ToText("LV.MAX!", "MAX!");
+        }
+            player.attack += 0.25f*max;
+            player.attackspeed += 0.015f*max;
+            player.rapidfire += 0.04f*max;
+            player.speed += 0.015f*max;
+            player.extent += 0.1f*max;
     }
     // Update is called once per frame
     void Update()

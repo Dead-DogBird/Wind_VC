@@ -12,8 +12,7 @@ public class inStage : MonoBehaviour
     {
         MyTransform = transform.localPosition;
         MyTransform.y = 150;
-        Debug.Log(Stage_num+" 번 "+" 결과 :"+PlayerPrefs.HasKey("Stage_Num" + Stage_num));
-        if (!PlayerPrefs.HasKey("Stage_Num" + Stage_num))
+        if (Stage_num!=1&&!PlayerPrefs.HasKey("Stage_Num" + Stage_num))
         {
             GameObject temp = Instantiate(Canvas_select.Instance.Locker);
             temp.transform.SetParent(this.transform);
