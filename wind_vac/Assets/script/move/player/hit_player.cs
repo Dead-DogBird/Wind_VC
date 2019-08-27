@@ -11,8 +11,8 @@ public class hit_player : GameMaker
     public float hit_time;
     public bool falling;
     public new AudioSource audio;
-    public float volume=0.7f;
-    public AudioClip fireSound,ouchSound;
+    public float volume = 0.7f;
+    public AudioClip fireSound, ouchSound;
 
     void hit()
     {
@@ -23,43 +23,38 @@ public class hit_player : GameMaker
          new Vector2(box_collider.size.x * transform.localScale.x, box_collider.size.y * transform.localScale.y), 0, 1 << 8);//충돌  정보를 얻어옴
         if (hit != null)
         {
-            foreach (Collider2D i in hit)
+            for (int i = 0; i < hit.Length; i++)
             {
-                 if (i.CompareTag("fall")&&falling!=true)
-                    {
-                        audio.clip=fireSound;
-                        audio.Play();
-                        StartCoroutine("FallSmall");
-                        StartCoroutine("HitOn");
-                    }
-                if (GetComponent<move_player>().isJump != true && hit_time == 0)
+                if (hit[i].CompareTag("fall") && falling != true)
                 {
-                    if (i.CompareTag("monster"))
+                    audio.clip = fireSound;
+                    audio.Play();
+                    StartCoroutine("FallSmall");
+                    StartCoroutine("HitOn");
+                }
+                if (GetComponent<move_player>().isJump != true && hit_time == 0)
+                {   
+                     if (hit[i].CompareTag("monster")||hit[i].CompareTag("bullet"))
                     {
-                        Doknockback(transform.position, i.transform.position, 0.2f);
-                        i.transform.GetComponent<monster_parents>().Doknockback(i.transform.position, transform.position, 7.5f);
-                        hp -= 1;
-                        monster_manager.Instance.isHit = true;
-                        Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 6f, 0.9f, 10);
-                         audio.clip=ouchSound;
-                    }
-                    if (i.CompareTag("bullet"))
-                    {
-                        Doknockback(transform.position, i.transform.position, 0.2f);
-                        hp -= 1;
-                        Destroy(i.gameObject);
-                        Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 6f, 0.9f, 10);
-                         audio.clip=ouchSound;
-                    }
+                    Doknockback(transform.position, hit[i].transform.position, 0.2f);
+                    if (hit[i].CompareTag("monster"))
+                        hit[i].transform.GetComponent<monster_parents>().Doknockback(hit[i].transform.position, transform.position, 7.5f);
+                    if (hit[i].CompareTag("bullet"))
+                        Destroy(hit[i].gameObject);
+                    hp -= 1;
+                    monster_manager.Instance.isHit = true;
+                    Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 6f, 0.9f, 10);
+                    audio.clip = ouchSound;
+
 
                     hitcolor = 10;
-                    
+
                     hit_Red.hitcolor = 1;
                     hit_time = 1;
-                   
+
                     audio.Play();
                     StartCoroutine("HitOn");
-
+                    }
                 }
             }
         }
@@ -71,32 +66,32 @@ public class hit_player : GameMaker
     }
     void Start()
     {
-        audio=gameObject.AddComponent<AudioSource>();
-        audio.clip=fireSound;
-        audio.volume =  PlayerPrefs.GetFloat("SfxVoluim")*PlayerPrefs.GetFloat("MasterVoluim");
+        audio = gameObject.AddComponent<AudioSource>();
+        audio.clip = fireSound;
+        audio.volume = PlayerPrefs.GetFloat("SfxVoluim") * PlayerPrefs.GetFloat("MasterVoluim");
     }
     void die()
     {
         Camera.main.GetComponent<ShakeManager>().Shake(3f, 3f, 10f, 1.2f, 10);
-        if(Game_manager.Instance.NowWhatMode==Game_manager.gameMode.endlessMode&&monster_manager.Instance.wave>Game_manager.Instance.highScore)
-        PlayerPrefs.SetInt("endLessHigh",monster_manager.Instance.wave);
+        if (Game_manager.Instance.NowWhatMode == Game_manager.gameMode.endlessMode && monster_manager.Instance.wave > Game_manager.Instance.highScore)
+            PlayerPrefs.SetInt("endLessHigh", monster_manager.Instance.wave);
         Destroy(gameObject);
     }
     IEnumerator FallSmall()
     {
-        for(int i=0;i<75;i++)
+        for (int i = 0; i < 75; i++)
         {
-            falling=true;
-            transform.localScale += (new Vector3(0,0,0) - transform.localScale) / 5;
-             transform.Rotate(Vector3.forward * Time.deltaTime * 750);
+            falling = true;
+            transform.localScale += (new Vector3(0, 0, 0) - transform.localScale) / 5;
+            transform.Rotate(Vector3.forward * Time.deltaTime * 750);
             yield return new WaitForSeconds(0.01f);
         }
-        transform.localRotation=Quaternion.Euler(0, 0,0);
+        transform.localRotation = Quaternion.Euler(0, 0, 0);
         transform.localScale = new Vector3(0.6f, 0.6f);
         transform.position = new Vector3(0, 0);
         Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 6f, 0.9f, 10);
         hp -= 1;
-        falling=false;
+        falling = false;
         yield return null;
     }
     IEnumerator HitOn()
@@ -104,7 +99,7 @@ public class hit_player : GameMaker
         int countTime = 0;
         while (countTime < 10)
         {
-            if (countTime % 2 == 0&&countTime>4)
+            if (countTime % 2 == 0 && countTime > 4)
             {
                 foreach (var item in GetComponent<player_sprite>().Childs)
                 {
@@ -125,7 +120,7 @@ public class hit_player : GameMaker
         {
             item.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         }
-        hit_time=0;
+        hit_time = 0;
         yield return null;
     }
     void FixedUpdate()

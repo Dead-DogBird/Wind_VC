@@ -30,10 +30,16 @@ public class monster_manager : MonoBehaviour
     public GameObject coin;
     GameObject instanceBoss;
     public int SumonTime = 2;
+    public mapInfo mapinfo_; 
     void OnEnable()
     {
        // player = GameObject.Find("player").GetComponent<move_player>();
         wave_start_ = wave_start_.transform.GetComponent<wave_start>();
+        if((mapinfo_=GetComponent<mapInfo>())!=null)
+        {
+            Monster=mapinfo_.MapMonster[PlayerPrefs.GetInt("noWStage")];
+            bossMonster=mapinfo_.MapBoss[PlayerPrefs.GetInt("noWStage")];
+        }
 
     }
     public void pressButton(int dir)
