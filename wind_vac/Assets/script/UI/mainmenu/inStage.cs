@@ -20,6 +20,7 @@ public class inStage : MonoBehaviour
             transform.GetComponent<Image>().color = new Color32(150, 150, 150, 255);
             transform.GetComponent<Button>().enabled = false;
         }
+       
     }
 
     // Update is called once per frame

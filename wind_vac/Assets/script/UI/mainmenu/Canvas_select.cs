@@ -66,6 +66,8 @@ public class Canvas_select : MonoBehaviour
             Instance = this;
         if (!PlayerPrefs.HasKey("PlayerType"))
             PlayerPrefs.SetInt("PlayerType", 0);
+        if (PlayerPrefs.HasKey("noWStage"))
+            PlayerPrefs.SetInt("noWStage", 0);
 
     }
     float pi = 3.14f;
@@ -209,11 +211,11 @@ public class Canvas_select : MonoBehaviour
         Selected.text = (playerCode == PlayerPrefs.GetInt("PlayerType", playerCode)) ? "선택됨" : "";
         AdBanner.Instance.banner.Show();
         resetWaring.transform.localScale = new Vector3(0, 0, 0);
-        PlayerMoneyText.text=playermoney.ToString();
-        if(!PlayerPrefs.HasKey("Stage_Num1"))
-        PlayerPrefs.SetInt("Stage_Num1",1);
-        if(!PlayerPrefs.HasKey("Player_Num0"))
-        PlayerPrefs.SetInt("Player_Num0",1);
+        PlayerMoneyText.text = playermoney.ToString();
+        if (!PlayerPrefs.HasKey("Stage_Num1"))
+            PlayerPrefs.SetInt("Stage_Num1", 1);
+        if (!PlayerPrefs.HasKey("Player_Num0"))
+            PlayerPrefs.SetInt("Player_Num0", 1);
     }
     public void GoIngame(int i)
     {
@@ -227,7 +229,8 @@ public class Canvas_select : MonoBehaviour
                 break;
 
             default:
-                string map = "stage" + i;
+                string map = "stage";
+                PlayerPrefs.SetInt("noWStage",i-1);
                 LoadingSceneManager.LoadScene(map);
                 break;
         }

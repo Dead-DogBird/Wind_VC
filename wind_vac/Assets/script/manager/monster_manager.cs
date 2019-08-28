@@ -37,9 +37,11 @@ public class monster_manager : MonoBehaviour
         wave_start_ = wave_start_.transform.GetComponent<wave_start>();
         if((mapinfo_=GetComponent<mapInfo>())!=null)
         {
-            Monster=mapinfo_.MapMonster[PlayerPrefs.GetInt("noWStage")];
+            Monster=mapinfo_.MapMonster[PlayerPrefs.GetInt("noWStage")].Monster;
             bossMonster=mapinfo_.MapBoss[PlayerPrefs.GetInt("noWStage")];
+           // Instantiate(mapinfo_.Map[PlayerPrefs.GetInt("noWStage")],new Vector3(0,0,0),Quaternion.identity);
         }
+    
 
     }
     public void pressButton(int dir)
