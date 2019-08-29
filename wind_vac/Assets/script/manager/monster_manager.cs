@@ -39,6 +39,7 @@ public class monster_manager : MonoBehaviour
         {
             Monster=mapinfo_.MapMonster[PlayerPrefs.GetInt("noWStage")].Monster;
             bossMonster=mapinfo_.MapBoss[PlayerPrefs.GetInt("noWStage")];
+            boss_wave=mapinfo_.Wave[PlayerPrefs.GetInt("noWStage")];
            // Instantiate(mapinfo_.Map[PlayerPrefs.GetInt("noWStage")],new Vector3(0,0,0),Quaternion.identity);
         }
     

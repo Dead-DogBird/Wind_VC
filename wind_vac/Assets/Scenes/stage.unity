@@ -10278,10 +10278,10 @@ MonoBehaviour:
   Map:
   - {fileID: 4646371507160099616, guid: 1932c955354659b43b833a0fbc79c36d, type: 3}
   - {fileID: 906254452039675339, guid: 50163f1ebc4f3584e8512162e25f87dd, type: 3}
-  - {fileID: 906254452039675339, guid: 50163f1ebc4f3584e8512162e25f87dd, type: 3}
+  - {fileID: 906254452039675339, guid: 7a3a8a73904a29749be4d71459dbe777, type: 3}
   BackGround:
   - {fileID: 1269617290384619795, guid: 60effedfe48c227418f9cf88ad8fba2c, type: 3}
-  - {fileID: 1269617290384619795, guid: 60effedfe48c227418f9cf88ad8fba2c, type: 3}
+  - {fileID: 9120184243590203949, guid: 0500b38b70ce2384ba4cbf0b4ac2e2c9, type: 3}
   MapMonster:
   - Monster:
     - {fileID: 3625794051807221197, guid: 8ea961b667de54447804c3e81f9b411a, type: 3}

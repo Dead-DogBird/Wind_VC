@@ -20,9 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/endless.unity
     guid: dcfad23ab9b259e478696c712c9ec3a2
-  - enabled: 1
-    path: Assets/Scenes/stage2.unity
-    guid: 16f01490dd6bb69479934ba591bd7b86
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Hellsight.unity
     guid: 6b09ae34b8be50948b66b11a374487fc
