@@ -161,8 +161,11 @@ public class Canvas_select : MonoBehaviour
     }
     public void ChoosePlayer()
     {
-        PlayerPrefs.SetInt("PlayerType", playerCode);
-        Selected.text = (playerCode == PlayerPrefs.GetInt("PlayerType", playerCode)) ? "선택됨" : "";
+        if (PlayerPrefs.HasKey("Player_Num" + playerCode))
+        {
+            PlayerPrefs.SetInt("PlayerType", playerCode);
+            Selected.text = (playerCode == PlayerPrefs.GetInt("PlayerType", playerCode)) ? "선택됨" : "";
+        }
     }
     public void DataDelete()
     {
@@ -230,7 +233,7 @@ public class Canvas_select : MonoBehaviour
 
             default:
                 string map = "stage";
-                PlayerPrefs.SetInt("noWStage",i-1);
+                PlayerPrefs.SetInt("noWStage", i - 1);
                 LoadingSceneManager.LoadScene(map);
                 break;
         }
