@@ -13,6 +13,7 @@ public class SetPlayer : MonoBehaviour
         P_Anime=GetComponent<player_anime>();
         MyTransform = transform.localPosition;
         MyTransform.y=150;
+        PlayerPrefs.SetInt("Player_Num1",1);
         if(!PlayerPrefs.HasKey("Player_Num"+Player_num))
         {
         GameObject temp=Instantiate(Canvas_select.Instance.Locker);
