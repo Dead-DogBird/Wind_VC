@@ -194,26 +194,35 @@ public class Canvas_select : MonoBehaviour
         Bgm.value = PlayerPrefs.GetFloat("BgmVoluim");
     }
     Vector3 ship_position, cloud_position;
-    public GameObject resetWaring;
+    public GameObject resetWaring, creditPanel;
     // Start is called before the first frame update
     void Start()
     {
+        ///Json파일 수정할일 있으면 한번 돌리고 하기
         //saveStageInfo();
         //Load();
         anotherLoad();
         SetsoundKey();
         playerCode = PlayerPrefs.GetInt("PlayerType");
+        //객체 설정
         ship_position = new Vector3(-2000, -150, 0);
         cloud_position = new Vector3(-2000, 0, 0);
+        
         oriImg = Background.GetComponent<Image>().sprite;
+        //Json파일들 파싱
         StageComent.text = priceData[StageCode - 1]["StageComent"].ToString();
         StageName.text = priceData[StageCode - 1]["StageName"].ToString();
         StageNumber.text = priceData[StageCode - 1]["StageNumber_text"].ToString();
         CharacterName.text = PlayerData[playerCode]["playerName"].ToString();
         CharacterStory.text = PlayerData[playerCode]["playerStory"].ToString();
+        //플레이어 설정 초기화
         Selected.text = (playerCode == PlayerPrefs.GetInt("PlayerType", playerCode)) ? "선택됨" : "";
+        //광고
         AdBanner.Instance.banner.Show();
+        //판넬
         resetWaring.transform.localScale = new Vector3(0, 0, 0);
+        creditPanel.transform.localScale = new Vector3(0, 0, 0);
+       //초기화시 담당
         PlayerMoneyText.text = playermoney.ToString();
         if (!PlayerPrefs.HasKey("Stage_Num1"))
             PlayerPrefs.SetInt("Stage_Num1", 1);
@@ -246,11 +255,19 @@ public class Canvas_select : MonoBehaviour
     }
     // Update is called once per frame
     bool isReset = false;
-    public void Reset()
+    bool isCredit = false;
+    public void Reset(bool reset)
     {
-        isReset = true;
+        if (!reset)
+            isReset = true;
+        else
+            isCredit = true;
     }
-    public void Reset_true(bool isyes)
+    public void closeCredit()
+    {
+        isCredit=false;
+    }
+    public void Reset_true(bool isyes=false)
     {
         if (isyes)
             DataDelete();
@@ -258,6 +275,7 @@ public class Canvas_select : MonoBehaviour
             isReset = false;
     }
     float elastic = 0;
+    float C_elastic = 0;
     void Update()
     {
 
@@ -275,7 +293,18 @@ public class Canvas_select : MonoBehaviour
                 if (elastic >= 0)
                     elastic -= 0.03f;
             }
+            if (isCredit)
+            {
+                if (C_elastic < 1)
+                    C_elastic += 0.015f;
+            }
+            else
+            {
+                  if (C_elastic >= 0)
+                    C_elastic -= 0.03f;
+            }
             resetWaring.transform.localScale = new Vector3(moveElastic(elastic), moveElastic(elastic));
+            creditPanel.transform.localScale = new Vector3(moveElastic(C_elastic), moveElastic(C_elastic));
         }
     }
     float shipsin, sizesin;
