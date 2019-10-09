@@ -6,7 +6,7 @@ public class monster_parents : GameMaker
 {
 
     public move_player player;
-    public float speed = 0.5f;
+    public float speed = 1.5f;
     public float gur;
     float angle;
     float orignsize;
@@ -16,7 +16,7 @@ public class monster_parents : GameMaker
     //[HideInInspector]
     public float hp = 3;
     private Vector3 knockback;
-    public float nockback_length = 0.005f;
+    public float nockback_length = 0.5f;
     public float hitcolor = 0;
     public LinkedList<child_manager> childs;
     public bool is_player;
