@@ -71,7 +71,7 @@ public class bomb_boom : MonoBehaviour
         {
             foreach (Collider2D i in hit)
             {
-                if (i.tag == "monster")
+                if (i.tag == "monster"&&i.GetComponent<monster_parents>()!=null)
                 {
                     kill = true;
                     monster_manager.Instance.hitbombCount++;

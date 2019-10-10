@@ -19,7 +19,6 @@ public class bullet : MonoBehaviour
         // transform.localScale-=transform.localScale/100;
         // if(transform.localScale.x<=0)
         // Destroy(gameObject);
-
         Destroy(gameObject,8);
     }
 }

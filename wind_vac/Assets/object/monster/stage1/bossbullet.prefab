@@ -95,6 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toVector: {x: 0, y: 0, z: 0}
   speed: 5
+  isSpin: 1
 --- !u!61 &3943292501166998016
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -37,7 +37,7 @@ public class hit_player : GameMaker
                      if (hit[i].CompareTag("monster")||hit[i].CompareTag("bullet"))
                     {
                     Doknockback(transform.position, hit[i].transform.position, 0.2f);
-                    if (hit[i].CompareTag("monster"))
+                    if (hit[i].CompareTag("monster")&&hit[i].GetComponent<monster_parents>()!=null)
                         hit[i].transform.GetComponent<monster_parents>().Doknockback(hit[i].transform.position, transform.position, 7.5f);
                     if (hit[i].CompareTag("bullet"))
                         Destroy(hit[i].gameObject);

@@ -95,7 +95,7 @@ public class monster_parents : GameMaker
     {
         knockback = -VectorRotation(PointDirection(po1, po2)) * nockback_length * 0.1f * length;
     }
-    public void Kill()
+    virtual public void Kill()
     {
          Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 0, 0.9f, 10);
         monster_manager.Instance.monsterList.Remove(this);

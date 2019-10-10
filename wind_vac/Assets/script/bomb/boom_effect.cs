@@ -31,7 +31,7 @@ public class boom_effect : MonoBehaviour
             {
                 foreach (Collider2D i in hit)
                 {
-                    if (i.tag == "monster")
+                    if (i.tag == "monster"&&i.GetComponent<monster_parents>()!=null)
                     {
                         i.GetComponent<monster_parents>().hp -= 1f + player.attack;
                         i.GetComponent<monster_parents>().Doknockback(i.transform.position, transform.position, 5f);
