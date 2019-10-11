@@ -46,7 +46,8 @@ public class Game_manager : MonoBehaviour
             Instance = this;
 
         //playerType=(Player)PlayerPrefs.GetInt("PlayerType");
-
+        StageCode=PlayerPrefs.GetInt("noWStage")+1;
+        Debug.Log("now "+PlayerPrefs.GetInt("noWStage")+"stage");
         temp = Instantiate(Players[PlayerPrefs.GetInt("PlayerType")], new Vector3(0, 0, 0), Quaternion.identity);
     }
     void OnEnable()

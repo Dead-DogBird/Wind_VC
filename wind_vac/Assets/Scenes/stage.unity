@@ -10281,7 +10281,7 @@ MonoBehaviour:
   - {fileID: 906254452039675339, guid: 7a3a8a73904a29749be4d71459dbe777, type: 3}
   BackGround:
   - {fileID: 1269617290384619795, guid: 60effedfe48c227418f9cf88ad8fba2c, type: 3}
-  - {fileID: 9120184243590203949, guid: 0500b38b70ce2384ba4cbf0b4ac2e2c9, type: 3}
+  - {fileID: 1269617290384619795, guid: 60effedfe48c227418f9cf88ad8fba2c, type: 3}
   - {fileID: 9120184243590203949, guid: 0500b38b70ce2384ba4cbf0b4ac2e2c9, type: 3}
   MapMonster:
   - Monster:
@@ -10303,7 +10303,7 @@ MonoBehaviour:
   - {fileID: 794107921380521512, guid: 7a86c4793ca8c4e4da5b07f1384544ba, type: 3}
   - {fileID: 5286430305333866398, guid: 42815e86fd2d34845ad81eb89a5f9b1f, type: 3}
   - {fileID: 3555412380142114332, guid: b20494eb0fabfa54a9fb39c4563239f2, type: 3}
-  Wave: 080000000f000000
+  Wave: 080000000a0000000d000000
 --- !u!1001 &7340935074294999180
 PrefabInstance:
   m_ObjectHideFlags: 0

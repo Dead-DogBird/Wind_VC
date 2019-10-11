@@ -24,7 +24,7 @@ public class gameover : MonoBehaviour
 
             if (monster_manager.Instance.isClear && SceneManager.GetActiveScene().name != "endless")
             {
-                myText.text = "Game Clear!";
+                myText.text = "Stage Clear!";
             }
         };
         player = monster_manager.Instance.player;
@@ -37,8 +37,8 @@ public class gameover : MonoBehaviour
     }
     public void GoToMain()
     {
-        //Debug.Log(Game_manager.Instance.StageCode + 1+"번 잠금 해제됨!");
-        if (!PlayerPrefs.HasKey("Stage_Num" +(Game_manager.Instance.StageCode + 1)) && myText.text == "Game Clear!"&&Game_manager.Instance.NowWhatMode==Game_manager.gameMode.stageMode)
+        Debug.Log(Game_manager.Instance.StageCode +1+"번 잠금 해제됨!");
+        if (!PlayerPrefs.HasKey("Stage_Num" +(Game_manager.Instance.StageCode + 1)) && myText.text == "Stage Clear!"&&Game_manager.Instance.NowWhatMode==Game_manager.gameMode.stageMode)
         {
             PlayerPrefs.SetInt("Stage_Num" + (Game_manager.Instance.StageCode + 1), 1);
             Debug.Log(PlayerPrefs.HasKey("Stage_Num" + Game_manager.Instance.StageCode + 1) + " 이렇게 됨!");
