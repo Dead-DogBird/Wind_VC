@@ -25,6 +25,7 @@ public class gameover : MonoBehaviour
             if (monster_manager.Instance.isClear && SceneManager.GetActiveScene().name != "endless")
             {
                 myText.text = "Stage Clear!";
+                PlayerPrefs.SetInt("playermoney", Game_manager.Instance.true_money/100);
             }
         };
         player = monster_manager.Instance.player;
@@ -37,11 +38,11 @@ public class gameover : MonoBehaviour
     }
     public void GoToMain()
     {
-        Debug.Log(Game_manager.Instance.StageCode +1+"번 잠금 해제됨!");
+        Debug.Log(Game_manager.Instance.StageCode+"스테이지!");
         if (!PlayerPrefs.HasKey("Stage_Num" +(Game_manager.Instance.StageCode + 1)) && myText.text == "Stage Clear!"&&Game_manager.Instance.NowWhatMode==Game_manager.gameMode.stageMode)
         {
             PlayerPrefs.SetInt("Stage_Num" + (Game_manager.Instance.StageCode + 1), 1);
-            Debug.Log(PlayerPrefs.HasKey("Stage_Num" + Game_manager.Instance.StageCode + 1) + " 이렇게 됨!");
+            Debug.Log(PlayerPrefs.HasKey("Stage_Num" + Game_manager.Instance.StageCode + 1) + " 언락됨!");
         }
         LoadingSceneManager.LoadScene("mainmenu");
         Time.timeScale = 1;

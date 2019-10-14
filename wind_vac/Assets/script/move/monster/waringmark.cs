@@ -9,6 +9,7 @@ public class waringmark : MonoBehaviour
     float startTime;
     float pi = 3.14f;
     public float coolTime = 2.5f;
+    public bool isBoss=false;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,13 +33,19 @@ public class waringmark : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-    
+        
         scale =new Vector3(moveElastic(returnTime()),moveElastic(returnTime()));
         transform.localScale = scale;
         if (returnTime() > coolTime)
         {
-            Instantiate(monster, transform.position, Quaternion.identity);
+            GameObject temp=Instantiate(monster, transform.position, Quaternion.identity);
+            if(isBoss)
+            {
+                monster_manager.Instance.instanceBoss=temp;
+                Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 10, 1.5f, 5);
+            }
             Destroy(gameObject);
         }
+        
     }
 }

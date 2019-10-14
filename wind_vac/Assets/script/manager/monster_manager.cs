@@ -28,7 +28,7 @@ public class monster_manager : MonoBehaviour
     public GameObject hit_effect;
     public wave_start wave_start_;
     public GameObject coin;
-    GameObject instanceBoss;
+    public GameObject instanceBoss;
     public int SumonTime = 2;
     public mapInfo mapinfo_; 
     void OnEnable()
@@ -123,7 +123,7 @@ public class monster_manager : MonoBehaviour
         }
         if (leftWave != null)
             leftWave.text = (wave == boss_wave) ? "보스등장!" : "보스까지 " + (boss_wave - wave) + "웨이브 남았습니다! 현재 " + wave + "웨이브.";
-        trueNextWave(boss);
+        trueNextWave(wave == boss_wave);
         nextfireQ = Time.time + firerateQ;
     }
     public Vector3 RandomCircle(Vector3 center, float radius, float a)
@@ -152,13 +152,19 @@ public class monster_manager : MonoBehaviour
                 temp = temp.GetComponent<waringmark>().monster = Monster[Random.Range(0, Monster.Length)];
             }
         }
+        else
+        {        
+        Camera.main.GetComponent<ShakeManager>().Shake(3f, 3f, 20, 2.5f, 5);
+        }
         if (boss && !wave_start_.is_startWave)
             wave = boss_wave + 1;
     }
+    public GameObject Bossmark;
     void sumBoss()
     {
-        Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 0, 1.5f, 5);
-        GameObject temp = Instantiate(bossMonster);
+        Camera.main.GetComponent<ShakeManager>().Shake(3f, 3f, 20, 2.5f, 5);
+        GameObject temp = Instantiate(Bossmark);
+        temp.GetComponent<waringmark>().monster=bossMonster;
         temp.transform.position = RandomCircle(player.transform.position, 10, Random.Range(0, 360));
         instanceBoss = temp;
     }

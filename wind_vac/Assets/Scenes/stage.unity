@@ -5336,6 +5336,7 @@ MonoBehaviour:
   highScore: 0
   hit_red: {fileID: 302951775}
   shopInterface: {fileID: 0}
+  GiveMoney: 50
   shop: {fileID: 0}
   shop_touch: 0
   pauseCanvas: {fileID: 1030016058}
@@ -10200,6 +10201,12 @@ PrefabInstance:
       propertyPath: skipButton
       value: 
       objectReference: {fileID: 1458376641}
+    - target: {fileID: 7213700224275911843, guid: 9fce84439c4bbd14380d05dfd0f01a85,
+        type: 3}
+      propertyPath: Bossmark
+      value: 
+      objectReference: {fileID: 4099518791779462096, guid: 27ce7d3d262cf0540a51c3c062e8c5e4,
+        type: 3}
     - target: {fileID: 7213700224275911868, guid: 9fce84439c4bbd14380d05dfd0f01a85,
         type: 3}
       propertyPath: m_LocalPosition.x

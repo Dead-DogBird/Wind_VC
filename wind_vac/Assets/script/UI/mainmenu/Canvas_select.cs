@@ -219,7 +219,7 @@ public class Canvas_select : MonoBehaviour
         Selected.text = (playerCode == PlayerPrefs.GetInt("PlayerType", playerCode)) ? "선택됨" : "";
         //광고
         AdBanner.Instance.banner.Show();
-        //판넬
+        //옵션 판넬
         resetWaring.transform.localScale = new Vector3(0, 0, 0);
         creditPanel.transform.localScale = new Vector3(0, 0, 0);
        //초기화시 담당

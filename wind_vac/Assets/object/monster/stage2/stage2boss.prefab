@@ -131,7 +131,7 @@ MonoBehaviour:
   speed: 0.5
   gur: 0
   radi: 0
-  hp: 40
+  hp: 55
   nockback_length: 0.25
   hitcolor: 0
   is_player: 0

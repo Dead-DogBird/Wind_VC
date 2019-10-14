@@ -610,7 +610,7 @@ MonoBehaviour:
   speed: 2.5
   gur: 3
   radi: 0
-  hp: 35
+  hp: 45
   nockback_length: 0.5
   hitcolor: 0
   is_player: 0
@@ -620,6 +620,7 @@ MonoBehaviour:
   coin: {fileID: 0}
   isAttack: 0
   isfire: 0
+  idle: 0
   bullet: {fileID: 7410621638017465483, guid: aa7b5d6ad0d603d48bae6c716188d6af, type: 3}
   nextfireQ: 0
   firerateQ: 5

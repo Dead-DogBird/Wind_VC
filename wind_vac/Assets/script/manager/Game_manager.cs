@@ -40,6 +40,11 @@ public class Game_manager : MonoBehaviour
     public GameObject hit_red;
     public GameObject shopInterface;
     GameObject temp;
+    public int GiveMoney=50;
+    public void giveMoney()
+    {
+        true_money+=GiveMoney;
+    }
     void Awake()
     {
         if (Instance == null)
