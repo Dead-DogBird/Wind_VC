@@ -1,23 +1,48 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class SetPlayer : MonoBehaviour
 {
    public int Player_num = 1;
     Vector3 MyTransform;
     player_anime P_Anime;
+    List<GameObject> childList=new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
         P_Anime=GetComponent<player_anime>();
         MyTransform = transform.localPosition;
         MyTransform.y=150;
+        for(int i=0;i<transform.childCount;i++)
+        {
+                if(transform.GetChild(i).childCount!=0)
+                {
+                    childList.Add(transform.GetChild(i).GetChild(0).gameObject);         
+                }
+                else
+                {
+                    childList.Add(transform.GetChild(i).gameObject);
+                }
+        }
         if(!PlayerPrefs.HasKey("Player_Num"+Player_num))
         {
         GameObject temp=Instantiate(Canvas_select.Instance.Locker);
         temp.transform.SetParent(this.transform);
         temp.transform.localPosition=new Vector3(0,0,0);
+        for(int i=0;i<childList.Count;i++)
+        {
+            if(childList[i].GetComponent<Image>()!=null)
+            childList[i].GetComponent<Image>().color=new Color(0,0,0);
+        }
+        }
+    }
+    public void reActing()
+    {
+        for(int i=0;i<childList.Count;i++)
+        {
+            if(childList[i].GetComponent<Image>()!=null)
+            childList[i].GetComponent<Image>().color=new Color(1,1,1);
         }
     }
     public void SetAni(bool isRun)

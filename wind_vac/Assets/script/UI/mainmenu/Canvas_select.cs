@@ -139,9 +139,9 @@ public class Canvas_select : MonoBehaviour
         {
             StageCode--;
         }
-        StageComent.text = priceData[StageCode - 1]["StageComent"].ToString();
-        StageName.text = priceData[StageCode - 1]["StageName"].ToString();
         StageNumber.text = priceData[StageCode - 1]["StageNumber_text"].ToString();
+        StageName.text = (PlayerPrefs.HasKey("Stage_Num" + StageCode))?priceData[StageCode - 1]["StageName"].ToString():"???";
+        StageComent.text =(PlayerPrefs.HasKey("Stage_Num" + StageCode))?priceData[StageCode - 1]["StageComent"].ToString():"잠겨있습니다";
 
     }
     public void SetPlayer_button(bool isUp)
@@ -155,8 +155,8 @@ public class Canvas_select : MonoBehaviour
             playerCode--;
         }
         Selected.text = (playerCode == PlayerPrefs.GetInt("PlayerType", playerCode)) ? "선택됨" : "";
-        CharacterName.text = PlayerData[playerCode]["playerName"].ToString();
-        CharacterStory.text = PlayerData[playerCode]["playerStory"].ToString();
+        CharacterName.text =(PlayerPrefs.HasKey("Player_Num"+playerCode))? PlayerData[playerCode]["playerName"].ToString():"???";
+        CharacterStory.text =(PlayerPrefs.HasKey("Player_Num"+playerCode))? PlayerData[playerCode]["playerStory"].ToString():"\n\n\t\t잠겨 있습니다.";
 
     }
     public void ChoosePlayer()

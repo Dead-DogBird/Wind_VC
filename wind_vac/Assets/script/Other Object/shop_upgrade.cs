@@ -71,6 +71,10 @@ public class shop_upgrade : MonoBehaviour
             heal=5000;
             Heal.text="5000 G";
         }
+        if(Game_manager.gameMode.endlessMode==Gm.NowWhatMode)
+        {
+            heal=1500;
+        }
     }
     public void UpBoutton(int code)
     {
@@ -145,7 +149,8 @@ public class shop_upgrade : MonoBehaviour
                 break;
             case 5://체력 회복
                if(Gm.true_money-heal>=0)
-                {if(player.GetComponent<hit_player>().hp+2<=fullhp)
+                {
+                    if(player.GetComponent<hit_player>().hp+2<=fullhp)
                 player.GetComponent<hit_player>().hp += 2;
                 else
                 player.GetComponent<hit_player>().hp=fullhp;

@@ -17,12 +17,18 @@ public class inStage : MonoBehaviour
             GameObject temp = Instantiate(Canvas_select.Instance.Locker);
             temp.transform.SetParent(this.transform);
             temp.transform.localPosition = new Vector3(0, 0, 0);
-            transform.GetComponent<Image>().color = new Color32(150, 150, 150, 255);
+            transform.GetComponent<Image>().color = new Color(0, 0, 0);
             transform.GetComponent<Button>().enabled = false;
         }
        
     }
-
+    void BuyMe()
+    {
+        if(isAkade)
+        {
+            
+        }
+    }
     // Update is called once per frame
     void Update()
     {
