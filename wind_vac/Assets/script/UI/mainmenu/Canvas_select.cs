@@ -44,6 +44,7 @@ public class Canvas_select : MonoBehaviour
     public GameObject Ship, Ship_Cloud, Background;
     public Sprite Bullred, oriImg;
     public Text PlayerMoneyText;
+    public BuyContents buyCon_;
     public int playermoney
     {
         get
@@ -229,21 +230,30 @@ public class Canvas_select : MonoBehaviour
         if (!PlayerPrefs.HasKey("Player_Num0"))
             PlayerPrefs.SetInt("Player_Num0", 1);
     }
+    
     public void GoIngame(int i)
     {
         switch (i)
         {
             case 666:
+            if(PlayerPrefs.HasKey("Stage_Num" + i))
                 LoadingSceneManager.LoadScene("Hellsight");
+            else
+            {
+                buyCon_.BuyContentsInit(3000,"Stage_Num666");
+            }
                 break;
             case 999:
                 LoadingSceneManager.LoadScene("endless");
                 break;
 
             default:
-                string map = "stage";
-                PlayerPrefs.SetInt("noWStage", i - 1);
-                LoadingSceneManager.LoadScene(map);
+             if(i==1||PlayerPrefs.HasKey("Stage_Num" + i))
+                {
+                    string map = "stage";
+                    PlayerPrefs.SetInt("noWStage", i - 1);
+                    LoadingSceneManager.LoadScene(map);
+                }
                 break;
         }
     }

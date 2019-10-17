@@ -7,6 +7,7 @@ public class inStage : MonoBehaviour
     public int Stage_num = 1;
     Vector3 MyTransform;
     public bool isAkade = false;
+    public bool isUnlock=true;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +19,8 @@ public class inStage : MonoBehaviour
             temp.transform.SetParent(this.transform);
             temp.transform.localPosition = new Vector3(0, 0, 0);
             transform.GetComponent<Image>().color = new Color(0, 0, 0);
-            transform.GetComponent<Button>().enabled = false;
+            isUnlock=false;
+            //transform.GetComponent<Button>().enabled = false;
         }
        
     }
