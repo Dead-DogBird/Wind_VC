@@ -37,6 +37,11 @@ public class ShakeManager : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, transform.position.y,- 10);
                 size+=(0.7f-size)/10;
             }
+            if(monster_manager.Instance.instanceBoss!=null&&monster_manager.Instance.instanceBoss.GetComponent<monster_parents>()==null)
+            {
+                transform.position =Vector3.Slerp(monster_manager.Instance.instanceBoss.transform.position,transform.position, 0.2f);
+                transform.position = new Vector3(transform.position.x, transform.position.y,- 10);
+            }
         }
 
     }

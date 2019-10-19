@@ -35,7 +35,7 @@ public class BuyContents : MonoBehaviour
     {
         if(!isNegative)
         {
-            if(Canvas_select.Instance.playermoney>price)
+            if(Canvas_select.Instance.playermoney>=price)
             {
                 PlayerPrefs.SetInt(path,1);
                 Canvas_select.Instance.playermoney-=price;

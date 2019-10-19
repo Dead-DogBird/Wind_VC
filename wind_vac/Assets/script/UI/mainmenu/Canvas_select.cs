@@ -20,13 +20,14 @@ public class Stage_info
 }
 public class Character
 {
-    public int playerCode;
+    public int playerCode,playerPrice;
     public string playerStory, playerName;
-    public Character(int p_code, string pN, string pS)
+    public Character(int p_code,int p_price ,string pN, string pS)
     {
         playerCode = p_code;
         playerStory = pS;
         playerName = pN;
+        playerPrice =p_price;
     }
 
 }
@@ -95,8 +96,8 @@ public class Canvas_select : MonoBehaviour
 
         File.WriteAllText(Application.dataPath + "/Resources/StageInfo.json", ShopJson.ToString());
 
-        playerList.Add(new Character(0, "캡틴", "낯선 섬에 불시착한 1인 해적단의 선장. \n\n탈출이 1 순위 인듯 하다"));
-        playerList.Add(new Character(1, "나이트", "용병일을 하는 기사.\n\n험난한 전장을 누비며 명성을 쌓았다.\n꿈은 부귀영화"));
+        playerList.Add(new Character(0,0,"캡틴", "낯선 섬에 불시착한 1인 해적단의 선장. \n\n탈출이 1 순위 인듯 하다"));
+        playerList.Add(new Character(1,1000,"나이트", "용병일을 하는 방랑기사인 그녀는\n\n험난한 전장을 누비며 명성을 쌓았다.\n꿈은 부귀영화"));
         JsonData PlayerJson = JsonMapper.ToJson(playerList);
 
         File.WriteAllText(Application.dataPath + "/Resources/playerList.json", PlayerJson.ToString());
@@ -142,7 +143,7 @@ public class Canvas_select : MonoBehaviour
         }
         StageNumber.text = priceData[StageCode - 1]["StageNumber_text"].ToString();
         StageName.text = (PlayerPrefs.HasKey("Stage_Num" + StageCode))?priceData[StageCode - 1]["StageName"].ToString():"???";
-        StageComent.text =(PlayerPrefs.HasKey("Stage_Num" + StageCode))?priceData[StageCode - 1]["StageComent"].ToString():"잠겨있습니다";
+        StageComent.text =(PlayerPrefs.HasKey("Stage_Num" + StageCode))?priceData[StageCode - 1]["StageComent"].ToString():"잠겨있습니다 \n("+(StageCode-1)+" 스테이지 클리어시 잠금해제됨)";
 
     }
     public void SetPlayer_button(bool isUp)
@@ -166,6 +167,11 @@ public class Canvas_select : MonoBehaviour
         {
             PlayerPrefs.SetInt("PlayerType", playerCode);
             Selected.text = (playerCode == PlayerPrefs.GetInt("PlayerType", playerCode)) ? "선택됨" : "";
+        }
+        else
+        {
+            Debug.Log("player :"+playerCode);
+            buyCon_.BuyContentsInit(int.Parse(PlayerData[playerCode]["playerPrice"].ToString()),"Player_Num" + playerCode);
         }
     }
     public void DataDelete()
@@ -248,12 +254,13 @@ public class Canvas_select : MonoBehaviour
                 break;
 
             default:
-             if(i==1||PlayerPrefs.HasKey("Stage_Num" + i))
+            if(i==StageCode)
+             {if(i==1||PlayerPrefs.HasKey("Stage_Num" + i))
                 {
                     string map = "stage";
                     PlayerPrefs.SetInt("noWStage", i - 1);
                     LoadingSceneManager.LoadScene(map);
-                }
+                }}
                 break;
         }
     }

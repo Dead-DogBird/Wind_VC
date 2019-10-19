@@ -14,7 +14,7 @@ public class AcadeUnLock : MonoBehaviour
         if(PlayerPrefs.HasKey(path))
         {
             acadeName.text=OriName;
-
+            acadeInfo.text=OriInfo;
         }
     }
 
