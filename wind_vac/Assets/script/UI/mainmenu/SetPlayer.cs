@@ -8,6 +8,7 @@ public class SetPlayer : MonoBehaviour
     Vector3 MyTransform, myscale;
     player_anime P_Anime;
     float oriX, oriY;
+    GameObject temp;
     List<GameObject> childList = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,7 @@ public class SetPlayer : MonoBehaviour
         }
         if (!PlayerPrefs.HasKey("Player_Num" + Player_num))
         {
-            GameObject temp = Instantiate(Canvas_select.Instance.Locker);
+            temp = Instantiate(Canvas_select.Instance.Locker);
             temp.transform.SetParent(this.transform);
             temp.transform.localPosition = new Vector3(0, 0, 0);
             for (int i = 0; i < childList.Count; i++)
@@ -48,6 +49,7 @@ public class SetPlayer : MonoBehaviour
             if (childList[i].GetComponent<Image>() != null)
                 childList[i].GetComponent<Image>().color = new Color(1, 1, 1);
         }
+        Destroy(temp);
     }
     public void SetAni(bool isRun)
     {
