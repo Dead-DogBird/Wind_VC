@@ -48,8 +48,11 @@ public class ShakeManager : MonoBehaviour
 
     public void Shake(float x = 0, float y = 0, float dire = 0, float size = 1, float length = 10)
     {
+        if(x!=0)
         shake_x = x;
+        if(y!=0)
         shake_y = y;
+        if(dire!=0)
         shake_dire = dire;
         this.size = size;
         this.length = length;

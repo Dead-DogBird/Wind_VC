@@ -2042,6 +2042,13 @@ MonoBehaviour:
   - {fileID: 7292471265954072975, guid: 0f1ac948ffd4880428529e6b7ff6e7e6, type: 3}
   - {fileID: 9020971816541364464, guid: 0bdbd35881687fc48869e994d5188d01, type: 3}
   - {fileID: 5317724058342861517, guid: 5899ac1e5301131418e5ec34fed934ac, type: 3}
+  - {fileID: 3625794051807221197, guid: 8ea961b667de54447804c3e81f9b411a, type: 3}
+  - {fileID: 1150948527257995521, guid: e6b65f2267d9501438d4e598e94297bc, type: 3}
+  - {fileID: 3433869748688375914, guid: c8d52fa9f26e15944815bfd740ba335c, type: 3}
+  - {fileID: 934472481008842423, guid: 29927ec39cc5b094994d9b10538ca327, type: 3}
+  - {fileID: 7858683624868255854, guid: 7bcbba2ce901ce149ab3dd1223dcbfc9, type: 3}
+  - {fileID: 270318301181964554, guid: 64ab6147e0840264ca787f0a3a486a87, type: 3}
+  - {fileID: 8145911347403799201, guid: 76a4d4747cb34b345b7a57cbb3b48f78, type: 3}
   nextfireQ: 0
   firerateQ: 30
   player: {fileID: 0}
@@ -2053,11 +2060,14 @@ MonoBehaviour:
     type: 3}
   wave_start_: {fileID: 1246382426}
   coin: {fileID: 6594032475389129884, guid: 133b4a823db73af4aa66bd6fbbde9a77, type: 3}
+  instanceBoss: {fileID: 0}
   SumonTime: 2
+  mapinfo_: {fileID: 0}
   leftWave: {fileID: 0}
   waringMark: {fileID: 1851723089820910930, guid: 80315eaa8c92dbf41b38f7a235dc3cb7,
     type: 3}
   skipButton: {fileID: 128494154}
+  Bossmark: {fileID: 0}
   isClear: 0
 --- !u!4 &219770576
 Transform:
@@ -7530,6 +7540,7 @@ MonoBehaviour:
   highScore: 0
   hit_red: {fileID: 2101810677}
   shopInterface: {fileID: 0}
+  GiveMoney: 50
   shop: {fileID: 0}
   shop_touch: 0
   pauseCanvas: {fileID: 1923559915}

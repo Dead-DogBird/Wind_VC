@@ -40,6 +40,14 @@ public class BuyContents : MonoBehaviour
                 PlayerPrefs.SetInt(path,1);
                 Canvas_select.Instance.playermoney-=price;
                 Canvas_select.Instance.PlayerMoneyText.text=Canvas_select.Instance.playermoney.ToString();
+                //새로고침
+                {
+                    for(int i=0;i<Canvas_select.Unlock_playerlist.Count;i++)
+                    {
+                        Canvas_select.Unlock_playerlist[i].reActing();
+                    }
+                    Canvas_select.Instance.UnlockReActive();
+                }
             }
             else
             {

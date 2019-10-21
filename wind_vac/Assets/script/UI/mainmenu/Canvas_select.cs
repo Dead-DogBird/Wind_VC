@@ -33,6 +33,8 @@ public class Character
 }
 public class Canvas_select : MonoBehaviour
 {
+    [HideInInspector]
+    public static List<SetPlayer> Unlock_playerlist=new List<SetPlayer>();
     public int CanvasCode;
     public int StageCode = 1, maxNum;
     public static Canvas_select Instance = null;
@@ -62,15 +64,17 @@ public class Canvas_select : MonoBehaviour
 
     }
     public GameObject Locker;
+    void Reset()
+    {
+    }
     void Awake()
     {
         if (Instance == null)
             Instance = this;
         if (!PlayerPrefs.HasKey("PlayerType"))
             PlayerPrefs.SetInt("PlayerType", 0);
-        if (PlayerPrefs.HasKey("noWStage"))
+        if (!PlayerPrefs.HasKey("noWStage"))
             PlayerPrefs.SetInt("noWStage", 0);
-
     }
     float pi = 3.14f;
     float moveElastic(float num)
@@ -161,6 +165,12 @@ public class Canvas_select : MonoBehaviour
         CharacterStory.text =(PlayerPrefs.HasKey("Player_Num"+playerCode))? PlayerData[playerCode]["playerStory"].ToString():"\n\n\t\t잠겨 있습니다.";
 
     }
+    public void UnlockReActive()
+    {
+        Selected.text = (playerCode == PlayerPrefs.GetInt("PlayerType", playerCode)) ? "선택됨" : "";
+        CharacterName.text =(PlayerPrefs.HasKey("Player_Num"+playerCode))? PlayerData[playerCode]["playerName"].ToString():"???";
+        CharacterStory.text =(PlayerPrefs.HasKey("Player_Num"+playerCode))? PlayerData[playerCode]["playerStory"].ToString():"\n\n\t\t잠겨 있습니다.";
+    }
     public void ChoosePlayer()
     {
         if (PlayerPrefs.HasKey("Player_Num" + playerCode))
@@ -235,8 +245,23 @@ public class Canvas_select : MonoBehaviour
             PlayerPrefs.SetInt("Stage_Num1", 1);
         if (!PlayerPrefs.HasKey("Player_Num0"))
             PlayerPrefs.SetInt("Player_Num0", 1);
+        //플레이어 리스트 정렬
+        sort();
+
+
     }
-    
+    public void sort()
+    {
+                Unlock_playerlist.Sort(delegate(SetPlayer A,SetPlayer B){
+            if(A.Player_num>B.Player_num) return 1;
+            else if(A.Player_num<B.Player_num) return -1;
+            return 0;
+        });
+        Debug.Log("리스트 갯수 :"+Unlock_playerlist.Count);
+        //정렬 테스트 
+        for(int i=0;i<Unlock_playerlist.Count;i++)
+        Debug.Log(Unlock_playerlist[i].Player_num);
+    }
     public void GoIngame(int i)
     {
         switch (i)
@@ -334,6 +359,7 @@ public class Canvas_select : MonoBehaviour
         ship_position.x = ship_position.x + Mathf.Cos(shipsin) * 0.5f;
 
     }
+    
     void FixedUpdate()
     {
 
@@ -355,5 +381,10 @@ public class Canvas_select : MonoBehaviour
         }
         Ship.transform.localPosition = ship_position;
         Ship_Cloud.transform.localPosition = cloud_position;
+    }
+    void OnDestroy()
+    {
+        Unlock_playerlist.Clear();
+        Debug.Log("리스트 클리어! 리스트 노드 수 : "+Unlock_playerlist.Count);
     }
 }

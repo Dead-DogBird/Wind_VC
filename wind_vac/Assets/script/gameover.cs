@@ -12,6 +12,7 @@ public class gameover : MonoBehaviour
     Vector3 Mytransform;
     public delegate void tempOver();
     public tempOver TempOverMethod;
+    public Text playerCredit;
     void Start()
     {
         //        myText = myText.gameObject.GetComponent<Text>();
@@ -20,12 +21,15 @@ public class gameover : MonoBehaviour
             if (player == null || SceneManager.GetActiveScene().name == "endless")
             {
                 myText.text = "Game Over!";
+                 if(playerCredit!=null)
+                 playerCredit.text="0";
             }
 
             if (monster_manager.Instance.isClear && SceneManager.GetActiveScene().name != "endless")
             {
                 myText.text = "Stage Clear!";
-                PlayerPrefs.SetInt("playermoney", Game_manager.Instance.true_money/100);
+                playerCredit.text=((Game_manager.Instance.true_money/100)*10).ToString();
+                PlayerPrefs.SetInt("playermoney",PlayerPrefs.GetInt("playermoney")+(Game_manager.Instance.true_money/100)*10);
             }
         };
         player = monster_manager.Instance.player;

@@ -11,8 +11,14 @@ public class SetPlayer : MonoBehaviour
     GameObject temp;
     List<GameObject> childList = new List<GameObject>();
     // Start is called before the first frame update
+    void Awake()
+    {   
+        Canvas_select.Unlock_playerlist.Add(this);
+    }
     void Start()
     {
+
+        //Canvas_select.Instance.sort();
         P_Anime = GetComponent<player_anime>();
         MyTransform = transform.localPosition;
         MyTransform.y = 150;
@@ -44,10 +50,14 @@ public class SetPlayer : MonoBehaviour
     }
     public void reActing()
     {
-        for (int i = 0; i < childList.Count; i++)
+        Debug.Log("chiledCount "+((childList.Count==0)?"NULL!":childList.Count.ToString()));
+        if (PlayerPrefs.HasKey("Player_Num" + Player_num))
         {
-            if (childList[i].GetComponent<Image>() != null)
-                childList[i].GetComponent<Image>().color = new Color(1, 1, 1);
+            for (int i = 0; i < childList.Count; i++)
+            {
+                if (childList[i].GetComponent<Image>() != null)
+                    childList[i].GetComponent<Image>().color = new Color(1, 1, 1);
+            }
         }
         Destroy(temp);
     }

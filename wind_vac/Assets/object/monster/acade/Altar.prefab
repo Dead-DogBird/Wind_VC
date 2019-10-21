@@ -389,6 +389,7 @@ MonoBehaviour:
   boss:
   - {fileID: 5286430305333866398, guid: 42815e86fd2d34845ad81eb89a5f9b1f, type: 3}
   - {fileID: 794107921380521512, guid: 7a86c4793ca8c4e4da5b07f1384544ba, type: 3}
+  - {fileID: 3555412380142114332, guid: b20494eb0fabfa54a9fb39c4563239f2, type: 3}
 --- !u!114 &2978850279494053859
 MonoBehaviour:
   m_ObjectHideFlags: 0
