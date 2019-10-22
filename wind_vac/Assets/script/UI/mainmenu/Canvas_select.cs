@@ -33,6 +33,10 @@ public class Character
 }
 public class Canvas_select : MonoBehaviour
 {
+    public new AudioSource audio;
+    AudioSource sfxaudio;
+    public AudioClip sfxClip;
+    public AudioClip audioClip;
     [HideInInspector]
     public static List<SetPlayer> Unlock_playerlist=new List<SetPlayer>();
     public int CanvasCode;
@@ -64,9 +68,6 @@ public class Canvas_select : MonoBehaviour
 
     }
     public GameObject Locker;
-    void Reset()
-    {
-    }
     void Awake()
     {
         if (Instance == null)
@@ -137,6 +138,7 @@ public class Canvas_select : MonoBehaviour
 
     public void ToStage(bool isUp)
     {
+        sfxaudio.Play();
         if (isUp && StageCode + 1 <= maxNum)
         {
             StageCode++;
@@ -152,6 +154,7 @@ public class Canvas_select : MonoBehaviour
     }
     public void SetPlayer_button(bool isUp)
     {
+        sfxaudio.Play();
         if (isUp && playerCode + 1 <= Maxplayer)
         {
             playerCode++;
@@ -173,6 +176,7 @@ public class Canvas_select : MonoBehaviour
     }
     public void ChoosePlayer()
     {
+        sfxaudio.Play();
         if (PlayerPrefs.HasKey("Player_Num" + playerCode))
         {
             PlayerPrefs.SetInt("PlayerType", playerCode);
@@ -191,6 +195,7 @@ public class Canvas_select : MonoBehaviour
     }
     public void toCanvas(int num)
     {
+        sfxaudio.Play();
         CanvasCode = num;
         if (CanvasCode == 0)
             Background.GetComponent<Image>().sprite = oriImg;
@@ -247,8 +252,16 @@ public class Canvas_select : MonoBehaviour
             PlayerPrefs.SetInt("Player_Num0", 1);
         //플레이어 리스트 정렬
         sort();
-
-
+        //사운드 초기화
+        audio = this.gameObject.AddComponent<AudioSource>();
+        this.audio.clip = this.audioClip;
+        audio.volume = PlayerPrefs.GetFloat("BgmVoluim") * PlayerPrefs.GetFloat("MasterVoluim");
+        audio.loop = true;
+        audio.Play();
+        sfxaudio=this.gameObject.AddComponent<AudioSource>();
+        sfxaudio.clip=sfxClip;
+        sfxaudio.volume =  PlayerPrefs.GetFloat("SfxVoluim") * PlayerPrefs.GetFloat("MasterVoluim");
+        sfxaudio.loop=false;
     }
     public void sort()
     {
@@ -264,6 +277,7 @@ public class Canvas_select : MonoBehaviour
     }
     public void GoIngame(int i)
     {
+        sfxaudio.Play();
         switch (i)
         {
             case 666:
@@ -291,6 +305,8 @@ public class Canvas_select : MonoBehaviour
     }
     void Option()
     {
+        audio.volume = PlayerPrefs.GetFloat("BgmVoluim") * PlayerPrefs.GetFloat("MasterVoluim");
+        sfxaudio.volume =  PlayerPrefs.GetFloat("SfxVoluim") * PlayerPrefs.GetFloat("MasterVoluim");
         PlayerPrefs.SetFloat("MasterVoluim", Master.value);
         PlayerPrefs.SetFloat("SfxVoluim", Sfx.value);
         PlayerPrefs.SetFloat("BgmVoluim", Bgm.value);
@@ -300,6 +316,7 @@ public class Canvas_select : MonoBehaviour
     bool isCredit = false;
     public void Reset(bool reset)
     {
+        sfxaudio.Play();
         if (!reset)
             isReset = true;
         else
@@ -307,6 +324,7 @@ public class Canvas_select : MonoBehaviour
     }
     public void closeCredit()
     {
+        sfxaudio.Play();
         isCredit=false;
     }
     public void Reset_true(bool isyes=false)
@@ -320,8 +338,7 @@ public class Canvas_select : MonoBehaviour
     float C_elastic = 0;
     void Update()
     {
-
-
+        
         if (CanvasCode == 3)
         {
             if (isReset)

@@ -62,6 +62,6 @@ public class boom_effect : MonoBehaviour
             if(isbig)
             transform.localScale += new Vector3(0.075f, 0.075f, 0);
             
-            Destroy(gameObject, 0.4f);
+            Destroy(gameObject, 0.9f);
         }
     }

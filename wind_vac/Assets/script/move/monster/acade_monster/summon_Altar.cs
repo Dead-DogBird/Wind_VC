@@ -24,12 +24,14 @@ public class summon_Altar : MonoBehaviour
          int randaltar= Random.Range(0, 3);
             for (int i = 0; i <randaltar; i++)
             {
+                if(monster_manager.Instance.player!=null)
                 Instantiate(altar,monster_manager.Instance.RandomCircle(monster_manager.Instance.player.transform.position, 6, Random.Range(0, 360)),Quaternion.identity);
             }
     }
     // Update is called once per frame
     void Update()
     {
+        
         if (nextlate < Time.time)
         {
             sumaltar();
