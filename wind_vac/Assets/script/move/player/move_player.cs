@@ -15,6 +15,7 @@ public class move_player : GameMaker
 
 
     public bool isJump;
+    public joystick J_stick;
     // Use this for initialization
     void Start()
     {

@@ -14,7 +14,7 @@ public class deathrattle_monster : monster_parents
     public override void Kill()
     {
         for(int i=0;i<Count;i++)
-        Instantiate(deathrattle_object,transform.position,Quaternion.identity);
+        Instantiate(deathrattle_object,transform.position,Quaternion.identity).GetComponent<monster_parents>().alredyhit=alredyhit;
         base.Kill();
     }
     // Update is called once per frame

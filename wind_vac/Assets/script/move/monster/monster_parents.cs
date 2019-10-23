@@ -23,26 +23,30 @@ public class monster_parents : GameMaker
     public new AudioSource audio;
 
     public float volume;
-    public int giveMoney=5;
+    public int giveMoney = 5;
     public GameObject coin;
-    
+
 
     // Use this for initialization
     public void Start()
     {
+         transform.position-=new Vector3(0,0, transform.position.y/100);
         orignsize = transform.localScale.x;
         dumy_x = transform.localScale.x;
-        player =monster_manager.Instance.player;
+        player = monster_manager.Instance.player;
         monster_manager.Instance.monsterList.AddLast(this);
         childs = new LinkedList<child_manager>();
 
         audio = this.gameObject.AddComponent<AudioSource>();
         this.audio.clip = monster_manager.Instance.hitMonster;
-        audio.volume = PlayerPrefs.GetFloat("SfxVoluim")*PlayerPrefs.GetFloat("MasterVoluim");;
-        coin=monster_manager.Instance.coin;
+        audio.volume = PlayerPrefs.GetFloat("SfxVoluim") * PlayerPrefs.GetFloat("MasterVoluim"); ;
+        coin = monster_manager.Instance.coin;
     }
+    public float alredyhit;
     bool Is_hit()
     {
+        player_stats player = monster_manager.Instance.player.GetComponent<player_stats>();
+        
         BoxCollider2D box_collider = transform.GetComponent<BoxCollider2D>();//컴포넌트를 얻어옴
         box_collider.enabled = false;//자신 충돌 체크 꺼줌
         Collider2D[] hit = Physics2D.OverlapBoxAll(transform.position + new Vector3(box_collider.offset.x, box_collider.offset.y),
@@ -54,10 +58,31 @@ public class monster_parents : GameMaker
 
                 if (i.gameObject.tag == "monster")
                 {
-                Doknockback(transform.position, i.transform.position);
-                //this.audio.clip = this.fireSound;
+                    Doknockback(transform.position, i.transform.position);
+                    //this.audio.clip = this.fireSound;
                 }
-                
+                if (i.gameObject.tag == "attack")
+                {
+                    if (alredyhit!=i.GetComponent<boom_effect>().hitcode)
+                    {
+                        alredyhit=i.GetComponent<boom_effect>().hitcode;
+                        hp -= 1f + player.attack;
+                        Doknockback( transform.position,i.transform.position,5f);
+                        hitcolor = 20;
+                        audio.Play();
+
+                        Instantiate(monster_manager.Instance.hit_effect, transform.position + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f)), Quaternion.identity);
+
+                        EffectFont text = Instantiate(monster_manager.Instance.EffectText, transform.position, Quaternion.identity).GetComponent<EffectFont>();
+                        text.fwspeed = Random.Range(-0.05f, 0.05f);
+
+                        if (hp == 0)
+                            text.effectText = "처치!";
+                        else
+                            text.effectText = "" + (player.attack + 1) * 10;
+                        Camera.main.GetComponent<ShakeManager>().Shake(0f, 0f, 0, 0.9f, 10);
+                    }
+                }
             }
         }
         box_collider.enabled = true;//다시 자신의 충돌 체크를 켜줌			
@@ -97,14 +122,14 @@ public class monster_parents : GameMaker
     }
     virtual public void Kill()
     {
-         Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 0, 0.9f, 10);
+        Camera.main.GetComponent<ShakeManager>().Shake(0.3f, 0.3f, 0, 0.9f, 10);
         monster_manager.Instance.monsterList.Remove(this);
-        monster_manager.Instance.isDead=true;
+        monster_manager.Instance.isDead = true;
         monster_manager.Instance.combo++;
-        for(int i=0;i<giveMoney;i++)
+        for (int i = 0; i < giveMoney; i++)
         {
-            GameObject inst =Instantiate(coin);
-            inst.transform.position=new Vector3(transform.position.x+Random.Range(-1.5f,1.5f),transform.position.y+Random.Range(-1.5f,1.5f));
+            GameObject inst = Instantiate(coin);
+            inst.transform.position = new Vector3(transform.position.x + Random.Range(-1.5f, 1.5f), transform.position.y + Random.Range(-1.5f, 1.5f));
         }
         Destroy(gameObject);
     }
@@ -123,7 +148,7 @@ public class monster_parents : GameMaker
                 item.GetComponentInChildren<Renderer>().material.color = new Color(1 + (hitcolor * 2), 1 - (hitcolor * 0.5f), 1 - (hitcolor * 0.5f));
             }
         }
-        if (hp <= 0||monster_manager.Instance.isClear)
+        if (hp <= 0 || monster_manager.Instance.isClear)
             Kill();
     }
 

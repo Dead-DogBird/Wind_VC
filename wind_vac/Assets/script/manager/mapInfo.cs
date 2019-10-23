@@ -16,6 +16,7 @@ public class mapInfo : MonoBehaviour
     public int[] Wave;
     public Text stageName;
     public string[] stageNames;
+    public AudioClip[] stageMusics;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,8 @@ public class mapInfo : MonoBehaviour
         temp.GetComponent<SpriteRenderer>().sortingOrder=-5;
         temp.transform.parent=Camera.main.transform;
         stageName.text="St."+(PlayerPrefs.GetInt("noWStage")+1)+" "+stageNames[PlayerPrefs.GetInt("noWStage")];
+        Game_manager.Instance.audio.clip=stageMusics[PlayerPrefs.GetInt("noWStage")];
+        Game_manager.Instance.audio.Play();
     }
 
     // Update is called once per frame

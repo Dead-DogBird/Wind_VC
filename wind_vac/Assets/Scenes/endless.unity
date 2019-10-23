@@ -6217,6 +6217,7 @@ MonoBehaviour:
   Players:
   - {fileID: 7656016678055715675, guid: 3278493c0376c5b49ab0d54d79ade007, type: 3}
   - {fileID: 5620015652575204737, guid: 7c14463a1d0393b46bd8533f1529c68c, type: 3}
+  - {fileID: 7656016678055715675, guid: 8892b8b25e85e5748952f639cc3fbc2e, type: 3}
   NowWhatMode: 2
   audio: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 58083b33875bfaa48a769a20c14ce8ef, type: 3}

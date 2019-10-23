@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 114173432860879698}
   - component: {fileID: 95219305831044736}
   - component: {fileID: 61443021512857484}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: boom_effect 2
   m_TagString: attack
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6122512002355910208}
   - component: {fileID: 4534333775044610411}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: boom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4548557253299274267}
   - component: {fileID: 6229614191717531333}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: boom_motion
   m_TagString: Untagged
   m_Icon: {fileID: 0}

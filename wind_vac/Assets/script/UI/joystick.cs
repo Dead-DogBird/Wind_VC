@@ -11,7 +11,7 @@ public class joystick : MonoBehaviour
 
     // 비공개
     private Vector3 StickFirstPos;  // 조이스틱의 처음 위치.
-    private Vector3 JoyVec;         // 조이스틱의 벡터(방향)
+    public Vector3 JoyVec{get;private set;}        // 조이스틱의 벡터(방향)
     private float Radius;           // 조이스틱 배경의 반 지름.
     public move_player Player;
     bool isDrag;
@@ -27,7 +27,9 @@ public class joystick : MonoBehaviour
         float Can = transform.parent.GetComponent<RectTransform>().localScale.x;
         Radius *= Can;
         Player = monster_manager.Instance.player.GetComponent<move_player>();
+        Player.J_stick=this;
         player_Anime=Player.GetComponent<player_anime>();
+
     }
     void FixedUpdate()
     {

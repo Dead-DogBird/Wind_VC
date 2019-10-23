@@ -5502,6 +5502,7 @@ MonoBehaviour:
   Players:
   - {fileID: 7656016678055715675, guid: 3278493c0376c5b49ab0d54d79ade007, type: 3}
   - {fileID: 5620015652575204737, guid: 7c14463a1d0393b46bd8533f1529c68c, type: 3}
+  - {fileID: 7656016678055715675, guid: 8892b8b25e85e5748952f639cc3fbc2e, type: 3}
   NowWhatMode: 0
   audio: {fileID: 0}
   audioClip: {fileID: 8300000, guid: f4adced3a1dd0f14b9c6a05e996d8db5, type: 3}
@@ -10622,6 +10623,10 @@ MonoBehaviour:
   - "\uD558\uB298 \uAC04\uC774\uC5ED"
   - "\uC2A4\uD0E0\uB2E4\uB4DC \uD558\uB298\uC12C"
   - "\uBBF8\uC2A4\uD130\uB9AC \uACE0\uB300\uC720\uC801"
+  stageMusics:
+  - {fileID: 8300000, guid: f4adced3a1dd0f14b9c6a05e996d8db5, type: 3}
+  - {fileID: 8300000, guid: 49ec48540cc942b4daf7b16dba08af2d, type: 3}
+  - {fileID: 8300000, guid: c3ff9ac8eab2765439320e97334dd4d8, type: 3}
 --- !u!1001 &7340935074294999180
 PrefabInstance:
   m_ObjectHideFlags: 0

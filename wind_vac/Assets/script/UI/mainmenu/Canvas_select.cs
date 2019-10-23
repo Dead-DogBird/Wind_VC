@@ -103,6 +103,7 @@ public class Canvas_select : MonoBehaviour
 
         playerList.Add(new Character(0,0,"캡틴", "낯선 섬에 불시착한 1인 해적단의 선장. \n\n탈출이 1 순위 인듯 하다"));
         playerList.Add(new Character(1,1000,"나이트", "용병일을 하는 방랑기사인 그녀는\n\n험난한 전장을 누비며 명성을 쌓았다.\n꿈은 부귀영화"));
+        playerList.Add(new Character(2,1700,"개붕이", "신비로운 땅 \"개드립 랜드\"에서 온 개.\n만두와 드립을 좋아한다.\n\n(친구는 없음)"));
         JsonData PlayerJson = JsonMapper.ToJson(playerList);
 
         File.WriteAllText(Application.dataPath + "/Resources/playerList.json", PlayerJson.ToString());
@@ -223,6 +224,7 @@ public class Canvas_select : MonoBehaviour
         ///Json파일 수정할일 있으면 한번 돌리고 하기
         //saveStageInfo();
         //Load();
+        //-------------------------------------------
         anotherLoad();
         SetsoundKey();
         playerCode = PlayerPrefs.GetInt("PlayerType");
@@ -252,6 +254,7 @@ public class Canvas_select : MonoBehaviour
             PlayerPrefs.SetInt("Player_Num0", 1);
         //플레이어 리스트 정렬
         sort();
+        Maxplayer=Unlock_playerlist.Count-1;
         //사운드 초기화
         audio = this.gameObject.AddComponent<AudioSource>();
         this.audio.clip = this.audioClip;
