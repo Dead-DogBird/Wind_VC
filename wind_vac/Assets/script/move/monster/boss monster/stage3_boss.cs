@@ -17,18 +17,20 @@ public class stage3_boss : monster_parents
         nextfireQ = Time.time + firerateQ;
         animator = GetComponent<Animator>();
     }
-    void fire()
+    IEnumerator fire()
     {
         isfire = true;
         nextFireTime = Time.time + coolTime;
-        for (int i = 0; i < 5; i++)
+        animator.Play("3boss_Fire");
+        for (int i = 0; i < 18; i++)
         {
             GameObject inst = Instantiate(bullet);
             inst.transform.position = transform.position;
             inst.GetComponent<bullet>().toVector = VectorRotation(PointDirection(transform.position, player.transform.position) + (-20 + 20 * i));
             inst.GetComponent<bullet>().speed = 10;
+            yield return new WaitForSeconds(0.1f);
         }
-        animator.Play("3boss_Fire");
+        yield return null;
     }
     void Attack()
     {
@@ -41,7 +43,7 @@ public class stage3_boss : monster_parents
         if (player != null)
         {
             if (nextFireTime < Time.time)
-                fire();
+                StartCoroutine(fire());
             if (nextfireQ < Time.time)
                 Attack();
 

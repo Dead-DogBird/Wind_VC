@@ -28,6 +28,7 @@ public class bomb_boom : MonoBehaviour
     float ga = 0.005f;
     float gg = 0.15f;
     public bool Uactive;
+    public bool isRotate=true;
     void Start()
     {
         // Y = transform.position.y - 1.5f;
@@ -92,7 +93,7 @@ public class bomb_boom : MonoBehaviour
         {
             monster_manager.Instance.firebombCount++;
             GameObject temp = Instantiate(effect);
-            temp.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+            temp.transform.rotation = (isRotate)?Quaternion.Euler(0, 0, Random.Range(0, 360)):Quaternion.Euler(0, 0,0);
 
             if (effect_shadow != null)
             {

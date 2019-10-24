@@ -102,6 +102,7 @@ MonoBehaviour:
   pa: {fileID: 1980034479954772, guid: c9afa875e50085142a44ff4c34430a8e, type: 3}
   kill: 0
   Uactive: 0
+  isBounce: 1
 --- !u!61 &6306647243265301486
 BoxCollider2D:
   m_ObjectHideFlags: 0

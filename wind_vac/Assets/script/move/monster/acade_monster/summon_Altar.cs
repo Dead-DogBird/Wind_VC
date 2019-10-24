@@ -9,6 +9,8 @@ public class summon_Altar : MonoBehaviour
     public float nextlate, firerateQ = 50;
     float start_time;
     public Text[] getTime;
+    int addmoney;
+    public Text moneyText;
 
     // Start is called before the first frame update
     void Start()
@@ -45,5 +47,14 @@ public class summon_Altar : MonoBehaviour
         {
             scoresecend=float.Parse(getTime[0].text);
         }
+        if(moneyText!=null)
+        {
+            addmoney=(int)scoresecend;
+            moneyText.text=addmoney.ToString();
+        }
+    }
+    void OnDestroy()
+    {
+        PlayerPrefs.SetInt("playermoney",PlayerPrefs.GetInt("playermoney", 0)+addmoney);
     }
 }

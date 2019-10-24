@@ -10082,12 +10082,12 @@ PrefabInstance:
     - target: {fileID: 1216221720202058431, guid: 60a4e2e41e4c5fb449d89db58b8084f7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 564
       objectReference: {fileID: 0}
     - target: {fileID: 1216221720202058431, guid: 60a4e2e41e4c5fb449d89db58b8084f7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -21.714
       objectReference: {fileID: 0}
     - target: {fileID: 1216221720202058431, guid: 60a4e2e41e4c5fb449d89db58b8084f7,
         type: 3}
@@ -10377,17 +10377,17 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6501240337733517395, guid: 543d2971c932a124ca975ff250ab38ba,
+        type: 3}
+      propertyPath: playerCredit
+      value: 
+      objectReference: {fileID: 296838394}
     - target: {fileID: 6501240336160777978, guid: 543d2971c932a124ca975ff250ab38ba,
         type: 3}
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: d24f2210ac178ef4a95aa3b7dd437d2a,
         type: 3}
-    - target: {fileID: 6501240337733517395, guid: 543d2971c932a124ca975ff250ab38ba,
-        type: 3}
-      propertyPath: playerCredit
-      value: 
-      objectReference: {fileID: 296838394}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 543d2971c932a124ca975ff250ab38ba, type: 3}
 --- !u!114 &6501240336343193029 stripped
