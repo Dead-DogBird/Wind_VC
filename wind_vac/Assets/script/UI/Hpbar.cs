@@ -5,14 +5,15 @@ using UnityEngine.UI;
 public class Hpbar : MonoBehaviour
 {
     Image myImage;
-    int oriHp;
-
+    float oriHp;
+    hit_player player;
     // Start is called before the first frame update
     void Start()
     {
         myImage = GetComponent<Image>();
         // player =;
-
+        player=monster_manager.Instance.player.GetComponent<hit_player>();
+        oriHp=player.hp;
     }
     float CurHp;
     float BarHo = 1;
@@ -22,7 +23,7 @@ public class Hpbar : MonoBehaviour
 
         if (monster_manager.Instance.player != null)
         {
-            CurHp = (float)monster_manager.Instance.player.GetComponent<hit_player>().hp / 10.0f;
+            CurHp = (float)player.hp / oriHp;
             //if (BarHo > CurHp)
                 BarHo += (CurHp - BarHo) / 10;
 

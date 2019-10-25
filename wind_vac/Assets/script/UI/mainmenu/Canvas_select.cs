@@ -103,7 +103,7 @@ public class Canvas_select : MonoBehaviour
 
         playerList.Add(new Character(0,0,"캡틴", "낯선 섬에 불시착한 1인 해적단의 선장. \n\n탈출이 1 순위 인듯 하다"));
         playerList.Add(new Character(1,1000,"나이트", "용병일을 하는 방랑기사인 그녀는\n\n험난한 전장을 누비며 명성을 쌓았다.\n꿈은 부귀영화"));
-        playerList.Add(new Character(2,1700,"개붕이", "신비로운 땅 \"개드립 랜드\"에서 온 개.\n만두와 드립을 좋아한다.\n\n(친구는 없음)"));
+        playerList.Add(new Character(2,1700,"엘 폭탄코", "폭발과 다이너마이트를 광적으로 사랑한다.\n사방을 폭발로 물들이는것을 꿈꾼다."));
         JsonData PlayerJson = JsonMapper.ToJson(playerList);
 
         File.WriteAllText(Application.dataPath + "/Resources/playerList.json", PlayerJson.ToString());

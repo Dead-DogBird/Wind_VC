@@ -797,7 +797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 090baf1619f422143980103d94b9161c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.055
+  speed: 0.058
   plusVec: {x: 0, y: 0, z: 0}
   isJump: 0
   J_stick: {fileID: 0}
@@ -867,7 +867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: {x: 0, y: 0, z: 0}
-  hp: 10
+  hp: 5
   hit_Red: {fileID: 2393678942111509603, guid: 605e0d6d37d61c441adc5aaacde7c744, type: 3}
   hitcolor: 0
   hit_time: 0
@@ -926,9 +926,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d96b4a508e1236046b4f8c10f49737f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: 0
+  attack: -0.25
   attackspeed: 0
-  rapidfire: 0
+  rapidfire: 0.12
   speed: 0
   extent: 0
 --- !u!1 &7656016678096714916

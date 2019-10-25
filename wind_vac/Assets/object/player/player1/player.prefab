@@ -800,6 +800,7 @@ MonoBehaviour:
   speed: 0.055
   plusVec: {x: 0, y: 0, z: 0}
   isJump: 0
+  J_stick: {fileID: 0}
   canJump: 0
 --- !u!114 &7656016678055715621
 MonoBehaviour:
