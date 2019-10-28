@@ -20,14 +20,14 @@ public class Stage_info
 }
 public class Character
 {
-    public int playerCode,playerPrice;
+    public int playerCode, playerPrice;
     public string playerStory, playerName;
-    public Character(int p_code,int p_price ,string pN, string pS)
+    public Character(int p_code, int p_price, string pN, string pS)
     {
         playerCode = p_code;
         playerStory = pS;
         playerName = pN;
-        playerPrice =p_price;
+        playerPrice = p_price;
     }
 
 }
@@ -38,7 +38,7 @@ public class Canvas_select : MonoBehaviour
     public AudioClip sfxClip;
     public AudioClip audioClip;
     [HideInInspector]
-    public static List<SetPlayer> Unlock_playerlist=new List<SetPlayer>();
+    public static List<SetPlayer> Unlock_playerlist = new List<SetPlayer>();
     public int CanvasCode;
     public int StageCode = 1, maxNum;
     public static Canvas_select Instance = null;
@@ -101,9 +101,9 @@ public class Canvas_select : MonoBehaviour
 
         File.WriteAllText(Application.dataPath + "/Resources/StageInfo.json", ShopJson.ToString());
 
-        playerList.Add(new Character(0,0,"캡틴", "낯선 섬에 불시착한 1인 해적단의 선장. \n\n탈출이 1 순위 인듯 하다"));
-        playerList.Add(new Character(1,1000,"나이트", "용병일을 하는 방랑기사인 그녀는\n\n험난한 전장을 누비며 명성을 쌓았다.\n꿈은 부귀영화"));
-        playerList.Add(new Character(2,1700,"엘 폭탄코", "폭발과 다이너마이트를 광적으로 사랑한다.\n사방을 폭발로 물들이는것을 꿈꾼다."));
+        playerList.Add(new Character(0, 0, "캡틴", "낯선 섬에 불시착한 1인 해적단의 선장. \n\n탈출이 1 순위 인듯 하다"));
+        playerList.Add(new Character(1, 1000, "나이트", "용병일을 하는 방랑기사인 그녀는\n\n험난한 전장을 누비며 명성을 쌓았다.\n꿈은 부귀영화"));
+        playerList.Add(new Character(2, 1700, "엘 폭탄코", "폭발과 다이너마이트를 광적으로 사랑한다.\n사방을 폭발로 물들이는것을 꿈꾼다."));
         JsonData PlayerJson = JsonMapper.ToJson(playerList);
 
         File.WriteAllText(Application.dataPath + "/Resources/playerList.json", PlayerJson.ToString());
@@ -149,8 +149,8 @@ public class Canvas_select : MonoBehaviour
             StageCode--;
         }
         StageNumber.text = priceData[StageCode - 1]["StageNumber_text"].ToString();
-        StageName.text = (PlayerPrefs.HasKey("Stage_Num" + StageCode))?priceData[StageCode - 1]["StageName"].ToString():"???";
-        StageComent.text =(PlayerPrefs.HasKey("Stage_Num" + StageCode))?priceData[StageCode - 1]["StageComent"].ToString():"잠겨있습니다 \n("+(StageCode-1)+" 스테이지 클리어시 잠금해제됨)";
+        StageName.text = (PlayerPrefs.HasKey("Stage_Num" + StageCode)) ? priceData[StageCode - 1]["StageName"].ToString() : "???";
+        StageComent.text = (PlayerPrefs.HasKey("Stage_Num" + StageCode)) ? priceData[StageCode - 1]["StageComent"].ToString() : "잠겨있습니다 \n(" + (StageCode - 1) + " 스테이지 클리어시 잠금해제됨)";
 
     }
     public void SetPlayer_button(bool isUp)
@@ -165,15 +165,15 @@ public class Canvas_select : MonoBehaviour
             playerCode--;
         }
         Selected.text = (playerCode == PlayerPrefs.GetInt("PlayerType", playerCode)) ? "선택됨" : "";
-        CharacterName.text =(PlayerPrefs.HasKey("Player_Num"+playerCode))? PlayerData[playerCode]["playerName"].ToString():"???";
-        CharacterStory.text =(PlayerPrefs.HasKey("Player_Num"+playerCode))? PlayerData[playerCode]["playerStory"].ToString():"\n\n\t\t잠겨 있습니다.";
+        CharacterName.text = (PlayerPrefs.HasKey("Player_Num" + playerCode)) ? PlayerData[playerCode]["playerName"].ToString() : "???";
+        CharacterStory.text = (PlayerPrefs.HasKey("Player_Num" + playerCode)) ? PlayerData[playerCode]["playerStory"].ToString() : "\n\n\t\t잠겨 있습니다.";
 
     }
     public void UnlockReActive()
     {
         Selected.text = (playerCode == PlayerPrefs.GetInt("PlayerType", playerCode)) ? "선택됨" : "";
-        CharacterName.text =(PlayerPrefs.HasKey("Player_Num"+playerCode))? PlayerData[playerCode]["playerName"].ToString():"???";
-        CharacterStory.text =(PlayerPrefs.HasKey("Player_Num"+playerCode))? PlayerData[playerCode]["playerStory"].ToString():"\n\n\t\t잠겨 있습니다.";
+        CharacterName.text = (PlayerPrefs.HasKey("Player_Num" + playerCode)) ? PlayerData[playerCode]["playerName"].ToString() : "???";
+        CharacterStory.text = (PlayerPrefs.HasKey("Player_Num" + playerCode)) ? PlayerData[playerCode]["playerStory"].ToString() : "\n\n\t\t잠겨 있습니다.";
     }
     public void ChoosePlayer()
     {
@@ -185,8 +185,8 @@ public class Canvas_select : MonoBehaviour
         }
         else
         {
-            Debug.Log("player :"+playerCode);
-            buyCon_.BuyContentsInit(int.Parse(PlayerData[playerCode]["playerPrice"].ToString()),"Player_Num" + playerCode);
+            Debug.Log("player :" + playerCode);
+            buyCon_.BuyContentsInit(int.Parse(PlayerData[playerCode]["playerPrice"].ToString()), "Player_Num" + playerCode);
         }
     }
     public void DataDelete()
@@ -217,7 +217,7 @@ public class Canvas_select : MonoBehaviour
         Bgm.value = PlayerPrefs.GetFloat("BgmVoluim");
     }
     Vector3 ship_position, cloud_position;
-    public GameObject resetWaring, creditPanel;
+    public GameObject resetWaring, creditPanel, QuitPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -231,7 +231,7 @@ public class Canvas_select : MonoBehaviour
         //객체 설정
         ship_position = new Vector3(-2000, -150, 0);
         cloud_position = new Vector3(-2000, 0, 0);
-        
+
         oriImg = Background.GetComponent<Image>().sprite;
         //Json파일들 파싱
         StageComent.text = priceData[StageCode - 1]["StageComent"].ToString();
@@ -243,10 +243,11 @@ public class Canvas_select : MonoBehaviour
         Selected.text = (playerCode == PlayerPrefs.GetInt("PlayerType", playerCode)) ? "선택됨" : "";
         //광고
         AdBanner.Instance.banner.Show();
-        //옵션 판넬
+        //판넬 
         resetWaring.transform.localScale = new Vector3(0, 0, 0);
         creditPanel.transform.localScale = new Vector3(0, 0, 0);
-       //초기화시 담당
+        QuitPanel.transform.localScale = new Vector3(0, 0, 0);
+        //초기화시 담당
         PlayerMoneyText.text = playermoney.ToString();
         if (!PlayerPrefs.HasKey("Stage_Num1"))
             PlayerPrefs.SetInt("Stage_Num1", 1);
@@ -254,29 +255,31 @@ public class Canvas_select : MonoBehaviour
             PlayerPrefs.SetInt("Player_Num0", 1);
         //플레이어 리스트 정렬
         sort();
-        Maxplayer=Unlock_playerlist.Count-1;
+        Maxplayer = Unlock_playerlist.Count - 1;
         //사운드 초기화
         audio = this.gameObject.AddComponent<AudioSource>();
         this.audio.clip = this.audioClip;
         audio.volume = PlayerPrefs.GetFloat("BgmVoluim") * PlayerPrefs.GetFloat("MasterVoluim");
         audio.loop = true;
         audio.Play();
-        sfxaudio=this.gameObject.AddComponent<AudioSource>();
-        sfxaudio.clip=sfxClip;
-        sfxaudio.volume =  PlayerPrefs.GetFloat("SfxVoluim") * PlayerPrefs.GetFloat("MasterVoluim");
-        sfxaudio.loop=false;
+        sfxaudio = this.gameObject.AddComponent<AudioSource>();
+        sfxaudio.clip = sfxClip;
+        sfxaudio.volume = PlayerPrefs.GetFloat("SfxVoluim") * PlayerPrefs.GetFloat("MasterVoluim");
+        sfxaudio.loop = false;
+        CanvasCode=0;
     }
     public void sort()
     {
-                Unlock_playerlist.Sort(delegate(SetPlayer A,SetPlayer B){
-            if(A.Player_num>B.Player_num) return 1;
-            else if(A.Player_num<B.Player_num) return -1;
+        Unlock_playerlist.Sort(delegate (SetPlayer A, SetPlayer B)
+        {
+            if (A.Player_num > B.Player_num) return 1;
+            else if (A.Player_num < B.Player_num) return -1;
             return 0;
         });
-        Debug.Log("리스트 갯수 :"+Unlock_playerlist.Count);
+        Debug.Log("리스트 갯수 :" + Unlock_playerlist.Count);
         //정렬 테스트 
-        for(int i=0;i<Unlock_playerlist.Count;i++)
-        Debug.Log(Unlock_playerlist[i].Player_num);
+        for (int i = 0; i < Unlock_playerlist.Count; i++)
+            Debug.Log(Unlock_playerlist[i].Player_num);
     }
     public void GoIngame(int i)
     {
@@ -284,32 +287,34 @@ public class Canvas_select : MonoBehaviour
         switch (i)
         {
             case 666:
-            if(PlayerPrefs.HasKey("Stage_Num" + i))
-                LoadingSceneManager.LoadScene("Hellsight");
-            else
-            {
-                buyCon_.BuyContentsInit(3000,"Stage_Num666");
-            }
+                if (PlayerPrefs.HasKey("Stage_Num" + i))
+                    LoadingSceneManager.LoadScene("Hellsight");
+                else
+                {
+                    buyCon_.BuyContentsInit(3000, "Stage_Num666");
+                }
                 break;
             case 999:
                 LoadingSceneManager.LoadScene("endless");
                 break;
 
             default:
-            if(i==StageCode)
-             {if(i==1||PlayerPrefs.HasKey("Stage_Num" + i))
+                if (i == StageCode)
                 {
-                    string map = "stage";
-                    PlayerPrefs.SetInt("noWStage", i - 1);
-                    LoadingSceneManager.LoadScene(map);
-                }}
+                    if (i == 1 || PlayerPrefs.HasKey("Stage_Num" + i))
+                    {
+                        string map = "stage";
+                        PlayerPrefs.SetInt("noWStage", i - 1);
+                        LoadingSceneManager.LoadScene(map);
+                    }
+                }
                 break;
         }
     }
     void Option()
     {
         audio.volume = PlayerPrefs.GetFloat("BgmVoluim") * PlayerPrefs.GetFloat("MasterVoluim");
-        sfxaudio.volume =  PlayerPrefs.GetFloat("SfxVoluim") * PlayerPrefs.GetFloat("MasterVoluim");
+        sfxaudio.volume = PlayerPrefs.GetFloat("SfxVoluim") * PlayerPrefs.GetFloat("MasterVoluim");
         PlayerPrefs.SetFloat("MasterVoluim", Master.value);
         PlayerPrefs.SetFloat("SfxVoluim", Sfx.value);
         PlayerPrefs.SetFloat("BgmVoluim", Bgm.value);
@@ -328,9 +333,9 @@ public class Canvas_select : MonoBehaviour
     public void closeCredit()
     {
         sfxaudio.Play();
-        isCredit=false;
+        isCredit = false;
     }
-    public void Reset_true(bool isyes=false)
+    public void Reset_true(bool isyes = false)
     {
         if (isyes)
             DataDelete();
@@ -339,9 +344,39 @@ public class Canvas_select : MonoBehaviour
     }
     float elastic = 0;
     float C_elastic = 0;
+    float Q_elastic = 0;
+    bool isQuitPannel;
+    public void isQuit(bool positive)
+    {
+        if (positive)
+        {   
+            Application.Quit();
+        }
+        else
+        {
+            isQuitPannel = false;
+        }
+    }
     void Update()
     {
-        
+        if (CanvasCode == 0)
+        {
+            if (Input.GetKey(KeyCode.Escape))
+                isQuitPannel = true;
+
+        }
+        if (isQuitPannel)
+        {
+            if (Q_elastic < 1)
+                Q_elastic += 0.015f;
+        }
+        else
+        {
+            if(Q_elastic >= 0)
+                Q_elastic -= 0.03f;
+        }
+        QuitPanel.transform.localScale = new Vector3(moveElastic(Q_elastic), moveElastic(Q_elastic));
+
         if (CanvasCode == 3)
         {
             if (isReset)
@@ -362,7 +397,7 @@ public class Canvas_select : MonoBehaviour
             }
             else
             {
-                  if (C_elastic >= 0)
+                if (C_elastic >= 0)
                     C_elastic -= 0.03f;
             }
             resetWaring.transform.localScale = new Vector3(moveElastic(elastic), moveElastic(elastic));
@@ -379,7 +414,7 @@ public class Canvas_select : MonoBehaviour
         ship_position.x = ship_position.x + Mathf.Cos(shipsin) * 0.5f;
 
     }
-    
+
     void FixedUpdate()
     {
 
@@ -405,6 +440,6 @@ public class Canvas_select : MonoBehaviour
     void OnDestroy()
     {
         Unlock_playerlist.Clear();
-        Debug.Log("리스트 클리어! 리스트 노드 수 : "+Unlock_playerlist.Count);
+        Debug.Log("리스트 클리어! 리스트 노드 수 : " + Unlock_playerlist.Count);
     }
 }
